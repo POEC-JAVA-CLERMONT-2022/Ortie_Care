@@ -2,28 +2,41 @@ package com.ipme.ortiecare.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table(name = "Sols")
 public class Sols {
 	
-	private int id;
-	private String description;
-	private List<Avantages> listeAvantages;
-	private List<Inconvenients> listeInconvenients;
+	@Id
+	@Column(name="idSol", nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Type(type="org.hibernate.type.UUIDCharType")
+	private UUID idSol;
 	
-	public Sols(int id, String description, List<Inconvenients> listeInconvenients, List<Avantages> listeAvantages) {
+	@Column(name="descriptionSol", length=255)
+	private String description;
+	
+	@Column(name="AvantageSol", length=255)
+	private String avantageSol;
+	
+	@Column(name="InconvenientSol", length=255)
+	private String inconvenientSol;
+	
+	public Sols(UUID idSol, String description, String inconvenientSol, String avantageSol) {
 		
-		this.id = id;
+		this.idSol = idSol;
         this.description = description;
-        this.listeInconvenients = listeInconvenients;
-        this.listeAvantages = listeAvantages;
+        this.inconvenientSol= inconvenientSol;
+        this.avantageSol = avantageSol;
 	}
 	
-	
-
-
-	public int getId() {
-		return id;
+	public UUID getId() {
+		return this.idSol;
 	}
 
 	public String getDescription() {
@@ -34,21 +47,20 @@ public class Sols {
 		this.description = description;
 	}
 
-	public List<Avantages> getListeAvantages() {
-		return listeAvantages;
+	public String getAvantage() {
+		return avantageSol;
 	}
 
-	public void setListeAvantages(List<Avantages> listeAvantages) {
-		this.listeAvantages = listeAvantages;
+	public void setAvantage(String avantage) {
+		this.avantageSol = avantage;
 	}
 
-	public List<Inconvenients> getListeInconvenients() {
-		return listeInconvenients;
+	public String getInconvenient() {
+		return inconvenientSol;
 	}
 
-	public void setListeInconvenients(List<Inconvenients> listeInconvenients) {
-		this.listeInconvenients = listeInconvenients;
-	}
-	
+	public void setInconvenient(String inconvenient) {
+		this.inconvenientSol = inconvenient;
+	}	
 	
 }
