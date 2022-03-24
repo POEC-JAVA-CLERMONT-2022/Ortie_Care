@@ -22,7 +22,7 @@ public class Legumes extends Plantation{
 	private boolean isGousse;
 
 	
-	public Legumes(int idPlant, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture, boolean autoReseme, boolean isGousse)
+	public Legumes(UUID idPlant, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture, boolean autoReseme, boolean isGousse)
 	{
 		super(idPlant, tempsAvantRecolteEnMois, poidsMoyenFruitEnG, conseilDeCulture);
 		this.setAutoReseme(autoReseme);
