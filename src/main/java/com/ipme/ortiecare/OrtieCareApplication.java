@@ -1,6 +1,7 @@
 package com.ipme.ortiecare;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,17 +14,17 @@ public class OrtieCareApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrtieCareApplication.class, args);
-		Avantages testAvantage = new Avantages(0, "retiens bien leau");
+		Avantages testAvantage = new Avantages(UUID.randomUUID(), "retiens bien leau");
 		System.out.println(testAvantage.getDescription());
 		testAvantage.setDescription("en fait non");
 		System.out.println(testAvantage.getDescription());
 
 		ArrayList<Avantages> listAvantages = new ArrayList<>();
-		Avantages drainage = new Avantages(0, "Draîne bien l'eau");
-		Avantages rechaufffement = new Avantages(1, "Se réchauffe rapidement");
-		Avantages maniabilite = new Avantages(2, "Se travaille facilement");
-		Avantages fertilite = new Avantages(3, "Est très fertile");
-		Avantages etancheite = new Avantages(4, "Retient bien l'eau");
+		Avantages drainage = new Avantages(UUID.randomUUID(), "Draîne bien l'eau");
+		Avantages rechaufffement = new Avantages(UUID.randomUUID(), "Se réchauffe rapidement");
+		Avantages maniabilite = new Avantages(UUID.randomUUID(), "Se travaille facilement");
+		Avantages fertilite = new Avantages(UUID.randomUUID(), "Est très fertile");
+		Avantages etancheite = new Avantages(UUID.randomUUID(), "Retient bien l'eau");
 		
 		listAvantages.add(etancheite);
 		listAvantages.add(fertilite);
@@ -32,13 +33,13 @@ public class OrtieCareApplication {
 		listAvantages.add(rechaufffement);
 		
 		ArrayList<Inconvenients> listInconvenients = new ArrayList<>();
-		Inconvenients inconv0 = new Inconvenients(0, "Peu fertile");
-		Inconvenients inconv1 = new Inconvenients(1, "Ne retient pas l'eau");
-		Inconvenients inconv2 = new Inconvenients(2, "Propice à l'érosion");
-		Inconvenients inconv3 = new Inconvenients(3, "Très fragile, s'érode facilement");
-		Inconvenients inconv4 = new Inconvenients(4, "Travaille mal");
-		Inconvenients inconv5 = new Inconvenients(5, "Réagit mal aux variations de température");
-		Inconvenients inconv6 = new Inconvenients(6, "Très acide, nuit au développement des végétaux");
+		Inconvenients inconv0 = new Inconvenients(UUID.randomUUID(), "Peu fertile");
+		Inconvenients inconv1 = new Inconvenients(UUID.randomUUID(), "Ne retient pas l'eau");
+		Inconvenients inconv2 = new Inconvenients(UUID.randomUUID(), "Propice à l'érosion");
+		Inconvenients inconv3 = new Inconvenients(UUID.randomUUID(), "Très fragile, s'érode facilement");
+		Inconvenients inconv4 = new Inconvenients(UUID.randomUUID(), "Travaille mal");
+		Inconvenients inconv5 = new Inconvenients(UUID.randomUUID(), "Réagit mal aux variations de température");
+		Inconvenients inconv6 = new Inconvenients(UUID.randomUUID(), "Très acide, nuit au développement des végétaux");
 		
 		listInconvenients.add(inconv0);
 		listInconvenients.add(inconv1);

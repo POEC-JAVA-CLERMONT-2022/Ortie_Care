@@ -1,20 +1,38 @@
 package com.ipme.ortiecare.model;
 
+import java.util.UUID;
+import javax.persistence.*;
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table(name = "Cultures")
 public class Culture {
 	
-	private int idCulture;
+	@Id
+	@Column(name="idCulture", nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Type(type="org.hibernate.type.UUIDCharType")
+	private UUID idCulture;
+	
+	@Column(name="descCulture", length=255)
 	private String descCulture;
+
+	@JoinColumn(name="idSol")
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Sols bestSoil;
+	
+	@JoinColumn(name="idPlantation")
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Plantation plantationConcernee;
 	
-	public Culture (int idCulture, String descCulture, Sols bestSoil, Plantation plantationConcernee)
+	public Culture (UUID idCulture, String descCulture, Sols bestSoil, Plantation plantationConcernee)
 	{
 		this.setIdCulture(idCulture);
 		this.setDescCulture(descCulture);
 		this.setBestSoil(bestSoil);
 		this.setPlantationConcernee(plantationConcernee);
 	}
-
+	
 	public Plantation getPlantationConcernee() {
 		return plantationConcernee;
 	}
@@ -39,11 +57,11 @@ public class Culture {
 		this.descCulture = descCulture;
 	}
 
-	public int getIdCulture() {
+	public UUID getIdCulture() {
 		return idCulture;
 	}
 
-	public void setIdCulture(int idCulture) {
+	public void setIdCulture(UUID idCulture) {
 		this.idCulture = idCulture;
 	}
 }

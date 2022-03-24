@@ -7,16 +7,15 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "Avantages")
-
 public class Avantages {
+	
 	@Id
 	@Column(name = "idAvantage", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(type = "org.hibernate.type.UUIDCharType")
 	private UUID idAvantage;
-	@Column(name ="description", length=255)
-
 	
+	@Column(name ="description", length=255)
 	private String description;
 
 	public Avantages(UUID id, String description) {
