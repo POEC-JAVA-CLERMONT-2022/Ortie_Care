@@ -1,6 +1,23 @@
 package com.ipme.ortiecare.model;
 
+import java.util.UUID;
+
+import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table(name = "legumes")
+
+
 public class Legumes extends Plantation{
+	@Id
+	@Column(name = "idLegume")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Type(type = "org.hibernate.type.UUIDCharType")
+	private UUID idLegume;
+	@Column(name = "legumeDescription", length = 255)
+	private UUID legumeDescription;
 	private boolean autoReseme;
 	private boolean isGousse;
 
