@@ -1,12 +1,32 @@
 package com.ipme.ortiecare.model;
 
+import java.util.*;
+
 public abstract class Plantation {
 	
 	protected int idPlantation;
 	protected int tempsAvantRecolteEnMois;
 	protected int poidsMoyenFruitEnG;
 	protected String conseilDeCulture;
-	
+	protected ArrayList<Inconvenients> listeInconvenients;
+	protected ArrayList<Avantages> listeAvantages;
+
+	public ArrayList<Inconvenients> getListeInconvenients() {
+		return listeInconvenients;
+	}
+
+	public void setListeInconvenients(ArrayList<Inconvenients> listeInconvenients) {
+		this.listeInconvenients = listeInconvenients;
+	}
+
+	public ArrayList<Avantages> getListeAvantages() {
+		return listeAvantages;
+	}
+
+	public void setListeAvantages(ArrayList<Avantages> listeAvantages) {
+		this.listeAvantages = listeAvantages;
+	}
+
 	public Plantation(int idPlantation, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture)
 	{
 		this.idPlantation = idPlantation;
