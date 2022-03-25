@@ -1,4 +1,5 @@
 package com.ipme.ortiecare.model;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
@@ -15,6 +16,7 @@ public class Inconvenients {
 	
 	@Column(name ="description", length=255)
 	private String description;
+
 
 	public Inconvenients(UUID idInconvenient, String description) {
 		this.idInconvenient = idInconvenient;

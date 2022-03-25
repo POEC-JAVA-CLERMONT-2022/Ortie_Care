@@ -1,4 +1,5 @@
 package com.ipme.ortiecare.model;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.*;

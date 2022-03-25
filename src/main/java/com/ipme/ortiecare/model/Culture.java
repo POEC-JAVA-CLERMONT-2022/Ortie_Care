@@ -1,6 +1,6 @@
 package com.ipme.ortiecare.model;
 
-import java.util.UUID;
+import java.util.*;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
@@ -19,34 +19,34 @@ public class Culture {
 
 	@JoinColumn(name="idSol")
 	@ManyToOne(fetch=FetchType.EAGER)
-	private Sols bestSoil;
+	private Sols bestSol;
 	
-	@JoinColumn(name="idPlantation")
-	@ManyToOne(fetch=FetchType.EAGER)
-	private Plantation plantationConcernee;
+	@JoinColumn(name="idLegume")
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Legumes> legumesConcerne;
 
-	public Culture (UUID idCulture, String descCulture, Sols bestSoil, Plantation plantationConcernee)
+	public Culture (UUID idCulture, String descCulture, Sols bestSol, Set<Legumes> legumeConcerne)
 	{
-		this.setIdCulture(idCulture);
-		this.setDescCulture(descCulture);
-		this.setBestSoil(bestSoil);
-		this.setPlantationConcernee(plantationConcernee);
+		this.idCulture = idCulture;
+		this.descCulture = descCulture;
+		this.bestSol=bestSol;
+		this.legumesConcerne = legumeConcerne;
 	}
 	
-	public Plantation getPlantationConcernee() {
-		return plantationConcernee;
+	public Set<Legumes> getPlantationConcernee() {
+		return legumesConcerne;
 	}
 
-	public void setPlantationConcernee(Plantation plantationConcernee) {
-		this.plantationConcernee = plantationConcernee;
+	public void setPlantationConcernee(Set<Legumes> legumesConcerne) {
+		this.legumesConcerne = legumesConcerne;
 	}
 
 	public Sols getBestSoil() {
-		return bestSoil;
+		return bestSol;
 	}
 
 	public void setBestSoil(Sols bestSoil) {
-		this.bestSoil = bestSoil;
+		this.bestSol = bestSoil;
 	}
 
 	public String getDescCulture() {
