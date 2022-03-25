@@ -26,11 +26,15 @@ public class User {
 	@Column(name ="email", length=255)
 	private String email;
 
+	@Column(name ="isAdmin", length=255)
+	private boolean isAdmin;
+	
 	public User(UUID idUser, String password, String firstName, String lastName, String email) {
 		this.idUser = idUser;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.isAdmin = false;
 	}
 }
