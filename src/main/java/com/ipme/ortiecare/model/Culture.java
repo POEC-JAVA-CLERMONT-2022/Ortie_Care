@@ -24,7 +24,7 @@ public class Culture {
 	@JoinColumn(name="idPlantation")
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Plantation plantationConcernee;
-	
+
 	public Culture (UUID idCulture, String descCulture, Sols bestSoil, Plantation plantationConcernee)
 	{
 		this.setIdCulture(idCulture);

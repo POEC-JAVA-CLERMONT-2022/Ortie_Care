@@ -10,17 +10,14 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "fruits")
-
 public class Fruits extends Plantation{
-	@Id
-	@Column(name = "idFruit")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type = "org.hibernate.type.UUIDCharType")
-	private UUID idFruit;
-	@Column(name = "fruitDescription", length = 255)
-	private UUID fruitDescription;
+	
+	@Column(name ="tempsAvantPremiereRecolteEnAnnee", length=255)
 	private int tempsAvantPremiereRecolteEnAnnee;
+	
+	@Column(name ="hauteurMaxEnMetre", length=255)
 	private int hauteurMaxEnMetre;
+	
 	public Fruits(UUID idPlant, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture, int tempsAvantPremiereRecolteEnAnnee, int hauteurMaxEnMetre)
 	{
 		super(idPlant, tempsAvantRecolteEnMois, poidsMoyenFruitEnG, conseilDeCulture);

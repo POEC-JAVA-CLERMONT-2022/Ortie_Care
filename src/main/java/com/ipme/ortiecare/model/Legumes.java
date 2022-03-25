@@ -11,14 +11,12 @@ import org.hibernate.annotations.Type;
 
 
 public class Legumes extends Plantation{
-	@Id
-	@Column(name = "idLegume")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type = "org.hibernate.type.UUIDCharType")
-	private UUID idLegume;
-	@Column(name = "legumeDescription", length = 255)
-	private UUID legumeDescription;
+
+	
+	@Column(name ="autoReseme", length=20)
 	private boolean autoReseme;
+	
+	@Column(name ="isGousse", length=20)
 	private boolean isGousse;
 
 	
