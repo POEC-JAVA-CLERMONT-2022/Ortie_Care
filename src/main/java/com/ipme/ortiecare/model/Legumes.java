@@ -1,30 +1,54 @@
 package com.ipme.ortiecare.model;
 
-import java.util.UUID;
+import java.util.*;
 
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.mapping.List;
 
 @Entity
 @Table(name = "legumes")
+public class Legumes{
 
-
-public class Legumes extends Plantation{
-
+	@Id
+	@Column(name="idLegume", nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Type(type="org.hibernate.type.UUIDCharType")
+	private UUID idLegume;
 	
 	@Column(name ="autoReseme", length=20)
 	private boolean autoReseme;
 	
 	@Column(name ="isGousse", length=20)
 	private boolean isGousse;
+	
+	@Column(name="tempsAvantRecolteEnMois", length=30)
+	protected int tempsAvantRecolteEnMois;
+	
+	@Column(name="poidsMoyenFruitEnG", length=30)
+	private int poidsMoyenFruitEnG;
+	
+	@Column(name="conseilDeCulture", length=255)
+	private String conseilDeCulture;
+	
+	@Column(name="idInconvenient")
+	@ManyToMany//(fetch=FetchType.EAGER)
+	private Set<Inconvenients> listeInconvenients;
+	
+	@Column(name="idInconvenient")
+	@ManyToMany//(fetch=FetchType.EAGER)
+	private Set<Avantages> listeAvantages;
 
 	
-	public Legumes(UUID idPlant, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture, boolean autoReseme, boolean isGousse)
+	public Legumes(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture, boolean autoReseme, boolean isGousse)
 	{
-		super(idPlant, tempsAvantRecolteEnMois, poidsMoyenFruitEnG, conseilDeCulture);
-		this.setAutoReseme(autoReseme);
-		this.setGousse(isGousse);
+		this.idLegume = idLegume;
+		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
+		this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;
+		this.conseilDeCulture = conseilDeCulture;
+		this.autoReseme = autoReseme;
+		this.isGousse = isGousse;
 	}
 	public boolean isGousse() {
 		return isGousse;
@@ -37,5 +61,20 @@ public class Legumes extends Plantation{
 	}
 	public void setAutoReseme(boolean autoReseme) {
 		this.autoReseme = autoReseme;
+	}
+	public void addInconvenient(Inconvenients unInconvenient)
+	{
+		if(unInconvenient!=null)
+		{
+			this.listeInconvenients.add(unInconvenient);
+		}
+	}
+	
+	public void addAvantage(Avantages unAvantage)
+	{
+		if(unAvantage!=null)
+		{
+			this.listeAvantages.add(unAvantage);
+		}
 	}
 }

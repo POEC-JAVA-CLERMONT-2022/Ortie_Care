@@ -19,34 +19,34 @@ public class Culture {
 
 	@JoinColumn(name="idSol")
 	@ManyToOne(fetch=FetchType.EAGER)
-	private Sols bestSoil;
+	private Sols bestSol;
 	
-	@JoinColumn(name="idPlantation")
+	@JoinColumn(name="idLegume")
 	@ManyToOne(fetch=FetchType.EAGER)
-	private Plantation plantationConcernee;
+	private Legumes legumeConcerne;
 
-	public Culture (UUID idCulture, String descCulture, Sols bestSoil, Plantation plantationConcernee)
+	public Culture (UUID idCulture, String descCulture, Sols bestSol, Legumes legumeConcerne)
 	{
-		this.setIdCulture(idCulture);
-		this.setDescCulture(descCulture);
-		this.setBestSoil(bestSoil);
-		this.setPlantationConcernee(plantationConcernee);
+		this.idCulture = idCulture;
+		this.descCulture = descCulture;
+		this.bestSol=bestSol;
+		this.legumeConcerne = legumeConcerne;
 	}
 	
-	public Plantation getPlantationConcernee() {
-		return plantationConcernee;
+	public Legumes getPlantationConcernee() {
+		return legumeConcerne;
 	}
 
-	public void setPlantationConcernee(Plantation plantationConcernee) {
-		this.plantationConcernee = plantationConcernee;
+	public void setPlantationConcernee(Legumes legumeConcerne) {
+		this.legumeConcerne = legumeConcerne;
 	}
 
 	public Sols getBestSoil() {
-		return bestSoil;
+		return bestSol;
 	}
 
 	public void setBestSoil(Sols bestSoil) {
-		this.bestSoil = bestSoil;
+		this.bestSol = bestSoil;
 	}
 
 	public String getDescCulture() {
