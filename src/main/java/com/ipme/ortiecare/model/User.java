@@ -1,5 +1,4 @@
 package com.ipme.ortiecare.model;
-
 import java.util.UUID;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
@@ -37,4 +36,10 @@ public class User {
 		this.email = email;
 		this.isAdmin = false;
 	}
+	
+	public String nomComplet() {
+		return this.firstName + " " + this.lastName; 
+	}
+	
+	
 }
