@@ -1,6 +1,6 @@
 package com.ipme.ortiecare.model;
 
-import java.util.UUID;
+import java.util.*;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
@@ -22,23 +22,23 @@ public class Culture {
 	private Sols bestSol;
 	
 	@JoinColumn(name="idLegume")
-	@ManyToOne(fetch=FetchType.EAGER)
-	private Legumes legumeConcerne;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Legumes> legumesConcerne;
 
-	public Culture (UUID idCulture, String descCulture, Sols bestSol, Legumes legumeConcerne)
+	public Culture (UUID idCulture, String descCulture, Sols bestSol, Set<Legumes> legumeConcerne)
 	{
 		this.idCulture = idCulture;
 		this.descCulture = descCulture;
 		this.bestSol=bestSol;
-		this.legumeConcerne = legumeConcerne;
+		this.legumesConcerne = legumeConcerne;
 	}
 	
-	public Legumes getPlantationConcernee() {
-		return legumeConcerne;
+	public Set<Legumes> getPlantationConcernee() {
+		return legumesConcerne;
 	}
 
-	public void setPlantationConcernee(Legumes legumeConcerne) {
-		this.legumeConcerne = legumeConcerne;
+	public void setPlantationConcernee(Set<Legumes> legumesConcerne) {
+		this.legumesConcerne = legumesConcerne;
 	}
 
 	public Sols getBestSoil() {
