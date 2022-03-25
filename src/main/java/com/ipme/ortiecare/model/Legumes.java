@@ -24,13 +24,18 @@ public class Legumes{
 	private boolean isGousse;
 	
 	@Column(name="tempsAvantRecolteEnMois", length=30)
-	protected int tempsAvantRecolteEnMois;
+	private int tempsAvantRecolteEnMois;
 	
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
 	
 	@Column(name="conseilDeCulture", length=255)
-	private String conseilDeCulture;
+	@OneToMany
+	private Set<ConseilDeCulture> conseilsDeCulture;
+	
+	
+	
+	
 	
 	@Column(name="idInconvenient")
 	@ManyToMany//(fetch=FetchType.EAGER)
@@ -41,12 +46,12 @@ public class Legumes{
 	private Set<Avantages> listeAvantages;
 
 	
-	public Legumes(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, String conseilDeCulture, boolean autoReseme, boolean isGousse)
+	public Legumes(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse)
 	{
 		this.idLegume = idLegume;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
 		this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;
-		this.conseilDeCulture = conseilDeCulture;
+		this.conseilsDeCulture = conseilsDeCulture;
 		this.autoReseme = autoReseme;
 		this.isGousse = isGousse;
 	}

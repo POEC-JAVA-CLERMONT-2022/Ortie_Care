@@ -1,5 +1,5 @@
 package com.ipme.ortiecare.model;
-import java.util.Set;
+
 import java.util.UUID;
 
 import javax.persistence.*;
@@ -7,30 +7,45 @@ import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "Avantages")
-public class Avantages {
+@Table(name = "ConseilsDeCulture")
+public class ConseilDeCulture {
 	
 	@Id
-	@Column(name = "idAvantage", nullable = false)
+	@Column(name = "idConseil", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Type(type = "org.hibernate.type.UUIDCharType")
-	private UUID idAvantage;
+	private UUID idConseil;
+	
+	@Column(name ="titre", length=100)
+	private String titre;
 	
 	@Column(name ="description", length=255)
 	private String description;
-
-	public Avantages(UUID id, String description) {
-		this.idAvantage = id;
+	
+	public ConseilDeCulture(UUID idConseil,String titre, String description) {
+		this.idConseil = idConseil;
+		this.titre = titre;
 		this.description = description;
 	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public UUID getId() {
-		return this.idAvantage;
+
+	public UUID getIdConseil() {
+		return idConseil;
 	}
 
 }
