@@ -5,7 +5,6 @@ import java.util.*;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
-import org.hibernate.mapping.List;
 
 @Entity
 @Table(name = "legumes")
