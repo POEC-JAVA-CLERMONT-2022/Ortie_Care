@@ -32,5 +32,4 @@ public class Avantages {
 	public UUID getId() {
 		return this.idAvantage;
 	}
-
 }
