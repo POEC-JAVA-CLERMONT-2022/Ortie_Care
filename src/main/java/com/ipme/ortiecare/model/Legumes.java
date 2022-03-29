@@ -32,7 +32,9 @@ public class Legumes{
 	@OneToMany
 	private Set<ConseilDeCulture> conseilsDeCulture;
 	
-	
+	//@Column(name="conseilDeCulture", length=255)
+	@OneToMany
+	private Set<Legumes> legumesAssocies;
 	
 	
 	
