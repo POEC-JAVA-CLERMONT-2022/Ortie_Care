@@ -51,6 +51,4 @@ public class Sols {
 	public void setProprieteSol(String avantage) {
 		this.proprieteSol = avantage;
 	}
-
-	
 }
