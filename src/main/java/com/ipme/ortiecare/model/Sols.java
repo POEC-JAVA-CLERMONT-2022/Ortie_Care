@@ -21,18 +21,15 @@ public class Sols {
 	@Column(name="descriptionSol", length=255)
 	private String description;
 	
-	@Column(name="AvantageSol", length=255)
-	private String avantageSol;
+	@Column(name="proprieteSol", length=255)
+	private String proprieteSol;
 	
-	@Column(name="InconvenientSol", length=255)
-	private String inconvenientSol;
 	
-	public Sols(UUID idSol, String description, String inconvenientSol, String avantageSol) {
+	public Sols(UUID idSol, String description, String proprieteSol) {
 		
 		this.idSol = idSol;
         this.description = description;
-        this.inconvenientSol= inconvenientSol;
-        this.avantageSol = avantageSol;
+        this.proprieteSol= proprieteSol;
 	}
 	
 	public UUID getId() {
@@ -47,20 +44,13 @@ public class Sols {
 		this.description = description;
 	}
 
-	public String getAvantage() {
-		return avantageSol;
+	public String getProprieteSol() {
+		return proprieteSol;
 	}
 
-	public void setAvantage(String avantage) {
-		this.avantageSol = avantage;
+	public void setProprieteSol(String avantage) {
+		this.proprieteSol = avantage;
 	}
 
-	public String getInconvenient() {
-		return inconvenientSol;
-	}
-
-	public void setInconvenient(String inconvenient) {
-		this.inconvenientSol = inconvenient;
-	}	
 	
 }
