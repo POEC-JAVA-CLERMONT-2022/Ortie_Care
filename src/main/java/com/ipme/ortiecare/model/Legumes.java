@@ -36,8 +36,6 @@ public class Legumes{
 	@OneToMany
 	private Set<Legumes> legumesAssocies;
 	
-	
-	
 	@Column(name="idInconvenient")
 	@ManyToMany//(fetch=FetchType.EAGER)
 	private Set<Inconvenients> listeInconvenients;
