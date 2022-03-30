@@ -4,10 +4,10 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
-import com.ipme.ortiecare.model.Legumes;
+import com.ipme.ortiecare.model.Legume;
 
-public interface LegumesRepository extends JpaRepository<Legumes,UUID>{
+public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
 	@Query("SELECT * FROM legumes where id_legume = :id")
-	Legumes findByUUID(@Param("id")UUID id_legume);
+	Legume findByUUID(@Param("id")UUID id_legume);
 }

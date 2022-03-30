@@ -10,7 +10,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "Sols")
-public class Sols {
+public class Sol {
 	
 	@Id
 	@Column(name="idSol", nullable=false)
@@ -25,7 +25,7 @@ public class Sols {
 	private String proprieteSol;
 	
 	
-	public Sols(UUID idSol, String description, String proprieteSol) {
+	public Sol(UUID idSol, String description, String proprieteSol) {
 		
 		this.idSol = idSol;
         this.description = description;
