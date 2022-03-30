@@ -8,7 +8,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "legumes")
-public class Legumes{
+public class Legume{
 
 	@Id
 	@Column(name="idLegume", nullable=false)
@@ -34,18 +34,10 @@ public class Legumes{
 	
 	//@Column(name="conseilDeCulture", length=255)
 	@OneToMany
-	private Set<Legumes> legumesAssocies;
+	private Set<Legume> legumesAssocies;
 	
-	@Column(name="idInconvenient")
-	@ManyToMany//(fetch=FetchType.EAGER)
-	private Set<Inconvenients> listeInconvenients;
 	
-	@Column(name="idInconvenient")
-	@ManyToMany//(fetch=FetchType.EAGER)
-	private Set<Avantages> listeAvantages;
-
-	
-	public Legumes(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse)
+	public Legume(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse)
 	{
 		this.idLegume = idLegume;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
@@ -66,19 +58,19 @@ public class Legumes{
 	public void setAutoReseme(boolean autoReseme) {
 		this.autoReseme = autoReseme;
 	}
-	public void addInconvenient(Inconvenients unInconvenient)
+	public void addConseil(ConseilDeCulture unConseil)
 	{
-		if(unInconvenient!=null)
+		if(unConseil!=null)
 		{
-			this.listeInconvenients.add(unInconvenient);
+			this.conseilsDeCulture.add(unConseil);
 		}
 	}
 	
-	public void addAvantage(Avantages unAvantage)
+	public void removeConseil(ConseilDeCulture unConseil)
 	{
-		if(unAvantage!=null)
+		if(unConseil!=null)
 		{
-			this.listeAvantages.add(unAvantage);
+			this.conseilsDeCulture.add(unConseil);
 		}
 	}
 }
