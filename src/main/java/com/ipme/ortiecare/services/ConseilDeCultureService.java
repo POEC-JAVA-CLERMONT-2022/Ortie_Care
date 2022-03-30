@@ -23,20 +23,13 @@ public class ConseilDeCultureService {
 		return conseilRepo.getById(id);
 	}
 	
-	public void create(String titre, String description)
+	public ConseilDeCulture create(String titre, String description)
 	{
 		ConseilDeCulture ceConseil = new ConseilDeCulture(UUID.randomUUID(), titre, description);
 		conseilRepo.save(ceConseil);
+		return ceConseil;
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
