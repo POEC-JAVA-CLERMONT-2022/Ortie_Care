@@ -18,18 +18,30 @@ public class Sol {
 	@Type(type="org.hibernate.type.UUIDCharType")
 	private UUID idSol;
 	
-	@Column(name="descriptionSol", length=255)
-	private String description;
+	@Column(name="nomSol", length=255)
+	private String nomSol;
 	
-	@Column(name="proprieteSol", length=255)
-	private String proprieteSol;
+	@Column(name="textureSol", length=255)
+	private String textureSol;
+	
+	@Column(name="structureSol", length=255)
+	private String structureSol;
+	
+	@Column(name="AvantageSol", length=255)
+	private String avantageSol;
+	
+	@Column(name="inconvenientSol", length=255)
+	private String inconvenientSol;
 	
 	
-	public Sol(UUID idSol, String description, String proprieteSol) {
+	public Sol(UUID idSol, String nomSol, String textureSol, String structureSol, String avantageSol, String inconvenientSol) {
 		
 		this.idSol = idSol;
-        this.description = description;
-        this.proprieteSol= proprieteSol;
+        this.nomSol = nomSol;
+        this.textureSol = textureSol;
+        this.structureSol = structureSol;
+        this.avantageSol = avantageSol;
+        this.inconvenientSol= inconvenientSol;
 	}
 	
 	public UUID getId() {
@@ -37,18 +49,43 @@ public class Sol {
 	}
 
 	public String getDescription() {
-		return description;
+		return nomSol;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.nomSol = description;
 	}
 
-	public String getProprieteSol() {
-		return proprieteSol;
+	public String getTextureSol() {
+		return textureSol;
 	}
 
-	public void setProprieteSol(String avantage) {
-		this.proprieteSol = avantage;
+	public void setTextureSol(String textureSol) {
+		this.textureSol = textureSol;
 	}
+
+	public String getStructureSol() {
+		return structureSol;
+	}
+
+	public void setStructureSol(String structureSol) {
+		this.structureSol = structureSol;
+	}
+
+	public String getAvantageSol() {
+		return avantageSol;
+	}
+
+	public void setAvantageSol(String avantageSol) {
+		this.avantageSol = avantageSol;
+	}
+
+	public String getInconvenientSol() {
+		return inconvenientSol;
+	}
+
+	public void setInconvenientSol(String inconvenientSol) {
+		this.inconvenientSol = inconvenientSol;
+	}
+
 }

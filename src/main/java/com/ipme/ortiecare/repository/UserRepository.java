@@ -13,6 +13,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
  @Query(value="SELECT * FROM users WHERE id_user = :id", nativeQuery = true)
  User findByUUID(@Param("id")UUID id_user);
  
- @Query("SELECT is_admin FROM users WHERE id_user = :id")
+ @Query(value="SELECT is_admin FROM users WHERE id_user = :id", nativeQuery=true)
  boolean isThisAdmin(@Param("id")UUID id_user); 
 }
