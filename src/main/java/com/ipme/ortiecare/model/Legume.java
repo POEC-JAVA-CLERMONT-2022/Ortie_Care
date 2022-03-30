@@ -28,16 +28,17 @@ public class Legume{
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
 	
-	@Column(name="conseilDeCulture", length=255)
 	@OneToMany
 	private Set<ConseilDeCulture> conseilsDeCulture;
 	
-	//@Column(name="conseilDeCulture", length=255)
 	@OneToMany
 	private Set<Legume> legumesAssocies;
 	
+	@ManyToOne
+	private Sol bestSol; 
 	
-	public Legume(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse)
+	
+	public Legume(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
 		this.idLegume = idLegume;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
@@ -45,6 +46,13 @@ public class Legume{
 		this.conseilsDeCulture = conseilsDeCulture;
 		this.autoReseme = autoReseme;
 		this.isGousse = isGousse;
+		this.bestSol = bestSol;
+	}
+	public Sol getBestSol() {
+		return bestSol;
+	}
+	public void setBestSol(Sol bestSol) {
+		this.bestSol = bestSol;
 	}
 	public boolean isGousse() {
 		return isGousse;
