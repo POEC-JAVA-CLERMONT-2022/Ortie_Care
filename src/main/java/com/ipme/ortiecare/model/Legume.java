@@ -18,6 +18,9 @@ public class Legume{
 	@Type(type="org.hibernate.type.UUIDCharType")
 	private UUID idLegume;
 	
+	@Column(name="nom", length=30)
+	private String nom;
+
 	@Column(name ="autoReseme", length=20)
 	private boolean autoReseme;
 	
@@ -29,9 +32,6 @@ public class Legume{
 	
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
-	
-	@Column(name="nom", length=30)
-	private String nom;
 	
 	@OneToMany
 	private Set<ConseilDeCulture> conseilsDeCulture;
@@ -60,6 +60,12 @@ public class Legume{
 	}
 	public void setBestSol(Sol bestSol) {
 		this.bestSol = bestSol;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	public boolean isGousse() {
 		return isGousse;
