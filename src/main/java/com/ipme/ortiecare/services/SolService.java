@@ -11,17 +11,22 @@ public class SolService {
 	@Autowired
 	private SolRepository solRepo;
 
+	
+	public SolService (SolRepository solRepo)
+	{
+		this.solRepo = solRepo;
+	}
 	public List<Sol> findAll() {
-		return solRepo.findAll();
+		return this.solRepo.findAll();
 	}
 
 	public Sol findById(UUID id) {
-		return solRepo.getById(id);
+		return this.solRepo.getById(id);
 	}
 
 	public Sol create(String nomSol, String textureSol,  String structureSol, String avantageSol, String inconvenientSol) {
 		Sol ceSol = new Sol(UUID.randomUUID(), nomSol, textureSol, structureSol, avantageSol, inconvenientSol);
-		solRepo.save(ceSol);
+		this.solRepo.save(ceSol);
 		return ceSol;
 	}
 
