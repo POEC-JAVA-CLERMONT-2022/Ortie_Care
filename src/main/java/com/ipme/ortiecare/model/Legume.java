@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
+import ch.qos.logback.classic.Logger;
+
 @Entity
 @Table(name = "legumes")
 public class Legume{
