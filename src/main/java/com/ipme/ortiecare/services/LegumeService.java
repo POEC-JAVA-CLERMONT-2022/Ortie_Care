@@ -34,7 +34,31 @@ public class LegumeService {
 		Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, autoReseme, isGousse, bestSol);
 		this.legumesRepo.save(ceLegume);
 		return ceLegume;
-		
+	}
+	public void addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
+	{
+		boolean check = true;
+		for (Legume unLegume : premierLegume.getLegumesAssocies()) {
+			if(unLegume.getIdLegume().equals(deuxiemeLegume.getIdLegume()))
+			{
+				check = false;
+			}
+		}
+		for (Legume unLegume : deuxiemeLegume.getLegumesAssocies()) {
+			if(unLegume.getIdLegume().equals(premierLegume.getIdLegume()))
+			{
+				check = false;
+			}
+		}
+		if(check)
+		{
+			this.legumesRepo.addAssociationLegumeLegume(premierLegume.getIdLegume(), deuxiemeLegume.getIdLegume());
+			System.out.println("Association entre " + premierLegume.getNom() + " et " + deuxiemeLegume.getNom() + " ajoutée en base !");
+		}
+		else
+		{
+			System.out.println("L'ajout de l'association a échoué ; l'association existe déjà.");
+		}
 	}
 	
 	

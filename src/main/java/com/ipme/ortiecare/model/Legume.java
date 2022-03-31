@@ -61,6 +61,15 @@ public class Legume{
 	public void setBestSol(Sol bestSol) {
 		this.bestSol = bestSol;
 	}
+	public Set<Legume> getLegumesAssocies() {
+		return legumesAssocies;
+	}
+	public void setLegumesAssocies(Set<Legume> legumesAssocies) {
+		this.legumesAssocies = legumesAssocies;
+	}
+	public UUID getIdLegume() {
+		return idLegume;
+	}
 	public String getNom() {
 		return nom;
 	}
