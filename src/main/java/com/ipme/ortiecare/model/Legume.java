@@ -28,6 +28,9 @@ public class Legume{
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
 	
+	@Column(name="nom", length=30)
+	private String nom;
+	
 	@OneToMany
 	private Set<ConseilDeCulture> conseilsDeCulture;
 	
@@ -38,15 +41,17 @@ public class Legume{
 	private Sol bestSol; 
 	
 	
-	public Legume(UUID idLegume, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
+	public Legume(UUID idLegume, String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
 		this.idLegume = idLegume;
+		this.nom = nom;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
 		this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;
 		this.conseilsDeCulture = conseilsDeCulture;
 		this.autoReseme = autoReseme;
 		this.isGousse = isGousse;
 		this.bestSol = bestSol;
+		
 	}
 	public Sol getBestSol() {
 		return bestSol;
