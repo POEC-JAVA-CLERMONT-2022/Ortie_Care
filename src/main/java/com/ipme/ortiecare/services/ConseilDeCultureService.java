@@ -28,7 +28,6 @@ public class ConseilDeCultureService {
 		ConseilDeCulture ceConseil = new ConseilDeCulture(UUID.randomUUID(), titre, description);
 		conseilRepo.save(ceConseil);
 		return ceConseil;
-		
 	}
 	
 	

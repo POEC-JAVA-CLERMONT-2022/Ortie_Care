@@ -24,7 +24,12 @@ public class UserService {
 	public User findById(UUID id) {
 		return this.userRepo.getById(id);
 	}
-
+	
+	public User findByFirstNameAndLastName(String firstName, String lastName)
+	{
+		return this.userRepo.findByFirstNameAndLastName(firstName, lastName);
+	}
+	
 	public String create(String password, String firstName, String lastName, String email)
 	{
 		User ceUser = new User(UUID.randomUUID(), password, firstName, lastName, email);
