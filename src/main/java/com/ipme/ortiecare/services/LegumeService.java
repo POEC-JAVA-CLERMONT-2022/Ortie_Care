@@ -19,22 +19,37 @@ public class LegumeService {
 		this.legumesRepo = legumesRepo;
 	}
 	
-	public List<Legume> findAll()
-	{
-		return this.legumesRepo.findAll();
-	}
-	
-	public Legume findById(UUID id)
-	{
-		return this.legumesRepo.getById(id);
-	}
-	
 	public Legume create(String nom,int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
 		Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, autoReseme, isGousse, bestSol);
 		this.legumesRepo.save(ceLegume);
 		return ceLegume;
 	}
+	
+	public List<Legume> findAll()
+	{
+		return this.legumesRepo.findAll();
+	}
+	
+	public Legume findByUUID(UUID id)
+	{
+		return this.legumesRepo.findByUUID(id);
+	}
+	
+	public List<ConseilDeCulture> findListeConseilPourLegume(UUID idCulture)
+	{
+		return this.legumesRepo.findByIdLegume_ConseilDeCulture_IdLegume(idCulture);
+	}
+	
+	public Legume findByNom(String nom)
+	{
+		return this.legumesRepo.findByNom(nom);
+	}
+	public List<Legume> findByNomStartingWith(String nom)
+	{
+		return this.legumesRepo.findByNomStartingWith(nom);
+	}
+	
 	public void addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
 	{
 		boolean check = true;

@@ -15,4 +15,13 @@ public interface UserRepository extends JpaRepository<User, UUID> {
  
  @Query(value="SELECT is_admin FROM users WHERE id_user = :id", nativeQuery=true)
  boolean isThisAdmin(@Param("id")UUID id_user); 
+ 
+ User findByFirstNameAndLastName(String firstName, String lastName);
+ 
+ //  User findByFirst_NameAndLast_Name(String firstName, String lastName);
+ //  User findByFirst_NameAndLast_Name(String first_Name, String last_Name);
+
+
+ 
+ 
 }
