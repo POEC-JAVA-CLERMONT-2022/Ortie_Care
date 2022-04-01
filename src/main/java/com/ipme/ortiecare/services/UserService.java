@@ -25,6 +25,7 @@ public class UserService {
 		return this.userRepo.getById(id);
 	}
 	
+	
 	public User findByFirstNameAndLastName(String firstName, String lastName)
 	{
 		return this.userRepo.findByFirstNameAndLastName(firstName, lastName);

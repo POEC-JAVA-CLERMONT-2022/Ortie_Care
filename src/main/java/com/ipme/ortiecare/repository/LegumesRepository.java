@@ -26,6 +26,9 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	@Query(value="SELECT * FROM legumes_legumes_associes WHERE legume_id_legume = :idLegume", nativeQuery = true)
 	Object[] getAssociatedLegumes(@Param("idLegume")UUID idLegume);
 	
-	List<ConseilDeCulture> findByIdLegume_ConseilDeCulture_IdLegume (UUID idLegume);
+	//List<Legume> findByIdLegume_ConseilDeCulture_IdLegume (UUID idLegume);
 	
+	List<Legume> findByLegumesAssocies_IdLegume(UUID idLegume);
+	
+	List<ConseilDeCulture> findByConseilsDeCulture_IdLegume(UUID idLegume);
 }
