@@ -35,10 +35,15 @@ public class LegumeService {
 	{
 		return this.legumesRepo.findByUUID(id);
 	}
-	
-	public List<ConseilDeCulture> findListeConseilPourLegume(UUID idCulture)
+	// Recup la liste des legumes associes pour un legume
+	public List<Legume> findListeLegumesAssocies(UUID idLegume)
 	{
-		return this.legumesRepo.findByIdLegume_ConseilDeCulture_IdLegume(idCulture);
+		return this.legumesRepo.findByLegumesAssocies_IdLegume(idLegume);
+	}
+	// Recup la liste des conseil pour une ID legume
+	public List<ConseilDeCulture> findListeConseilPourLegume(UUID idLegume)
+	{
+		return this.legumesRepo.findByConseilsDeCulture_IdLegume(idLegume);
 	}
 	
 	public Legume findByNom(String nom)

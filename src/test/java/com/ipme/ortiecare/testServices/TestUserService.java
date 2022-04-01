@@ -12,7 +12,7 @@ import com.ipme.ortiecare.repository.UserRepository;
 import com.ipme.ortiecare.services.UserService;
 
 @SpringBootTest
-public class TestUserService {
+public class testUserService {
 	
 	@Autowired
 	UserService service;
