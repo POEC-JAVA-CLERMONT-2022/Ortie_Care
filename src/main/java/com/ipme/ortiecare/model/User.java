@@ -28,6 +28,12 @@ public class User {
 	@Column(name ="isAdmin", length=255)
 	private boolean isAdmin;
 	
+	
+	
+	public User() {
+		super();
+	}
+
 	public User(UUID idUser, String password, String firstName, String lastName, String email) {
 		this.idUser = idUser;
 		this.password = password;
