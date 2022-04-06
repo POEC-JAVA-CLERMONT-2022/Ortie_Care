@@ -1,5 +1,7 @@
 package com.ipme.ortiecare.repository;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
@@ -16,7 +18,6 @@ public interface ConseilDeCultureRepository extends JpaRepository<ConseilDeCultu
 	@Query(value="SELECT * FROM conseils_de_culture where titre = :titre", nativeQuery = true)
 	ConseilDeCulture findByTitle(@Param("titre")String titre);
 	
-	
-//	@Query("SELECT * FROM conseils_de_culture ")
-//	ConseilDeCulture findByUUID(UUID id);
+	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription);
+
 }

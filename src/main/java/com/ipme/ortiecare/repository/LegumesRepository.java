@@ -19,16 +19,22 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
 	List<Legume> findByNomStartingWith(String nom);
 	
-	
+	// Ajout d'association legume => legume
 	@Query(value="INSERT INTO legumes_legumes_associes VALUES (:idLegume1 , :idLegume2)", nativeQuery=true)
 	Integer addAssociationLegumeLegume(@Param("idLegume1") UUID id_legume1, @Param("idLegume2") UUID id_legume2);
 	
-	@Query(value="SELECT * FROM legumes_legumes_associes WHERE legume_id_legume = :idLegume", nativeQuery = true)
-	Object[] getAssociatedLegumes(@Param("idLegume")UUID idLegume);
+	// A test
+	List<Legume> findByLegumesAssocies_IdLegume(UUID idLegume);
+	// A test
+	List<ConseilDeCulture> findByConseilsDeCulture_IdLegume(UUID idLegume);
+	
+	
+	// A garder pour l'instant
+	
+//	@Query(value="SELECT * FROM legumes_legumes_associes WHERE legume_id_legume = :idLegume", nativeQuery = true)
+//	Object[] getAssociatedLegumes(@Param("idLegume")UUID idLegume);
 	
 	//List<Legume> findByIdLegume_ConseilDeCulture_IdLegume (UUID idLegume);
 	
-	List<Legume> findByLegumesAssocies_IdLegume(UUID idLegume);
 	
-	List<ConseilDeCulture> findByConseilsDeCulture_IdLegume(UUID idLegume);
 }
