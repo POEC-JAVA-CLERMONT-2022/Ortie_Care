@@ -13,18 +13,25 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepo;
 
-	public UserService(UserRepository userRepo) {
+	public UserService (UserRepository userRepo) 
+	{
 		this.userRepo = userRepo;
 	}
 
-	public List<User> findAll() {
+	public List<User> findAll() 
+	{
 		return this.userRepo.findAll();
 	}
 
-	public User findById(UUID id) {
+	public User findById(UUID id) 
+	{
 		return this.userRepo.getById(id);
 	}
 	
+	public List<User> findByIs_Admin(int vraiOuFaux)
+	{
+		return userRepo.findByIs_Admin(vraiOuFaux);
+	}
 	
 	public User findByFirstNameAndLastName(String firstName, String lastName)
 	{
@@ -37,15 +44,14 @@ public class UserService {
 		this.userRepo.save(ceUser);
 		return ceUser.getFirstName() + " " +  ceUser.getLastName();
 	}
-
+	
+	// Pas sur de cette methode = Le changement sur l'appli est repercuté en base ? ou il faudrait le save dans le repo après l'avoir modifié sur la plateforme
 	public void passageAdmin(User leUserQueJeManipule) 
 	{ 
-	if(leUserQueJeManipule.isAdmin()==false) {
-		leUserQueJeManipule.setAdmin(true);
+		if(leUserQueJeManipule.isAdmin()==false) {
+			leUserQueJeManipule.setAdmin(true);
+		}
 	}
-		
-
-}
 }
 
 

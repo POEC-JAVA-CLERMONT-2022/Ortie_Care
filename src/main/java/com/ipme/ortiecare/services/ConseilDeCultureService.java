@@ -23,6 +23,11 @@ public class ConseilDeCultureService {
 		return conseilRepo.getById(id);
 	}
 	
+	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription)
+	{
+		return conseilRepo.findByDescriptionContaining(boutDescription);
+	}
+	
 	public ConseilDeCulture create(String titre, String description)
 	{
 		ConseilDeCulture ceConseil = new ConseilDeCulture(UUID.randomUUID(), titre, description);

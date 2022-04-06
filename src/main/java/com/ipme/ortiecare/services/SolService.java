@@ -8,26 +8,39 @@ import com.ipme.ortiecare.model.Sol;
 import com.ipme.ortiecare.repository.SolRepository;
 
 public class SolService {
+	
 	@Autowired
 	private SolRepository solRepo;
 
-	
 	public SolService (SolRepository solRepo)
 	{
 		this.solRepo = solRepo;
 	}
-	public List<Sol> findAll() {
-		return this.solRepo.findAll();
-	}
-
-	public Sol findById(UUID id) {
-		return this.solRepo.getById(id);
-	}
-
-	public Sol create(String nomSol, String textureSol,  String structureSol, String avantageSol, String inconvenientSol) {
+	
+	public Sol create(String nomSol, String textureSol,  String structureSol, String avantageSol, String inconvenientSol) 
+	{
 		Sol ceSol = new Sol(UUID.randomUUID(), nomSol, textureSol, structureSol, avantageSol, inconvenientSol);
 		this.solRepo.save(ceSol);
 		return ceSol;
 	}
+	
+	public List<Sol> findAll() 
+	{
+		return this.solRepo.findAll();
+	}
 
+	public Sol findById(UUID id) 
+	{
+		return this.solRepo.getById(id);
+	}
+	
+	public List<Sol> findByStructureSolContaining (String boutStructureSol)
+	{
+		return this.solRepo.findByStructureSolContaining(boutStructureSol);
+	}
+	
+	public List<Sol> findByTextureSolContaining (String boutTextureSol)
+	{
+		return this.solRepo.findByTextureSolContaining(boutTextureSol);
+	}
 }

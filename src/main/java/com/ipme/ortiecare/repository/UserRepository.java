@@ -1,4 +1,5 @@
 package com.ipme.ortiecare.repository;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,18 +11,18 @@ import com.ipme.ortiecare.model.*;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
- @Query(value="SELECT * FROM users WHERE id_user = :id", nativeQuery = true)
- User findByUUID(@Param("id")UUID id_user);
+	
+	@Query(value="SELECT * FROM users WHERE id_user = :id", nativeQuery = true)
+	User findByUUID(@Param("id")UUID id_user);
  
- @Query(value="SELECT is_admin FROM users WHERE id_user = :id", nativeQuery=true)
- boolean isThisAdmin(@Param("id")UUID id_user); 
- 
- User findByFirstNameAndLastName(String firstName, String lastName);
- 
+	@Query(value="SELECT is_admin FROM users WHERE id_user = :id", nativeQuery=true)
+	boolean isThisAdmin(@Param("id")UUID id_user);
+	
+	User findByFirstNameAndLastName(String firstName, String lastName);
+	
+	List<User> findByIs_Admin(int vraiOuFaux);
+	
+	
  //  User findByFirst_NameAndLast_Name(String firstName, String lastName);
  //  User findByFirst_NameAndLast_Name(String first_Name, String last_Name);
-
-
- 
- 
 }
