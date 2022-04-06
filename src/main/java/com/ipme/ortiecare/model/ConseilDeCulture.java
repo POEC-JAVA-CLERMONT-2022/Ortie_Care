@@ -6,10 +6,13 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
+// annotations pour bdd -- Spring
+
 @Entity
 @Table(name = "ConseilsDeCulture")
 public class ConseilDeCulture {
 	
+	// Attributs & annotations pour bdd -- Spring
 	@Id
 	@Column(name = "idConseil", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,24 +31,15 @@ public class ConseilDeCulture {
 		this.description = description;
 	}
 
-	public String getTitre() {
-		return titre;
-	}
+	// get set 
+	public UUID getIdConseil() {return idConseil;}
 
-	public void setTitre(String titre) {
-		this.titre = titre;
-	}
+	public String getTitre() {return titre;}
 
-	public String getDescription() {
-		return description;
-	}
+	public void setTitre(String titre) {this.titre = titre;}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public String getDescription() {return description;}
 
-	public UUID getIdConseil() {
-		return idConseil;
-	}
+	public void setDescription(String description) {this.description = description;}
 
 }

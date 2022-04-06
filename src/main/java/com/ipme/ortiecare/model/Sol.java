@@ -8,10 +8,12 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
+//annotations pour bdd -- Spring
 @Entity
 @Table(name = "Sols")
 public class Sol {
 	
+	// Attributs & annotations pour bdd -- Spring
 	@Id
 	@Column(name="idSol", nullable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,7 +35,6 @@ public class Sol {
 	@Column(name="inconvenientSol", length=255)
 	private String inconvenientSol;
 	
-	
 	public Sol(UUID idSol, String nomSol, String textureSol, String structureSol, String avantageSol, String inconvenientSol) {
 		
 		this.idSol = idSol;
@@ -44,48 +45,27 @@ public class Sol {
         this.inconvenientSol= inconvenientSol;
 	}
 	
-	public UUID getId() {
-		return this.idSol;
-	}
+	//get set
+	public UUID getId() {return this.idSol;}
 
-	public String getDescription() {
-		return nomSol;
-	}
+	public String getDescription() {return nomSol;}
 
-	public void setDescription(String description) {
-		this.nomSol = description;
-	}
+	public void setDescription(String description) {this.nomSol = description;}
 
-	public String getTextureSol() {
-		return textureSol;
-	}
+	public String getTextureSol() {return textureSol;}
 
-	public void setTextureSol(String textureSol) {
-		this.textureSol = textureSol;
-	}
+	public void setTextureSol(String textureSol) {this.textureSol = textureSol;}
 
-	public String getStructureSol() {
-		return structureSol;
-	}
+	public String getStructureSol() {return structureSol;}
 
-	public void setStructureSol(String structureSol) {
-		this.structureSol = structureSol;
-	}
+	public void setStructureSol(String structureSol) {this.structureSol = structureSol;}
 
-	public String getAvantageSol() {
-		return avantageSol;
-	}
+	public String getAvantageSol() {return avantageSol;}
 
-	public void setAvantageSol(String avantageSol) {
-		this.avantageSol = avantageSol;
-	}
+	public void setAvantageSol(String avantageSol) {this.avantageSol = avantageSol;}
 
-	public String getInconvenientSol() {
-		return inconvenientSol;
-	}
+	public String getInconvenientSol() {return inconvenientSol;}
 
-	public void setInconvenientSol(String inconvenientSol) {
-		this.inconvenientSol = inconvenientSol;
-	}
+	public void setInconvenientSol(String inconvenientSol) {this.inconvenientSol = inconvenientSol;}
 
 }

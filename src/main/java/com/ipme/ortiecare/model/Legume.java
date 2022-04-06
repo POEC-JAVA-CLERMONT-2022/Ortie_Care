@@ -8,10 +8,12 @@ import org.hibernate.annotations.Type;
 
 import ch.qos.logback.classic.Logger;
 
+// Annotations pour bdd -- Spring
 @Entity
 @Table(name = "legumes")
 public class Legume{
 
+	// Attributs & annotations pour bdd -- Spring
 	@Id
 	@Column(name="idLegume", nullable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -55,39 +57,49 @@ public class Legume{
 		this.bestSol = bestSol;
 		
 	}
-	public Sol getBestSol() {
-		return bestSol;
+	public UUID getIdLegume() {return idLegume;}
+
+	public Sol getBestSol() {return bestSol;}
+	
+	public void setBestSol(Sol bestSol) {this.bestSol = bestSol;}
+	
+	public Set<Legume> getLegumesAssocies() {return legumesAssocies;}
+	
+	// Get add remove liste de legumes associes
+	
+	public void setLegumesAssocies(Set<Legume> legumesAssocies) {this.legumesAssocies = legumesAssocies;}
+	
+	public void addLegumeAssocie(Legume unLegume)
+	{
+		if(unLegume!=null)
+		{
+			this.legumesAssocies.add(unLegume);
+		}
 	}
-	public void setBestSol(Sol bestSol) {
-		this.bestSol = bestSol;
+	
+	public void removeLegumeAssocie(Legume unLegume)
+	{
+		if(unLegume!=null)
+		{
+			this.legumesAssocies.remove(unLegume);
+		}
 	}
-	public Set<Legume> getLegumesAssocies() {
-		return legumesAssocies;
-	}
-	public void setLegumesAssocies(Set<Legume> legumesAssocies) {
-		this.legumesAssocies = legumesAssocies;
-	}
-	public UUID getIdLegume() {
-		return idLegume;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public boolean isGousse() {
-		return isGousse;
-	}
-	public void setGousse(boolean isGousse) {
-		this.isGousse = isGousse;
-	}
-	public boolean isAutoReseme() {
-		return autoReseme;
-	}
-	public void setAutoReseme(boolean autoReseme) {
-		this.autoReseme = autoReseme;
-	}
+		
+	public String getNom() {return nom;}
+	
+	public void setNom(String nom) {this.nom = nom;}
+	
+	public boolean isGousse() {return isGousse;}
+	
+	public void setGousse(boolean isGousse) {this.isGousse = isGousse;}
+	
+	public boolean isAutoReseme() {return autoReseme;}
+	
+	public void setAutoReseme(boolean autoReseme) {this.autoReseme = autoReseme;}
+	
+	// Get add remove liste de conseils
+	public Set<ConseilDeCulture> getConseils() {return conseilsDeCulture;}
+
 	public void addConseil(ConseilDeCulture unConseil)
 	{
 		if(unConseil!=null)
@@ -100,7 +112,7 @@ public class Legume{
 	{
 		if(unConseil!=null)
 		{
-			this.conseilsDeCulture.add(unConseil);
+			this.conseilsDeCulture.remove(unConseil);
 		}
 	}
 }
