@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.ipme.ortiecare.services.UserService;
 
 @SpringBootTest
-public class testUserService {
+public class TestUserService {
 	
 	@Autowired
 	UserService service;

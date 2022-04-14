@@ -30,7 +30,7 @@ import com.ipme.ortiecare.services.LegumeService;
 //@RunWith(MockitoJUnitRunner.class)
 //@ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class testLegumeService {
+public class TestLegumeService {
 
 //	@Autowired
 	@InjectMocks
@@ -47,7 +47,7 @@ public class testLegumeService {
 		legumeService.create("testLegume3", 0, 0, null, false, false, null);
 		legumeService.create("testLegume4", 0, 0, null, false, false, null);
 		
-		// associer les légumes
+		// associer les lï¿½gumes
 		
 		
 		List<Legume> cesLegumes = this.legumeService.findListeLegumesAssocies(null);
@@ -81,7 +81,7 @@ public class testLegumeService {
 		assertThat(testLegume).isNotNull();
 		// test id null comme dans le test
 		assertThat(testLegume.getIdLegume()).isNull();
-		// test si les références sont égales
+		// test si les rï¿½fï¿½rences sont ï¿½gales
 		assertThat(testLegume).isSameAs(new Legume(null, null, 0, 0, null, false, false, null));
 		// test si tous les champs sont ok par rapport au premier argument
 		assertThat(testLegume).usingRecursiveComparison().isEqualTo(new Legume (null, null, 0, 0, null, false, false, null));
