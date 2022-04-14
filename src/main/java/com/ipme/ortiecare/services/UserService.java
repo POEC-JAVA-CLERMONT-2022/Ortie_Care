@@ -38,14 +38,14 @@ public class UserService {
 		return this.userRepo.findByFirstNameAndLastName(firstName, lastName);
 	}
 	
-	public String create(String password, String firstName, String lastName, String email)
+	public User create(String password, String firstName, String lastName, String email)
 	{
 		User ceUser = new User(UUID.randomUUID(), password, firstName, lastName, email);
 		this.userRepo.save(ceUser);
-		return ceUser.getFirstName() + " " +  ceUser.getLastName();
+		return ceUser;
 	}
 	
-	// Pas sur de cette methode = Le changement sur l'appli est repercuté en base ? ou il faudrait le save dans le repo après l'avoir modifié sur la plateforme
+	// Pas sur de cette methode = Le changement sur l'appli est repercutï¿½ en base ? ou il faudrait le save dans le repo aprï¿½s l'avoir modifiï¿½ sur la plateforme
 	public void passageAdmin(User leUserQueJeManipule) 
 	{ 
 		if(leUserQueJeManipule.isAdmin()==false) {
