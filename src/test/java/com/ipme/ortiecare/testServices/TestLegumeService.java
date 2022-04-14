@@ -32,7 +32,6 @@ import com.ipme.ortiecare.services.LegumeService;
 @SpringBootTest
 public class TestLegumeService {
 
-//	@Autowired
 	@InjectMocks
 	LegumeService legumeService;
 	
@@ -46,11 +45,9 @@ public class TestLegumeService {
 		legumeService.create("testLegume2", 0, 0, null, false, false, null);
 		legumeService.create("testLegume3", 0, 0, null, false, false, null);
 		legumeService.create("testLegume4", 0, 0, null, false, false, null);
-		
 		// associer les l�gumes
 		
 		List<Legume> cesLegumes = this.legumeService.findListeLegumesAssocies(null);
-		
 		
 	}
 	
@@ -74,5 +71,6 @@ public class TestLegumeService {
 		assertThat(testLegume).usingRecursiveComparison().isEqualTo(new Legume (null, null, 0, 0, null, false, false, null));
 		// Verifie une fois l'utilisation du repo mocked avec un legume mocked
 		Mockito.verify(mockedLegumeRepo, times(1)).save(Mockito.any(Legume.class));
+		
 	}	
 }
