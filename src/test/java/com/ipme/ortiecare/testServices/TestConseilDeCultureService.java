@@ -1,5 +1,5 @@
 package com.ipme.ortiecare.testServices;
 
-public class testLegumeService {
+public class TestConseilDeCultureService {
 
 }
