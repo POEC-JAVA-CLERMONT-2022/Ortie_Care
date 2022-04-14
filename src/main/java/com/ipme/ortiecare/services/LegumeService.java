@@ -73,11 +73,11 @@ public class LegumeService {
 		if(check)
 		{
 			this.legumesRepo.addAssociationLegumeLegume(premierLegume.getIdLegume(), deuxiemeLegume.getIdLegume());
-			System.out.println("Association entre " + premierLegume.getNom() + " et " + deuxiemeLegume.getNom() + " ajoutée en base !");
+			System.out.println("Association entre " + premierLegume.getNom() + " et " + deuxiemeLegume.getNom() + " ajoutï¿½e en base !");
 		}
 		else
 		{
-			System.out.println("L'ajout de l'association a échoué ; l'association existe déjà.");
+			System.out.println("L'ajout de l'association a ï¿½chouï¿½ ; l'association existe dï¿½jï¿½.");
 		}
 	}
 	
