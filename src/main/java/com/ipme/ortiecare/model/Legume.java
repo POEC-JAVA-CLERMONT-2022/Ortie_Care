@@ -35,10 +35,10 @@ public class Legume{
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
 	
-	@ManyToMany
+	@OneToMany
 	private Set<ConseilDeCulture> conseilsDeCulture;
 	
-	@ManyToMany
+	@OneToMany
 	private Set<Legume> legumesAssocies;
 	
 	@ManyToOne

@@ -49,23 +49,10 @@ public class TestLegumeService {
 		
 		// associer les l�gumes
 		
-		
 		List<Legume> cesLegumes = this.legumeService.findListeLegumesAssocies(null);
 		
 		
-		
-//		String unUser = this.service.create("sss", "ddd", "ddd", "fggg");
-//		
-//		assertNotNull(unUser);
-		
 	}
-//	public Legume create(String nom,int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
-//	{
-//		Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, autoReseme, isGousse, bestSol);
-//		this.legumesRepo.save(ceLegume);
-//		return ceLegume;
-//	}
-	
 	
 	// Test utilisation Mock
 	@Test
@@ -85,10 +72,7 @@ public class TestLegumeService {
 		assertThat(testLegume).isSameAs(new Legume(null, null, 0, 0, null, false, false, null));
 		// test si tous les champs sont ok par rapport au premier argument
 		assertThat(testLegume).usingRecursiveComparison().isEqualTo(new Legume (null, null, 0, 0, null, false, false, null));
-		
 		// Verifie une fois l'utilisation du repo mocked avec un legume mocked
 		Mockito.verify(mockedLegumeRepo, times(1)).save(Mockito.any(Legume.class));
-	}
-	
-	
+	}	
 }
