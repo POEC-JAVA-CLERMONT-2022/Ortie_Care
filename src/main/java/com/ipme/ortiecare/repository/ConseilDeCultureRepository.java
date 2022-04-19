@@ -19,5 +19,8 @@ public interface ConseilDeCultureRepository extends JpaRepository<ConseilDeCultu
 	ConseilDeCulture findByTitle(@Param("titre")String titre);
 	
 	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription);
+	// A test
+	@Query("SELECT c from LegumesConseilsDeCulture lcc INNER JOIN lcc.conseilLegume.legume l1 INNER JOIN lcc.conseilLegume.conseil c WHERE l1.idLegume = :id ")
+	List<ConseilDeCulture> findConseilsLegume(@Param("id") UUID idLegume);
 
 }

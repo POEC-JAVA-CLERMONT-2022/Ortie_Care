@@ -24,9 +24,12 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	Integer addAssociationLegumeLegume(@Param("idLegume1") UUID id_legume1, @Param("idLegume2") UUID id_legume2);
 	
 	// A test
-	List<Legume> findByLegumesAssocies_IdLegume(UUID idLegume);
-	// A test
-	List<ConseilDeCulture> findByConseilsDeCulture_IdLegume(UUID idLegume);
+	@Query("SELECT l1 from LegumesLegumesAssocies lla INNER JOIN lla.assoLegumes.legume1 l1 INNER JOIN lla.assoLegumes.legume2 l2 WHERE l2.idLegume = :id ")
+	List<Legume> findLegumesAssocies(@Param("id") UUID idLegume);
+	
+	
+	
+	
 	
 	
 	// A garder pour l'instant
