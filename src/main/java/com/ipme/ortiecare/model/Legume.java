@@ -35,23 +35,24 @@ public class Legume{
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
 	
-	@ManyToMany
-	private Set<ConseilDeCulture> conseilsDeCulture;
+	@OneToMany(mappedBy="conseilLegume.legume")
+	private Set<LegumesConseilsDeCulture> conseilsDeCulture;
 	
-	@ManyToMany
-	private Set<Legume> legumesAssocies;
+	@OneToMany(mappedBy="assoLegumes.legume1")
+	private Set<LegumesLegumesAssocies> legumesAssocies;
 	
 	@ManyToOne
 	private Sol bestSol; 
 	
 	
-	public Legume(UUID idLegume, String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
+	public Legume(UUID idLegume, String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<LegumesConseilsDeCulture> conseilsDeCulture, Set<LegumesLegumesAssocies> legumesAssocies, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
 		this.idLegume = idLegume;
 		this.nom = nom;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
 		this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;
 		this.conseilsDeCulture = conseilsDeCulture;
+		this.legumesAssocies = legumesAssocies;
 		this.autoReseme = autoReseme;
 		this.isGousse = isGousse;
 		this.bestSol = bestSol;
@@ -63,13 +64,13 @@ public class Legume{
 	
 	public void setBestSol(Sol bestSol) {this.bestSol = bestSol;}
 	
-	public Set<Legume> getLegumesAssocies() {return legumesAssocies;}
+	public Set<LegumesLegumesAssocies> getLegumesAssocies() {return legumesAssocies;}
 	
 	// Get add remove liste de legumes associes
 	
-	public void setLegumesAssocies(Set<Legume> legumesAssocies) {this.legumesAssocies = legumesAssocies;}
+	public void setLegumesAssocies(Set<LegumesLegumesAssocies> legumesAssocies) {this.legumesAssocies = legumesAssocies;}
 	
-	public void addLegumeAssocie(Legume unLegume)
+	public void addLegumeAssocie(LegumesLegumesAssocies unLegume)
 	{
 		if(unLegume!=null)
 		{
@@ -77,7 +78,7 @@ public class Legume{
 		}
 	}
 	
-	public void removeLegumeAssocie(Legume unLegume)
+	public void removeLegumeAssocie(LegumesLegumesAssocies unLegume)
 	{
 		if(unLegume!=null)
 		{
@@ -98,9 +99,9 @@ public class Legume{
 	public void setAutoReseme(boolean autoReseme) {this.autoReseme = autoReseme;}
 	
 	// Get add remove liste de conseils
-	public Set<ConseilDeCulture> getConseils() {return conseilsDeCulture;}
+	public Set<LegumesConseilsDeCulture> getConseils() {return conseilsDeCulture;}
 
-	public void addConseil(ConseilDeCulture unConseil)
+	public void addConseil(LegumesConseilsDeCulture unConseil)
 	{
 		if(unConseil!=null)
 		{
@@ -108,7 +109,7 @@ public class Legume{
 		}
 	}
 	
-	public void removeConseil(ConseilDeCulture unConseil)
+	public void removeConseil(LegumesConseilsDeCulture unConseil)
 	{
 		if(unConseil!=null)
 		{

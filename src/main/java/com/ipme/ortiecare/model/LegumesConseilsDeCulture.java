@@ -3,24 +3,23 @@ package com.ipme.ortiecare.model;
 import java.util.UUID;
 
 import javax.persistence.*;
+//@AssociationOverride(name = "legumes.idLegume", joinColumns = @JoinColumn(name = "legume_id_legume")),
+//@AssociationOverride(name = "legumes.conseilsDeCulture", joinColumns = @JoinColumn(name = "conseils_de_culture_id_conseil")), })
 
 @Entity
 @Table(name = "legumes_conseils_de_culture")
 @AssociationOverrides({
-		@AssociationOverride(name = "legumes.idLegume", joinColumns = @JoinColumn(name = "legume_id_legume")),
-		@AssociationOverride(name = "legumes.legumesAssocies", joinColumns = @JoinColumn(name = "conseils_de_culture_id_conseil")), })
+	@AssociationOverride(name = "conseilLegume.legume", joinColumns = @JoinColumn(name = "legume_id_legume")),
+	@AssociationOverride(name = "conseilLegume.conseil", joinColumns = @JoinColumn(name = "conseil_id_conseil")), })
 public class LegumesConseilsDeCulture {
 
-	@Column(name = "legume_id_legume")
-	private UUID idLegume;
+	@EmbeddedId
+	private LegumesConseilsDeCulturePK conseilLegume;
 
-	@Column(name = "conseils_de_culture_id_conseil")
-	private UUID idConseil;
-
-	public LegumesConseilsDeCulture(UUID idLegume, UUID idConseil) {
-		
-		this.idLegume = idLegume;
-		this.idConseil = idConseil;
+	public LegumesConseilsDeCulture(LegumesConseilsDeCulturePK conseilLegume) {
+		this.conseilLegume = conseilLegume;
 	}
-
+	public LegumesConseilsDeCulturePK getConseilLegume() {
+		return conseilLegume;
+	}
 }

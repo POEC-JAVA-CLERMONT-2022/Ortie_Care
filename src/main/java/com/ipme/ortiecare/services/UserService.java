@@ -30,7 +30,7 @@ public class UserService {
 	
 	public List<User> findByIs_Admin(int vraiOuFaux)
 	{
-		return userRepo.findByIs_Admin(vraiOuFaux);
+		return userRepo.findByIsAdmin(vraiOuFaux);
 	}
 	
 	public User findByFirstNameAndLastName(String firstName, String lastName)

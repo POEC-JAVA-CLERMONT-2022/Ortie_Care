@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ipme.ortiecare.model.Sol;
 import com.ipme.ortiecare.repository.SolRepository;
 
+@Service
 public class SolService {
 	
 	@Autowired

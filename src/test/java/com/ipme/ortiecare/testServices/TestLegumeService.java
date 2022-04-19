@@ -41,10 +41,10 @@ public class TestLegumeService {
 	@Test
 	public void testGetLegumesAssocies()
 	{
-		legumeService.create("testLegume1", 0, 0, null, false, false, null);
-		legumeService.create("testLegume2", 0, 0, null, false, false, null);
-		legumeService.create("testLegume3", 0, 0, null, false, false, null);
-		legumeService.create("testLegume4", 0, 0, null, false, false, null);
+		legumeService.create("testLegume1", 0, 0, null, null, false, false, null);
+		legumeService.create("testLegume2", 0, 0, null, null, false, false, null);
+		legumeService.create("testLegume3", 0, 0, null, null, false, false, null);
+		legumeService.create("testLegume4", 0, 0, null, null, false, false, null);
 		// associer les l�gumes
 		
 		List<Legume> cesLegumes = this.legumeService.findListeLegumesAssocies(null);
@@ -55,8 +55,8 @@ public class TestLegumeService {
 	@Test
 	public void testCreationLegume()
 	{
-		when(mockedLegumeRepo.save(Mockito.any(Legume.class))).thenReturn(new Legume(null, null, 0, 0, null, false, false, null));
-		Legume testLegume = legumeService.create(null, 0, 0, null, false, false, null);
+		when(mockedLegumeRepo.save(Mockito.any(Legume.class))).thenReturn(new Legume(null, null, 0, 0, null,, null, false, false, null));
+		Legume testLegume = legumeService.create(null, 0, 0, null, null, false, false, null);
 		// test null
 		assertNotNull(testLegume);
 		// test id null comme dans le test
@@ -66,9 +66,9 @@ public class TestLegumeService {
 		// test id null comme dans le test
 		assertThat(testLegume.getIdLegume()).isNull();
 		// test si les r�f�rences sont �gales
-		assertThat(testLegume).isSameAs(new Legume(null, null, 0, 0, null, false, false, null));
+		assertThat(testLegume).isSameAs(new Legume(null, null, 0, 0, null, null, false, false, null));
 		// test si tous les champs sont ok par rapport au premier argument
-		assertThat(testLegume).usingRecursiveComparison().isEqualTo(new Legume (null, null, 0, 0, null, false, false, null));
+		assertThat(testLegume).usingRecursiveComparison().isEqualTo(new Legume (null, null, 0, 0, null, null, false, false, null));
 		// Verifie une fois l'utilisation du repo mocked avec un legume mocked
 		Mockito.verify(mockedLegumeRepo, times(1)).save(Mockito.any(Legume.class));
 		

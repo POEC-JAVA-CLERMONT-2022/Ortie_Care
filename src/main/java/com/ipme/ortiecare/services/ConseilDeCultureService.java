@@ -34,8 +34,10 @@ public class ConseilDeCultureService {
 		conseilRepo.save(ceConseil);
 		return ceConseil;
 	}
-	
-	
-	
+	// Recup la liste des conseil pour une ID legume
+	public List<ConseilDeCulture> findListeConseilPourLegume(UUID idLegume)
+	{
+		return this.conseilRepo.findConseilsLegume(idLegume);
+	}
 	
 }

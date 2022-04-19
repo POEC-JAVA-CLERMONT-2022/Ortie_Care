@@ -19,9 +19,9 @@ public class LegumeService {
 		this.legumesRepo = legumesRepo;
 	}
 	
-	public Legume create(String nom,int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<ConseilDeCulture> conseilsDeCulture, boolean autoReseme, boolean isGousse, Sol bestSol)
+	public Legume create(String nom,int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<LegumesConseilsDeCulture> conseilsDeCulture, Set<LegumesLegumesAssocies> legumesAssocies, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
-		Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, autoReseme, isGousse, bestSol);
+		Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, legumesAssocies, autoReseme, isGousse, bestSol);
 		this.legumesRepo.save(ceLegume);
 		return ceLegume;
 	}
@@ -30,7 +30,6 @@ public class LegumeService {
 	{
 		return this.legumesRepo.findAll();
 	}
-	
 	public Legume findByUUID(UUID id)
 	{
 		return this.legumesRepo.findByUUID(id);
@@ -38,12 +37,7 @@ public class LegumeService {
 	// Recup la liste des legumes associes pour un legume
 	public List<Legume> findListeLegumesAssocies(UUID idLegume)
 	{
-		return this.legumesRepo.findByLegumesAssocies_IdLegume(idLegume);
-	}
-	// Recup la liste des conseil pour une ID legume
-	public List<ConseilDeCulture> findListeConseilPourLegume(UUID idLegume)
-	{
-		return this.legumesRepo.findByConseilsDeCulture_IdLegume(idLegume);
+		return this.legumesRepo.findLegumesAssocies(idLegume);
 	}
 	
 	public Legume findByNom(String nom)
@@ -58,14 +52,14 @@ public class LegumeService {
 	public void addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
 	{
 		boolean check = true;
-		for (Legume unLegume : premierLegume.getLegumesAssocies()) {
-			if(unLegume.getIdLegume().equals(deuxiemeLegume.getIdLegume()))
+		for (LegumesLegumesAssocies unLegume : premierLegume.getLegumesAssocies()) {
+			if(unLegume.getAssoLegumes().getLegume1().getIdLegume().equals(deuxiemeLegume.getIdLegume()))
 			{
 				check = false;
 			}
 		}
-		for (Legume unLegume : deuxiemeLegume.getLegumesAssocies()) {
-			if(unLegume.getIdLegume().equals(premierLegume.getIdLegume()))
+		for (LegumesLegumesAssocies unLegume : deuxiemeLegume.getLegumesAssocies()) {
+			if(unLegume.getAssoLegumes().getLegume1().getIdLegume().equals(premierLegume.getIdLegume()))
 			{
 				check = false;
 			}
