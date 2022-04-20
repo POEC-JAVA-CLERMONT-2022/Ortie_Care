@@ -26,6 +26,8 @@ public class LegumesLegumesAssocies {
 //	@Column(name = "legumes_associes_id_legume")
 //	private UUID idLegume2;
 
+	// Constructeur par défaut necessaire pour hibernate
+	public LegumesLegumesAssocies(){	}
 	public LegumesLegumesAssocies(LegumesLegumesAssociesPK assoLegumes) {
 		this.assoLegumes = assoLegumes;
 	}

@@ -44,7 +44,8 @@ public class Legume{
 	@ManyToOne
 	private Sol bestSol; 
 	
-	
+	// Constructeur par défaut necessaire pour hibernate
+	public Legume(){	}
 	public Legume(UUID idLegume, String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<LegumesConseilsDeCulture> conseilsDeCulture, Set<LegumesLegumesAssocies> legumesAssocies, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
 		this.idLegume = idLegume;

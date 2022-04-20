@@ -35,6 +35,8 @@ public class Sol {
 	@Column(name="inconvenientSol", length=255)
 	private String inconvenientSol;
 	
+	// Constructeur par défaut necessaire pour hibernate
+	public Sol(){	}
 	public Sol(UUID idSol, String nomSol, String textureSol, String structureSol, String avantageSol, String inconvenientSol) {
 		
 		this.idSol = idSol;

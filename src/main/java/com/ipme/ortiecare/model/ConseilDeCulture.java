@@ -25,6 +25,8 @@ public class ConseilDeCulture {
 	@Column(name ="description", length=255)
 	private String description;
 	
+	// Constructeur par défaut necessaire pour hibernate
+	public ConseilDeCulture(){	}
 	public ConseilDeCulture(UUID idConseil,String titre, String description) {
 		this.idConseil = idConseil;
 		this.titre = titre;
