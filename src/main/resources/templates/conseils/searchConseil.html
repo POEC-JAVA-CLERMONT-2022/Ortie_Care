@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Recherche de conseil</title>
+</head>
+<body>
+	<form method="POST">
+		<label>Description contenant :</label>
+		<input type="text" name="boutDesc">
+			</br>
+		
+		<button type="submit">Chercher les conseils</button>
+	</form>
+	<div th:each="conseil : ${conseilsSearched}">
+		<div th:text="${conseil.idConseil}">
+		</div>
+		<div th:text="${conseil.titre}">
+		</div>
+		<div th:text="${conseil.description}">
+		</div>
+		</br>
+	</div>
+</body>
+</html>

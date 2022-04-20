@@ -31,7 +31,7 @@ public class ConseilDeCultureController {
 	@GetMapping("/conseilsDeCulture")
 	public ModelAndView getConseils(HttpSession session)
 	{
-		ModelAndView mAV = new ModelAndView("listeConseils");
+		ModelAndView mAV = new ModelAndView("conseils/listeConseils");
 		mAV.addObject("conseilsDeCulture", conseilService.findAll());
 		
 		return mAV;
@@ -45,30 +45,13 @@ public class ConseilDeCultureController {
 		return conseilService.findAll();
 	}
 	
-	@GetMapping("/conseilsDeCulture/search")
-	public ModelAndView getConseils(@RequestParam("search")String boutDesc)
-	{
-		ModelAndView mAV = new ModelAndView("conseilsDeCulture/liste-conseils");
-		mAV.addObject("conseilDeCulture", conseilService.findByDescriptionContaining(boutDesc));
-		mAV.setViewName("searchConseil");
-		return mAV;
-	}
-	
-	@GetMapping("/conseilsDeCulture/legume")
-	public ModelAndView getConseils(@RequestParam("legume") UUID idLegume)
-	{
-		ModelAndView mAV = new ModelAndView("conseilsDeCulture/liste-conseils");
-		mAV.addObject("conseilDeCulture", conseilService.findListeConseilPourLegume(idLegume));
-		mAV.setViewName("conseilLegume");
-		
-		return mAV;
-	}
-	
+	// Necessaire pour afficher le formulaire de creation CECI EST UN GET
 	@GetMapping("/conseilsDeCulture/addConseil")
     public ModelAndView showConseilForm() {
         return new ModelAndView("addConseil");
     }
 	
+	// Fonctionne (ajout de conseil) Validation ko CECI EST UN POST
 	@PostMapping("/conseilsDeCulture/addConseil")
 	public ModelAndView addConseils(@Valid ConseilDeCulture newConseil, BindingResult result)
 	{
@@ -79,9 +62,38 @@ public class ConseilDeCultureController {
 		}
 		else
 		{
-			return new ModelAndView("addConseil");
+			return new ModelAndView("conseils/addConseil");
 		}
 	}
+	
+	@GetMapping("/conseilsDeCulture/searchConseil")
+	public ModelAndView searchConseils()
+	{
+		return new ModelAndView("conseils/searchConseil");
+	}
+	// A FINIR
+	@PostMapping("/conseilsDeCulture/searchConseil")
+	public ModelAndView searchConseils(String boutDesc)
+	{
+		ModelAndView mAV = new ModelAndView("conseils/searchConseil");
+		mAV.addObject("conseilsSearched", conseilService.findByDescriptionContaining(boutDesc));
+		return mAV;
+	}
+	
+	// A FAIRE
+	@GetMapping("/conseilsDeCulture/legume")
+	public ModelAndView getConseils(@RequestParam("legume") UUID idLegume)
+	{
+		ModelAndView mAV = new ModelAndView("conseilsDeCulture/liste-conseils");
+		mAV.addObject("conseilDeCulture", conseilService.findListeConseilPourLegume(idLegume));
+		mAV.setViewName("conseilLegume");
+		
+		return mAV;
+	}
+	
+
+	
+	
 	
 	
 }
