@@ -3,6 +3,8 @@ package com.ipme.ortiecare.model;
 import java.util.UUID;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
@@ -20,9 +22,13 @@ public class ConseilDeCulture {
 	private UUID idConseil;
 	
 	@Column(name ="titre", length=100)
+	@NotNull
+	@NotEmpty
 	private String titre;
 	
 	@Column(name ="description", length=255)
+	@NotNull
+	@NotEmpty
 	private String description;
 	
 	// Constructeur par défaut necessaire pour hibernate
