@@ -1,0 +1,266 @@
+body {
+background-image:url(file:///C:/Users/lacon/OneDrive/Bureau/Orti_Care_Web/cool-background%20.png);
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+background-size: cover;
+}
+
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+/*                                        BURGER                  */
+#menuToggle {
+	display: block;
+	position: relative;
+	top: 50px;
+	margin-left: 30px;
+	z-index: 1;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#menuToggle a {
+	text-decoration: none;
+	color: #000000;
+	transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+	color: rgb(255, 255, 255);
+}
+
+#menuToggle input {
+	display: block;
+	width: 50px;
+	height: 32px;
+	position: absolute;
+	top: -7px;
+	left: -5px;
+	cursor: pointer;
+	opacity: 0; /* hide this */
+	z-index: 2; /* and place it over the hamburger */
+	-webkit-touch-callout: none;
+}
+
+/*
+   * Just a quick hamburger
+   */
+#menuToggle span {
+	display: block;
+	width: 38px;
+	height: 5px;
+	margin-bottom: 5px;
+	position: relative;
+	background: #000000d7;
+	border-radius: 3px;
+	z-index: 1;
+	transform-origin: 4px 0px;
+	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+		background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+	transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+	transform-origin: 0% 100%;
+}
+
+/* 
+   * Transform all the slices of hamburger
+   * into a crossmark.
+   */
+#menuToggle input:checked ~ span {
+	opacity: 1;
+	transform: rotate(45deg) translate(-2px, -1px);
+	background: #232323;
+}
+
+/*
+   * But let's hide the middle one.
+   */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+	opacity: 0;
+	transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+   * Ohyeah and the last one should go the other direction
+   */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+	transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+   * Make this absolute positioned
+   * at the top left of the screen
+   */
+#menu {
+	border-radius: 0px 0px 50px 0px;
+	position: absolute;
+	width: 110px;
+	margin: -100px 0 0 -50px;
+	padding: 50px;
+	padding-top: 120px;
+	background: #aad5b1;
+	list-style-type: none;
+	-webkit-font-smoothing: antialiased;
+	/* to stop flickering of text in safari */
+	transform-origin: 0% 0%;
+	transform: translate(-100%, 0);
+	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+	padding: 10px 0;
+	font-size: 21px;
+}
+
+/*
+   * And let's slide it in from the left
+   */
+#menuToggle input:checked ~ ul {
+	transform: none;
+}
+
+/*                                               FIN  BURGER                         */
+.asset {
+	width: 130px;
+	float: right;
+}
+
+/*                                                FIN  ICONE                          */
+
+/*                                                  GENERATEUR                     */
+.generateur {
+	background-color: #F9F9F9;
+	margin-top: 50px;
+	width: 850px;
+	height: 530px;
+	border-radius: 15px;
+	margin-left: 250px;
+	box-shadow: #333 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+p {
+	text-align: center;
+}
+
+/*                                            MENUS DEROULANT         */
+.bloc {
+	display: grid;
+	grid-template-columns: 200px 150px;
+	margin-top: 200px;
+	
+	
+}
+
+.grosbloc {
+	display: flex;
+	margin: auto;
+	justify-content : center;
+	margin-top:180px;
+}
+
+select {
+	appearance: none;
+	outline: 0;
+	border: 0 !important;
+	background: #F9F9F9;
+	background-image: none;
+	box-shadow: none;
+	font-size: 1.2em;
+}
+
+/* Mise en forme de la div .select*/
+.select {
+	position: relative;
+	width: 170px;
+	height: 45px;
+	overflow: hidden;
+	border-radius: 5px;
+	border: 1px solid #CED4DA;
+	margin-right: 20px;
+}
+
+/* Mise en forme de la balise select*/
+select {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding-left: 15px;
+	color: #333;
+	cursor: pointer;
+}
+
+/* Mise en place de la flèche */
+.select::after {
+	content: '\276F';
+	position: absolute;
+	top: 20%;
+	right: 0;
+	padding: 0 15px;
+	background: white;
+	pointer-events: none;
+	transform: rotate(90deg);
+	font-size: 1.3em;
+	background: #F9F9F9;
+}
+
+.select:hover::after {
+	color: green;
+}
+
+.bouton {
+	width: 150px;
+	height: 60px;
+	background-color: #F9F9F9;
+	font-size: 1.2em;
+	cursor: pointer;
+	border-radius: 30px;
+	border: 1px solid #CED4DA;
+	margin-left: 110px
+	
+}
+
+.bouton:hover {
+	transform: scale(1.1);
+	background-color: #aad5b1;
+	color:  #F9F9F9;
+}
+
+@media(max-width: 1600px) {
+	.grosbloc {
+	display: flex;
+	flex-direction: column;
+	}
+	
+	.bloc {
+	margin: auto;
+	margin-top: -30px;
+	}
+	
+	.generateur {
+	margin: auto;
+	margin-top: 80px;
+	width: 680px;
+	height: 500px;
+	}
+	
+	.bouton {
+	margin-top: 50px;
+	}
+	
+}
+
+@media(max-width: 900px) {
+	.generateur {
+	width: 550px;
+	height: 500px;
+	}
+}
+
