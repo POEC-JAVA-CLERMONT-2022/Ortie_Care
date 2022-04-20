@@ -1,4 +1,5 @@
 package com.ipme.ortiecare.controller;
+
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -20,33 +21,25 @@ public class SolController {
 
 	@Autowired
 	private SolService solService;
-	
-//	@GetMapping("/sol")
-//	public @ResponseBody Sol getSol(@PathVariable UUID id ) {
-//		return getSol(id);
-//		
-//	}
-	
 
 	@RequestMapping("sol")
 	public ModelAndView getSol(HttpSession session) {
-	ModelAndView mAV = new ModelAndView("sol/list-sol");
-	
-	mAV.addObject("sols", solService.findAll());
-	mAV.setViewName("listSols");
-	
-	return mAV;
-		
+		ModelAndView mAV = new ModelAndView("listSols");
+
+		mAV.addObject("sols", solService.findAll());
+
+		return mAV;
+
 	}
-	
+
 	@RequestMapping("/sol/search")
 	public ModelAndView getSol(@RequestParam("search") UUID id) {
 		ModelAndView mAV = new ModelAndView("sol/list-sol");
-		
+
 		mAV.addObject("sol", solService.findByUUID(id));
 		mAV.addObject("search", id);
-		
+
 		return mAV;
 	}
-	
+
 }

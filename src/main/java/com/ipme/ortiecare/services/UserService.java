@@ -52,6 +52,11 @@ public class UserService {
 			leUserQueJeManipule.setAdmin(true);
 		}
 	}
+
+	public User findByUUID(UUID id) {
+		
+		return userRepo.findByUUID(id);
+	}
 }
 
 
