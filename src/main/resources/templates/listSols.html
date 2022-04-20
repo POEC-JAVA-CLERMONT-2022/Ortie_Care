@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Liste des sols</title>
+</head>
+<body>
+<div th:each="sol : ${sols}">
+		<div th:text="${sol.nomSol}">
+		</div>
+		<div th:text="${sol.textureSol}">
+		</div>
+		<div th:text="${sol.structureSol}">
+		</div>
+		<div th:text="${sol.avantageSol}">
+		</div>
+		<div th:text="${sol.inconvenientSol}">
+		</div>
+		</br>
+</body>
+</html>
