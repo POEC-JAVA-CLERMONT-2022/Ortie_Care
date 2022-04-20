@@ -32,7 +32,8 @@ public class SolController {
 	public ModelAndView getSol(HttpSession session) {
 	ModelAndView mAV = new ModelAndView("sol/list-sol");
 	
-	mAV.addObject("sol", solService.findAll());
+	mAV.addObject("sols", solService.findAll());
+	mAV.setViewName("listSols");
 	
 	return mAV;
 		
