@@ -1,5 +1,6 @@
 package com.ipme.ortiecare.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +20,6 @@ import com.ipme.ortiecare.model.Legume;
 import com.ipme.ortiecare.services.ConseilDeCultureService;
 
 @Controller
-@RequestMapping("/conseilsDeCulture")
 public class ConseilDeCultureController {
 	
 	@Autowired
@@ -32,12 +33,13 @@ public class ConseilDeCultureController {
 		mAV.setViewName("listeConseil");
 		return mAV;
 	}
-	@GetMapping("/conseilsDeCulture/loltest")
-	public String getTest()
-	{
-		return "megalol";
-	}
 	
+	@GetMapping("/conseilsDeCulture/json")
+	@ResponseBody
+	public List<ConseilDeCulture> getConseilsJson(HttpSession session)
+	{
+		return conseilService.findAll();
+	}
 	
 	@GetMapping("/conseilsDeCulture/search")
 	public ModelAndView getConseils(@RequestParam("search")String boutDesc)

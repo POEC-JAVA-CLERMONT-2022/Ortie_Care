@@ -14,6 +14,8 @@ public class LegumesConseilsDeCulturePK implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private ConseilDeCulture conseil;
 	
+	// Constructeur par défaut necessaire pour hibernate
+	public LegumesConseilsDeCulturePK(){	}
 	public LegumesConseilsDeCulturePK(Legume legume, ConseilDeCulture conseil)
 	{
 		this.legume = legume;
