@@ -37,7 +37,7 @@ public class UserController {
 	        return new ModelAndView("users/addUser");
 	    }
 		
-		@PostMapping("/conseilsDeCulture/addConseil")
+		@PostMapping("/user/addUser")
 		public ModelAndView addUser(@Valid User newUser, BindingResult result)
 		{
 			if(!result.hasErrors())
