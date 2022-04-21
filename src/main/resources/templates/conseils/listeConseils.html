@@ -5,6 +5,7 @@
 <title>Liste des conseils de culture</title>
 </head>
 <body>
+
 	<div th:each="conseil : ${conseilsDeCulture}">
 		<div th:text="${conseil.titre}">
 		</div>
@@ -12,5 +13,6 @@
 		</div>
 		</br>
 	</div>
+	
 </body>
 </html>
