@@ -15,7 +15,7 @@ public interface ConseilDeCultureRepository extends JpaRepository<ConseilDeCultu
 	@Query(value="SELECT * FROM conseils_de_culture where id_conseil = :id", nativeQuery = true)
 	ConseilDeCulture findByUUID(@Param("id")UUID id_conseil);
 	
-	@Query(value="SELECT * FROM conseils_de_culture where titre = :titre", nativeQuery = true)
+	//TODO: utiliser JPA
 	ConseilDeCulture findByTitle(@Param("titre")String titre);
 	
 	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription);

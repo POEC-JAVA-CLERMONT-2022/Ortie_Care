@@ -40,6 +40,7 @@ public class ConseilDeCultureController {
 	// Fonctionne (retour Json)
 	@GetMapping("/conseilsDeCulture/json")
 	@ResponseBody
+	//TODO: ResponseEntity
 	public List<ConseilDeCulture> getConseilsJson(HttpSession session)
 	{
 		return conseilService.findAll();

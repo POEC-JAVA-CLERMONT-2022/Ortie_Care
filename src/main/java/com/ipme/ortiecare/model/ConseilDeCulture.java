@@ -14,6 +14,7 @@ import org.hibernate.annotations.Type;
 @Table(name = "ConseilsDeCulture")
 public class ConseilDeCulture {
 	
+	
 	// Attributs & annotations pour bdd -- Spring
 	@Id
 	@Column(name = "idConseil", nullable = false)
@@ -39,7 +40,6 @@ public class ConseilDeCulture {
 		this.description = description;
 	}
 
-	// get set 
 	public UUID getIdConseil() {return idConseil;}
 
 	public String getTitre() {return titre;}

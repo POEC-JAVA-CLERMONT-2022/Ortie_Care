@@ -9,6 +9,8 @@ import com.ipme.ortiecare.model.Legume;
 import com.ipme.ortiecare.model.LegumesConseilsDeCulture;
 import com.ipme.ortiecare.model.LegumesConseilsDeCulturePK;
 
+
+//TODO: à déplacer
 @Repository
 public interface LegumesConseilsDeCultureRepository extends JpaRepository<LegumesConseilsDeCulture, LegumesConseilsDeCulturePK> {
 

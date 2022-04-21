@@ -15,7 +15,6 @@ public class OrtieCareApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrtieCareApplication.class, args);
-		System.out.println("pouet");
 		
 	}
 
