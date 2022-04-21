@@ -25,7 +25,7 @@ public class UserController {
 
 	@RequestMapping("user")
 	public ModelAndView getUser(HttpSession session) {
-		ModelAndView mAV = new ModelAndView("listeUsers");
+		ModelAndView mAV = new ModelAndView("users/listeUsers");
 		mAV.addObject("users", userService.findAll());
 		return mAV;
 	}
@@ -34,7 +34,7 @@ public class UserController {
 		
 		@GetMapping("/user/addUser")
 	    public ModelAndView showUserForm() {
-	        return new ModelAndView("addUser");
+	        return new ModelAndView("users/addUser");
 	    }
 		
 		@PostMapping("/conseilsDeCulture/addConseil")
@@ -47,7 +47,7 @@ public class UserController {
 			}
 			else
 			{
-				return new ModelAndView("addUser");
+				return new ModelAndView("users/addUser");
 			}
 		}
 		
