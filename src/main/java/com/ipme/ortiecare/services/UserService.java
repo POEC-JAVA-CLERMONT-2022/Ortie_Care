@@ -28,9 +28,13 @@ public class UserService {
 		return this.userRepo.getById(id);
 	}
 	
-	public List<User> findByIs_Admin(int vraiOuFaux)
+	public List<User> findListByIs_Admin(int vraiOuFaux)
 	{
 		return userRepo.findByIsAdmin(vraiOuFaux);
+	}
+	public User findByIs_Admin(int vraiOuFaux)
+	{
+		return userRepo.getByIsAdmin(vraiOuFaux);
 	}
 	
 	public User findByFirstNameAndLastName(String firstName, String lastName)
@@ -58,7 +62,7 @@ public class UserService {
 
 	public User findByUUID(UUID id) {
 		
-		return userRepo.findByUUID(id);
+		return userRepo.getById(id);
 	}
 }
 
