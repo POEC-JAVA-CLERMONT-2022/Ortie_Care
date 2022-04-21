@@ -68,11 +68,11 @@ public class ConseilDeCultureController {
 	
 	// Get pour récupérer et afficher le formulaire de recherche
 	@GetMapping("/conseilsDeCulture/searchConseil")
-	public ModelAndView searchConseils()
+	public ModelAndView showConseilSearchForm()
 	{
 		return new ModelAndView("conseils/searchConseil");
 	}
-	// A FINIR
+	// Post pour récup les resultats obtenus via la recherche
 	@PostMapping("/conseilsDeCulture/searchConseil")
 	public ModelAndView searchConseils(String boutDesc)
 	{
@@ -81,13 +81,19 @@ public class ConseilDeCultureController {
 		return mAV;
 	}
 	
-	// A FAIRE
+	// Get pour récupérer et afficher le formulaire de recherche
 	@GetMapping("/conseilsDeCulture/legume")
-	public ModelAndView getConseils(@RequestParam("legume") UUID idLegume)
+	public ModelAndView showLegumeConseilSearchForm()
 	{
-		ModelAndView mAV = new ModelAndView("conseilsDeCulture/liste-conseils");
-		mAV.addObject("conseilDeCulture", conseilService.findListeConseilPourLegume(idLegume));
-		mAV.setViewName("conseilLegume");
+		return new ModelAndView("conseils/conseilLegume");
+	}
+	
+	// A FAIRE
+	@PostMapping("/conseilsDeCulture/legume")
+	public ModelAndView getLegumeConseils(UUID idLegume)
+	{
+		ModelAndView mAV = new ModelAndView("conseils/conseilLegume");
+		mAV.addObject("legumeResult", conseilService.findListeConseilPourLegume(idLegume));
 		
 		return mAV;
 	}
