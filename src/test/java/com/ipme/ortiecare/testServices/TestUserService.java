@@ -17,7 +17,6 @@ import com.ipme.ortiecare.repository.LegumesRepository;
 import com.ipme.ortiecare.repository.UserRepository;
 import com.ipme.ortiecare.services.UserService;
 
-//TODO: indentation
 @SpringBootTest
 public class TestUserService {
 	
@@ -27,21 +26,19 @@ public class TestUserService {
 	@Mock
 	private UserRepository mockedUserRepo;
 
-	
-	@Autowired
-	UserService service;
-
 	@Test
-	public void testUser() {
-			User unUser = this.service.create("sss", "ddd", "ddd", "fggg");
-			
-			assertNotNull(unUser);
+	public void testUser() 
+	{
+		User unUser = this.userService.create("sss", "ddd", "ddd", "fggg");
+		assertNotNull(unUser);
 	}
 	@Test
-    public void testAdmin() {
-    when(mockedUserRepo.save(Mockito.any(User.class))).thenReturn(new User(null, null, null, null, null));
-    User testUser = userService.create(null, null, null, null);
-    assertThat(testUser.isAdmin()).isFalse();
-    testUser.setAdmin(true);
-    assertThat(testUser.isAdmin()).isTrue();    }
+    public void testAdmin() 
+	{
+	    when(mockedUserRepo.save(Mockito.any(User.class))).thenReturn(new User(null, null, null, null, null));
+	    User testUser = userService.create(null, null, null, null);
+	    assertThat(testUser.isAdmin()).isFalse();
+	    testUser.setAdmin(true);
+	    assertThat(testUser.isAdmin()).isTrue();
+	}
 }

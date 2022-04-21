@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SolRepository extends JpaRepository<Sol, UUID>{
-	@Query(value="SELECT * FROM sols WHERE id_sols = :id", nativeQuery = true)
-	Sol findByUUID(@Param("id")UUID id_sols);
+	
+	Sol getById(UUID id);
+	
+	
 	
 	List<Sol> findByTextureSolContaining(String boutTextureSol);
 	

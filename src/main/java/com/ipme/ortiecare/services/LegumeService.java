@@ -26,9 +26,20 @@ public class LegumeService {
 	
 	public Legume create(String nom,int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<LegumesConseilsDeCulture> conseilsDeCulture, Set<LegumesLegumesAssocies> legumesAssocies, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
-		Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, legumesAssocies, autoReseme, isGousse, bestSol);
-		this.legumesRepo.save(ceLegume);
-		return ceLegume;
+		if(nom != null && nom != "" && tempsAvantRecolteEnMois != 0 && poidsMoyenFruitEnG != 0 && conseilsDeCulture != null && legumesAssocies != null && bestSol != null)
+		{
+			logger.info("Debut creation de legume");
+			Legume ceLegume = new Legume(UUID.randomUUID(), nom, tempsAvantRecolteEnMois, poidsMoyenFruitEnG ,conseilsDeCulture, legumesAssocies, autoReseme, isGousse, bestSol);
+			this.legumesRepo.save(ceLegume);
+			logger.info("Legume " + ceLegume.getNom() + " créé en base.");
+			return ceLegume;
+		}
+		else
+		{
+			logger.warn("Erreur lors de la création du légume : nom : " + nom + " ; Retour legume vide");
+			return new Legume();
+		}
+		
 	}
 	
 	public List<Legume> findAll()
@@ -38,23 +49,59 @@ public class LegumeService {
 	
 	public Legume findByUUID(UUID id)
 	{
-		return this.legumesRepo.findByUUID(id);
+		if(id != null && id.toString() != "")
+		{
+			logger.info("Legume trouvé grace a son id ");
+			return this.legumesRepo.getById(id);
+		}
+		else
+		{
+			logger.warn("Aucun legume trouvé avec cet id(" + id + ") : retour d'un objet vide");
+			return new Legume();
+		}
 	}
 	
 	// Recup la liste des legumes associes pour un legume
 	public List<Legume> findListeLegumesAssocies(UUID idLegume)
 	{
-		return this.legumesRepo.findLegumesAssocies(idLegume);
+		if(idLegume != null && idLegume.toString() != "") 
+		{
+			logger.info("Liste de legumes associes trouvée ");
+			return this.legumesRepo.findLegumesAssocies(idLegume);
+		}
+		else
+		{
+			logger.warn("Aucun legume associés trouvés avec cet id(" + idLegume + ") : retour d'une liste vide");
+			return new ArrayList<Legume>();
+		}
 	}
 	
 	public Legume findByNom(String nom)
 	{
-		return this.legumesRepo.findByNom(nom);
+		if(nom != null && nom != "")
+		{
+			logger.info("Legume trouvé avec son nom");
+			return this.legumesRepo.findByNom(nom);
+		}
+		else
+		{
+			logger.warn("Aucun legume trouvé avec ce nom (" + nom + ") : retour d'un objet vide");
+			return new Legume();
+		}
 	}
 	
 	public List<Legume> findByNomStartingWith(String nom)
 	{
-		return this.legumesRepo.findByNomStartingWith(nom);
+		if(nom != null && nom != "")
+		{
+			logger.info("Liste de Legumes trouvé avec son nom");
+			return this.legumesRepo.findByNomStartingWith(nom);
+		}
+		else
+		{
+			logger.warn("Aucun legume trouvé avec ce nom (" + nom + ") : retour d'une liste vide");
+			return new ArrayList<Legume>();
+		}
 	}
 	
 	public void addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)

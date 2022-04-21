@@ -12,15 +12,13 @@ import com.ipme.ortiecare.model.*;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
 	
-	@Query(value="SELECT * FROM users WHERE id_user = :id", nativeQuery = true)
-	User findByUUID(@Param("id")UUID id_user);
+	User getById(@Param("id")UUID id_user);
  
-	@Query(value="SELECT is_admin FROM users WHERE id_user = :id", nativeQuery=true)
-	boolean isThisAdmin(@Param("id")UUID id_user);
-	
 	User findByFirstNameAndLastName(String firstName, String lastName);
 	
 	List<User> findByIsAdmin(int vraiOuFaux);
+	
+	User getByIsAdmin(int vraiOuFaux);
 	
 	
  //  User findByFirst_NameAndLast_Name(String firstName, String lastName);

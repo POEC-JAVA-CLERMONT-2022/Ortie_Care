@@ -12,8 +12,7 @@ import com.ipme.ortiecare.model.ConseilDeCulture;
 @Repository
 public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
-	@Query(value="SELECT * FROM legumes where id_legume = :id", nativeQuery = true)
-	Legume findByUUID(@Param("id")UUID id_legume);
+	Legume getById(@Param("id")UUID id_legume);
 	
 	Legume findByNom (String nom);
 	
