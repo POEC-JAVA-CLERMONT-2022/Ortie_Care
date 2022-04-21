@@ -71,6 +71,7 @@ public class LegumeService {
 		}
 		else
 		{
+			//TODO: à supprimer
 			System.out.println("L'ajout de l'association a �chou� ; l'association existe d�j�.");
 		}
 	}

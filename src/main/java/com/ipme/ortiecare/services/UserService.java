@@ -47,7 +47,11 @@ public class UserService {
 	
 	// Pas sur de cette methode = Le changement sur l'appli est repercut� en base ? ou il faudrait le save dans le repo apr�s l'avoir modifi� sur la plateforme
 	public void passageAdmin(User leUserQueJeManipule) 
-	{ 
+	{
+
+		//TODO : soit anglais soit francais pas les deux
+
+		//TODO: utiliser !
 		if(leUserQueJeManipule.isAdmin()==false) {
 			leUserQueJeManipule.setAdmin(true);
 		}

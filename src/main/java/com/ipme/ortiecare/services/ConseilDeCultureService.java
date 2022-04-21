@@ -9,6 +9,8 @@ import com.ipme.ortiecare.repository.ConseilDeCultureRepository;
 
 @Service
 public class ConseilDeCultureService {
+
+	//TODO: gestion des exceptions + log
 	
 	@Autowired
 	private ConseilDeCultureRepository conseilRepo;
