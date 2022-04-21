@@ -24,7 +24,7 @@ public class SolController {
 
 	@RequestMapping("sol")
 	public ModelAndView getSol(HttpSession session) {
-		ModelAndView mAV = new ModelAndView("listSols");
+		ModelAndView mAV = new ModelAndView("listeSols");
 
 		mAV.addObject("sols", solService.findAll());
 
