@@ -66,6 +66,7 @@ public class ConseilDeCultureController {
 		}
 	}
 	
+	// Get pour récupérer et afficher le formulaire de recherche
 	@GetMapping("/conseilsDeCulture/searchConseil")
 	public ModelAndView searchConseils()
 	{
