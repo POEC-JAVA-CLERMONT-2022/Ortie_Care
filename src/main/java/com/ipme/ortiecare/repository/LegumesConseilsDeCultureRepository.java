@@ -1,4 +1,4 @@
-package com.ipme.ortiecare.services;
+package com.ipme.ortiecare.repository;
 
 import java.util.UUID;
 

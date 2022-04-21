@@ -46,14 +46,13 @@ public class UserService {
 	}
 	
 	// Pas sur de cette methode = Le changement sur l'appli est repercut� en base ? ou il faudrait le save dans le repo apr�s l'avoir modifi� sur la plateforme
-	public void passageAdmin(User leUserQueJeManipule) 
+	public void setAdmin(User thisUser) 
 	{
-
-		//TODO : soit anglais soit francais pas les deux
-
-		//TODO: utiliser !
-		if(leUserQueJeManipule.isAdmin()==false) {
-			leUserQueJeManipule.setAdmin(true);
+		if(!thisUser.isAdmin() && thisUser != null)
+		{
+			thisUser.setAdmin(true);
+			// pas sur de l'utilité du coup
+			this.userRepo.save(thisUser);
 		}
 	}
 

@@ -46,9 +46,9 @@ public class SolService {
 	{
 		return this.solRepo.findByTextureSolContaining(boutTextureSol);
 	}
-
-	public Sol findByUUID(UUID id) {
-		// TODO Auto-generated method stub
+	
+	public Sol findByUUID(UUID id)
+	{
 		return this.solRepo.findByUUID(id);
 	}
 

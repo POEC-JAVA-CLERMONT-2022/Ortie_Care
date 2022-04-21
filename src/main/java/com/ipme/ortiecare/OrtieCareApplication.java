@@ -15,8 +15,6 @@ public class OrtieCareApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrtieCareApplication.class, args);
-		//TODO: à supprimer
-		System.out.println("pouet");
 		
 	}
 
