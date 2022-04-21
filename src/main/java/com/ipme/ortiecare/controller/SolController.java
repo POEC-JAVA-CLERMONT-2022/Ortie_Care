@@ -24,17 +24,17 @@ public class SolController {
 
 	@RequestMapping("sol")
 	public ModelAndView getSol(HttpSession session) {
-		ModelAndView mAV = new ModelAndView("listeSols");
+		ModelAndView mAV = new ModelAndView("sols/listeSols");
 
 		mAV.addObject("sols", solService.findAll());
 
 		return mAV;
 
 	}
-
+	// a faire
 	@RequestMapping("/sol/search")
 	public ModelAndView getSol(@RequestParam("search") UUID id) {
-		ModelAndView mAV = new ModelAndView("sol/list-sol");
+		ModelAndView mAV = new ModelAndView("sols/list-sol");
 
 		mAV.addObject("sol", solService.findByUUID(id));
 		mAV.addObject("search", id);
