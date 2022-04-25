@@ -1,5 +1,6 @@
 package com.ipme.ortiecare.repository;
 import java.util.List;
+import java.lang.Iterable;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;

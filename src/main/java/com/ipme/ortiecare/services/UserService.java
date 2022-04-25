@@ -1,69 +1,114 @@
 package com.ipme.ortiecare.services;
 
+import java.lang.Iterable;
+import com.ipme.ortiecare.model.Sol;
 import com.ipme.ortiecare.model.User;
 import com.ipme.ortiecare.repository.UserRepository;
+import com.ipme.ortiecare.services.DTO.SolDTO;
+import com.ipme.ortiecare.services.DTO.UserDTO;
+
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+	Logger logger = LoggerFactory.getLogger(User.class);
+
 	@Autowired
 	private UserRepository userRepo;
 
-	public UserService (UserRepository userRepo) 
-	{
+	public UserService(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}
 
-	public List<User> findAll() 
-	{
-		return this.userRepo.findAll();
+	public List<UserDTO> findAll() {
+		ArrayList<UserDTO> userDTOList = new ArrayList<>();
+		for (User user : userRepo.findAll()) {
+			UserDTO userDTO = new UserDTO();
+			BeanUtils.copyProperties(user, userDTO);
+			userDTOList.add(userDTO);
+		}
+		return userDTOList;
 	}
 
-	public User findById(UUID id) 
-	{
-		return this.userRepo.getById(id);
+	public UserDTO convertUser(User unUser) {
+		if (unUser != null) {
+			return new UserDTO(unUser.isAdmin(), unUser.getFirstName(), unUser.getLastName(), unUser.getEmail());
+		} else {
+			return new UserDTO();
+		}
 	}
-	
-	public List<User> findListByIs_Admin(int vraiOuFaux)
-	{
-		return userRepo.findByIsAdmin(vraiOuFaux);
+
+	public UserDTO findById(UUID id) {
+		if (id != null) {
+			logger.info("Recherche par id : " + id);
+
+			return convertUser(userRepo.getById(id));
+		} else {
+			logger.warn("Recherche d'id échouée");
+			return new UserDTO();
+		}
 	}
-	public User findByIs_Admin(int vraiOuFaux)
-	{
-		return userRepo.getByIsAdmin(vraiOuFaux);
+
+	public ArrayList<UserDTO> findListByIs_Admin(Integer vraiOuFaux) {
+
+		if (vraiOuFaux != null) {
+			logger.info("Statut utilisateur : " + vraiOuFaux);
+			ArrayList<UserDTO> usersDTO = new ArrayList<>();
+			for (User unUser : userRepo.findByIsAdmin(vraiOuFaux)) {
+				usersDTO.add(convertUser(unUser));
+			}
+			return usersDTO;
+		} else {
+			logger.warn("Statut utilisateur non trouvé");
+			return new ArrayList<UserDTO>();
+		}
 	}
-	
-	public User findByFirstNameAndLastName(String firstName, String lastName)
-	{
-		return this.userRepo.findByFirstNameAndLastName(firstName, lastName);
+
+	public UserDTO findByIs_Admin(Integer vraiOuFaux) {
+		if(vraiOuFaux != null)
+		{
+			return convertUser(userRepo.getByIsAdmin(vraiOuFaux));
+		}
+		else
+		{
+			return new UserDTO();
+		}
+		
 	}
-	
-	public User create(String password, String firstName, String lastName, String email)
-	{
+
+	public UserDTO findByFirstNameAndLastName(String firstName, String lastName) {
+		if(firstName != "" && lastName != "")
+		{
+			return convertUser(userRepo.findByFirstNameAndLastName(firstName, lastName));
+		}
+		else
+		{
+			return new UserDTO();
+		}
+		
+	}
+
+	public User create(String password, String firstName, String lastName, String email) {
 		User ceUser = new User(UUID.randomUUID(), password, firstName, lastName, email);
 		this.userRepo.save(ceUser);
 		return ceUser;
 	}
-	
-	// Pas sur de cette methode = Le changement sur l'appli est repercut� en base ? ou il faudrait le save dans le repo apr�s l'avoir modifi� sur la plateforme
-	public void setAdmin(User thisUser) 
-	{
-		if(!thisUser.isAdmin() && thisUser != null)
-		{
+
+	// Pas sur de cette methode = Le changement sur l'appli est repercut� en base ?
+	// ou il faudrait le save dans le repo apr�s l'avoir modifi� sur la plateforme
+	public void setAdmin(User thisUser) {
+		if (!thisUser.isAdmin() && thisUser != null) {
 			thisUser.setAdmin(true);
 			// pas sur de l'utilité du coup
 			this.userRepo.save(thisUser);
 		}
 	}
 
-	public User findByUUID(UUID id) {
-		
-		return userRepo.getById(id);
-	}
 }
-
-

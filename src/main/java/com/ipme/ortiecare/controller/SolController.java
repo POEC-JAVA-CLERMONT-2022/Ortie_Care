@@ -42,7 +42,7 @@ public class SolController {
 	public ModelAndView getSol(@RequestParam("search") UUID id) {
 	ModelAndView mAV = new ModelAndView("sols/list-sol");
 
-		mAV.addObject("sol", solService.findByUUID(id));
+		mAV.addObject("sol", solService.findById(id));
 	    mAV.addObject("search", id);
 
 		return mAV;
