@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,18 +26,18 @@ public UserControllerRest(UserService userService) {
 	this.userService = userService;
 }
 
-@PostMapping
+@PostMapping("create")
 public ResponseEntity<User> createUser(@RequestBody User user) {
 	return new ResponseEntity<User>(userService.create(user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail()), HttpStatus.CREATED);
 }
 
-@GetMapping
+@GetMapping("getAll")
 public List<UserDTO> getAllUsers(){
 	return userService.findAll();
 }
 
-@GetMapping
-public UserDTO getByUUID(UUID id) {
+@GetMapping("{id}")
+public UserDTO getByUUID(@PathVariable("id") UUID id) {
 	return userService.findById(id);
 }
 }
