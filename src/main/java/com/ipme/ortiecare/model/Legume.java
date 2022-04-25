@@ -34,7 +34,7 @@ public class Legume{
 	
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
-	
+
 	@OneToMany(mappedBy="conseilLegume.legume")
 	private Set<LegumesConseilsDeCulture> conseilsDeCulture;
 	
@@ -90,6 +90,14 @@ public class Legume{
 	public String getNom() {return nom;}
 	
 	public void setNom(String nom) {this.nom = nom;}
+	
+	public int getTempsAvantRecolteEnMois() {return tempsAvantRecolteEnMois;}
+	
+	public void setTempsAvantRecolteEnMois(int tempsAvantRecolteEnMois) {this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;}
+	
+	public int getPoidsMoyenFruitEnG() {return poidsMoyenFruitEnG;}
+	
+	public void setPoidsMoyenFruitEnG(int poidsMoyenFruitEnG) {this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;}
 	
 	public boolean isGousse() {return isGousse;}
 	

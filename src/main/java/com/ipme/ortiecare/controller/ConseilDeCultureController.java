@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ipme.ortiecare.model.ConseilDeCulture;
 import com.ipme.ortiecare.model.Legume;
 import com.ipme.ortiecare.services.ConseilDeCultureService;
+import com.ipme.ortiecare.services.DTO.ConseilDeCultureDTO;
 
 @Controller
 public class ConseilDeCultureController {
@@ -36,20 +37,11 @@ public class ConseilDeCultureController {
 		
 		return mAV;
 	}
-	
-	// Fonctionne (retour Json)
-	@GetMapping("/conseilsDeCulture/json")
-	@ResponseBody
-	//TODO: ResponseEntity
-	public List<ConseilDeCulture> getConseilsJson(HttpSession session)
-	{
-		return conseilService.findAll();
-	}
-	
+		
 	// Necessaire pour afficher le formulaire de creation CECI EST UN GET
 	@GetMapping("/conseilsDeCulture/addConseil")
     public ModelAndView showConseilForm() {
-        return new ModelAndView("addConseil");
+        return new ModelAndView("conseils/addConseil");
     }
 	
 	// Fonctionne (ajout de conseil) Validation ko CECI EST UN POST

@@ -13,7 +13,7 @@ public interface ConseilDeCultureRepository extends JpaRepository<ConseilDeCultu
 	
 	ConseilDeCulture getById(@Param("id")UUID id_conseil);
 	
-	ConseilDeCulture findByTitle(String titre);
+	ConseilDeCulture findByTitre(String titre);
 	
 	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription);
 	

@@ -8,46 +8,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ipme.ortiecare.repository.ConseilDeCultureRepository;
+import com.ipme.ortiecare.services.DTO.ConseilDeCultureDTO;
 
 @Service
 public class ConseilDeCultureService {
 
 	Logger logger = LoggerFactory.getLogger(ConseilDeCultureService.class);
-
 	
 	@Autowired
 	private ConseilDeCultureRepository conseilRepo;
 	
-	public List<ConseilDeCulture> findAll()
+	public List<ConseilDeCultureDTO> findAll()
 	{
-		return conseilRepo.findAll();
+		ArrayList<ConseilDeCultureDTO> conseilsDTO = new ArrayList<>();
+		for (ConseilDeCulture unConseil : conseilRepo.findAll())
+		{
+			conseilsDTO.add(convertConseil(unConseil));
+		}
+		return conseilsDTO;
+		//return conseilRepo.findAll();
 	}
 	
-	public ConseilDeCulture findById(UUID id)
+	public ConseilDeCultureDTO findById(UUID id)
 	{
 		if(id != null && id.toString() != "")
 		{
 			logger.info("La recherche par id a fonctionné pour l'id " + id );
-			return conseilRepo.getById(id);
+			return convertConseil(conseilRepo.getById(id));
 		}
 		else
 		{
 			logger.warn("La recherche par id n'a pas fonctionné, renvoi d'un objet vide conseil de culture. Valeur du paramètre passé : " + id);
-			return new ConseilDeCulture();
+			return new ConseilDeCultureDTO();
 		}
 	}
 	
-	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription)
+	public List<ConseilDeCultureDTO> findByDescriptionContaining(String boutDescription)
 	{
 		if(boutDescription != null && boutDescription != "")
 		{
 			logger.info("Recherche par bout de description : " + boutDescription);
-			return conseilRepo.findByDescriptionContaining(boutDescription);
+			ArrayList<ConseilDeCultureDTO> conseilsDTO = new ArrayList<>();
+			for (ConseilDeCulture unConseil : conseilRepo.findByDescriptionContaining(boutDescription))
+			{
+				conseilsDTO.add(convertConseil(unConseil));
+			}
+			return conseilsDTO;
 		}
 		else
 		{
 			logger.warn("Recherche par description échouée : retour d'une liste vide");
-			return new ArrayList<ConseilDeCulture>();
+			return new ArrayList<ConseilDeCultureDTO>();
 		}
 	}
 	
@@ -67,19 +78,36 @@ public class ConseilDeCultureService {
 		}
 	}
 	// Recup la liste des conseil pour une ID legume
-	public List<ConseilDeCulture> findListeConseilPourLegume(UUID idLegume)
+	public List<ConseilDeCultureDTO> findListeConseilPourLegume(UUID idLegume)
 	{
 		if(idLegume != null && idLegume.toString() != "")
 		{
 			logger.info("Récupération des conseils pour le legume " + idLegume);
-			return this.conseilRepo.findConseilsLegume(idLegume);
+			ArrayList<ConseilDeCultureDTO> conseilsDTO = new ArrayList<>();
+			for (ConseilDeCulture unConseil : this.conseilRepo.findConseilsLegume(idLegume))
+			{
+				conseilsDTO.add(convertConseil(unConseil));
+			}
+			return conseilsDTO;
 		}
 		else 
 		{
 			logger.warn("Retour d'une liste vide ; la recherche a échoué");
-			return new ArrayList<ConseilDeCulture>();
+			return new ArrayList<ConseilDeCultureDTO>();
 		}
 		
+	}
+	
+	public ConseilDeCultureDTO convertConseil(ConseilDeCulture conseil)
+	{
+		if(conseil != null)
+		{
+			return new ConseilDeCultureDTO(conseil.getTitre(), conseil.getDescription());
+		}
+		else
+		{
+			return new ConseilDeCultureDTO();
+		}
 	}
 	
 }

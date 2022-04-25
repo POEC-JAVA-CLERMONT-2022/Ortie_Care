@@ -37,7 +37,7 @@ public class SolService {
 		return this.solRepo.findAll();
 	}
 
-	public Sol findById(UUID id) 
+	public Sol findByUUID(UUID id) 
 	{
 		if(id != null && id.toString() != "") {
 			logger.info("La recherche a fonctionné pour l'id : " + id);
