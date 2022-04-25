@@ -1,5 +1,6 @@
 package com.ipme.ortiecare.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ConseilsDeCulture")
-public class ConseilDeCulture {
+public class ConseilDeCulture{
 	
 	
 	// Attributs & annotations pour bdd -- Spring

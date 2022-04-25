@@ -45,6 +45,7 @@ public class SolService {
 		return solDTOList;
 	}
 
+
 	public SolDTO findById(UUID id) {
 		if (id != null && id.toString() != "") {
 			logger.info("La recherche a fonctionné pour l'id : " + id);
