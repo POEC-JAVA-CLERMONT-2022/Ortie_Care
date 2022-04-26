@@ -11,6 +11,8 @@ import com.ipme.ortiecare.repository.ConseilDeCultureRepository;
 import com.ipme.ortiecare.repository.LegumesRepository;
 import com.ipme.ortiecare.services.DTO.ConseilDeCultureDTO;
 import com.ipme.ortiecare.services.DTO.LegumeDTO;
+import com.ipme.ortiecare.services.DTO.SolDTO;
+
 
 @Service
 public class LegumeService {
@@ -49,7 +51,7 @@ public class LegumeService {
 		ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
 		for (Legume unLegume : legumesRepo.findAll())
 		{
-			legumesDTO.add(convertLegume(unLegume));
+			legumesDTO.add(convertLegume(unLegume, true));
 		}
 		return legumesDTO;
 	}
@@ -59,7 +61,7 @@ public class LegumeService {
 		if(id != null && id.toString() != "")
 		{
 			logger.info("Legume trouvé grace a son id ");
-			return convertLegume(legumesRepo.getById(id));
+			return convertLegume(legumesRepo.getById(id), true);
 		}
 		else
 		{
@@ -71,13 +73,13 @@ public class LegumeService {
 	// Recup la liste des legumes associes pour un legume
 	public List<LegumeDTO> findListeLegumesAssocies(UUID idLegume)
 	{
-		if(idLegume != null && idLegume.toString() != "") 
+		if(idLegume != null && idLegume.toString() != "")
 		{
 			logger.info("Liste de legumes associes trouvée ");
 			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
 			for (Legume unLegume : legumesRepo.findLegumesAssocies(idLegume))
 			{
-				legumesDTO.add(convertLegume(unLegume));
+				legumesDTO.add(convertLegume(unLegume, true));
 			}
 			return legumesDTO;
 		}
@@ -93,7 +95,7 @@ public class LegumeService {
 		if(nom != null && nom != "")
 		{
 			logger.info("Legume trouvé avec son nom");
-			return convertLegume(legumesRepo.findByNom(nom));
+			return convertLegume(legumesRepo.findByNom(nom), true);
 		}
 		else
 		{
@@ -110,7 +112,7 @@ public class LegumeService {
 			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
 			for (Legume unLegume : legumesRepo.findByNomStartingWith(nom))
 			{
-				legumesDTO.add(convertLegume(unLegume));
+				legumesDTO.add(convertLegume(unLegume, true));
 			}
 			return legumesDTO;
 		}
@@ -147,18 +149,55 @@ public class LegumeService {
 		}
 		else
 		{
-			logger.warn("L'ajout de l'association a �chou� ; l'association existe d�j�.");
+			logger.warn("L'ajout de l'association a échoué ; l'association existe déjà.");
 		}
 	}
-	public LegumeDTO convertLegume(Legume legume)
+	// TODO : A vérifier et tester, boolean doContinue pour empecher de boucler sur l'appel à lui même
+	// Fonctionne 
+	public LegumeDTO convertLegume(Legume legume, boolean doContinue)
 	{
 		if(legume != null)
 		{
-			return new LegumeDTO(legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), legume.getConseils(), legume.getLegumesAssocies(), legume.isAutoReseme(), legume.isGousse(), legume.getBestSol());
+			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
+			ArrayList<ConseilDeCultureDTO> conseilsDTO = new ArrayList<>();
+			SolDTO solDTO = convertSol(legume.getBestSol());
+
+			if(doContinue)
+			{
+				for (LegumesLegumesAssocies uneAssociation : legume.getLegumesAssocies())
+				{
+					legumesDTO.add(convertLegume(uneAssociation.getAssoLegumes().getLegume2(), false));
+				}
+				for (LegumesConseilsDeCulture unConseil : legume.getConseils())
+				{
+					conseilsDTO.add(convertConseil(unConseil.getConseilLegume().getConseil()));
+				}
+			}
+			return new LegumeDTO(legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), conseilsDTO, legumesDTO, legume.isAutoReseme(), legume.isGousse(), solDTO);
 		}
 		else
 		{
 			return new LegumeDTO();
+		}
+	}
+	public ConseilDeCultureDTO convertConseil(ConseilDeCulture conseil)
+	{
+		if(conseil != null)
+		{
+			return new ConseilDeCultureDTO(conseil.getTitre(), conseil.getDescription());
+		}
+		else
+		{
+			return new ConseilDeCultureDTO();
+		}
+	}
+	
+	public SolDTO convertSol(Sol unSol) {
+		if (unSol != null) {
+			return new SolDTO(unSol.getNomSol(), unSol.getTextureSol(), unSol.getStructureSol(), unSol.getAvantageSol(),
+					unSol.getInconvenientSol());
+		} else {
+			return new SolDTO();
 		}
 	}
 }

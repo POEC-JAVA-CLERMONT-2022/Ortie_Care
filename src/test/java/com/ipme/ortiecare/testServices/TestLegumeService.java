@@ -48,9 +48,9 @@ public class TestLegumeService {
 		legumeService.create("testLegume3", 0, 0, null, null, false, false, null);
 		legumeService.create("testLegume4", 0, 0, null, null, false, false, null);
 		// associer les l�gumes
-
-		List<LegumeDTO> cesLegumes = this.legumeService.findListeLegumesAssocies(null);
-
+		
+		List<LegumeDTO> cesLegumes = legumeService.findListeLegumesAssocies(null);
+		
 	}
 
 	// Test utilisation Mock

@@ -48,7 +48,7 @@ public class LegumeControllerRest {
 	
 	@GetMapping("getAssociations/{id}")
 	@ResponseBody
-	public ResponseEntity<List<LegumeDTO>> getAssociations(@RequestBody @PathVariable("id") UUID idLegume, HttpSession session) {
+	public ResponseEntity<List<LegumeDTO>> getAssociations(@PathVariable("id") UUID idLegume, HttpSession session) {
 		return new ResponseEntity<List<LegumeDTO>>(legumeService.findListeLegumesAssocies(idLegume),HttpStatus.FOUND);
 	}
 	
