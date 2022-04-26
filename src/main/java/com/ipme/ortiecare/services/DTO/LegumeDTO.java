@@ -1,6 +1,7 @@
 package com.ipme.ortiecare.services.DTO;
 
-import java.util.Set;
+import java.util.List;
+import java.util.List;
 import java.util.UUID;
 
 import com.ipme.ortiecare.model.LegumesConseilsDeCulture;
@@ -12,16 +13,16 @@ public class LegumeDTO {
 	private String nom;
 	private int tempsAvantRecolteEnMois;
 	private int poidsMoyenFruitEnG;
-	private Set<LegumesConseilsDeCulture> conseilsDeCulture;
-	private Set<LegumesLegumesAssocies> legumesAssocies;
+	private List<ConseilDeCultureDTO> conseilsDeCulture;
+	private List<LegumeDTO> legumesAssocies;
 	private boolean autoReseme;
 	private boolean isGousse;
-	private Sol bestSol;
+	private SolDTO bestSol;
 
 	public LegumeDTO() {}
 	public LegumeDTO(String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG,
-			Set<LegumesConseilsDeCulture> conseilsDeCulture, Set<LegumesLegumesAssocies> legumesAssocies,
-			boolean autoReseme, boolean isGousse, Sol bestSol) {
+			List<ConseilDeCultureDTO> conseilsDeCulture, List<LegumeDTO> legumesAssocies,
+			boolean autoReseme, boolean isGousse, SolDTO bestSol) {
 		this.nom = nom;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
 		this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;
@@ -45,13 +46,13 @@ public class LegumeDTO {
 
 	public void setPoidsMoyenFruitEnG(int poidsMoyenFruitEnG) {this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;}
 
-	public Set<LegumesConseilsDeCulture> getConseilsDeCulture() {return conseilsDeCulture;}
+	public List<ConseilDeCultureDTO> getConseilsDeCulture() {return conseilsDeCulture;}
 
-	public void setConseilsDeCulture(Set<LegumesConseilsDeCulture> conseilsDeCulture) {this.conseilsDeCulture = conseilsDeCulture;}
+	public void setConseilsDeCulture(List<ConseilDeCultureDTO> conseilsDeCulture) {this.conseilsDeCulture = conseilsDeCulture;}
 
-	public Set<LegumesLegumesAssocies> getLegumesAssocies() {return legumesAssocies;}
+	public List<LegumeDTO> getLegumesAssocies() {return legumesAssocies;}
 
-	public void setLegumesAssocies(Set<LegumesLegumesAssocies> legumesAssocies) {this.legumesAssocies = legumesAssocies;}
+	public void setLegumesAssocies(List<LegumeDTO> legumesAssocies) {this.legumesAssocies = legumesAssocies;}
 
 	public boolean isAutoReseme() {return autoReseme;}
 
@@ -61,8 +62,8 @@ public class LegumeDTO {
 
 	public void setGousse(boolean isGousse) {this.isGousse = isGousse;}
 
-	public Sol getBestSol() {return bestSol;}
+	public SolDTO getBestSol() {return bestSol;}
 
-	public void setBestSol(Sol bestSol) {this.bestSol = bestSol;}
+	public void setBestSol(SolDTO bestSol) {this.bestSol = bestSol;}
 
 }

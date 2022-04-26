@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 import ch.qos.logback.classic.Logger;
@@ -35,13 +37,15 @@ public class Legume{
 	@Column(name="poidsMoyenFruitEnG", length=30)
 	private int poidsMoyenFruitEnG;
 
-	@OneToMany(mappedBy="conseilLegume.legume")
+	@OneToMany(mappedBy="conseilLegume.legume", fetch = FetchType.LAZY)
+	//@Fetch(FetchMode.JOIN)
 	private Set<LegumesConseilsDeCulture> conseilsDeCulture;
 	
-	@OneToMany(mappedBy="assoLegumes.legume1")
+	@OneToMany(mappedBy="assoLegumes.legume2", fetch = FetchType.LAZY)
+	//@Fetch(FetchMode.JOIN)
 	private Set<LegumesLegumesAssocies> legumesAssocies;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Sol bestSol; 
 	
 	// Constructeur par défaut necessaire pour hibernate
@@ -67,10 +71,7 @@ public class Legume{
 	
 	public Set<LegumesLegumesAssocies> getLegumesAssocies() {return legumesAssocies;}
 	
-	// Get add remove liste de legumes associes
-	
-	public void setLegumesAssocies(Set<LegumesLegumesAssocies> legumesAssocies) {this.legumesAssocies = legumesAssocies;}
-	
+	//Get add remove legumes associes
 	public void addLegumeAssocie(LegumesLegumesAssocies unLegume)
 	{
 		if(unLegume!=null)
@@ -107,9 +108,9 @@ public class Legume{
 	
 	public void setAutoReseme(boolean autoReseme) {this.autoReseme = autoReseme;}
 	
-	// Get add remove liste de conseils
+	//Get add remove liste de conseils
 	public Set<LegumesConseilsDeCulture> getConseils() {return conseilsDeCulture;}
-
+	
 	public void addConseil(LegumesConseilsDeCulture unConseil)
 	{
 		if(unConseil!=null)

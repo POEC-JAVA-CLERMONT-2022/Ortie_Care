@@ -25,6 +25,7 @@ import com.ipme.ortiecare.model.Legume;
 import com.ipme.ortiecare.model.Sol;
 import com.ipme.ortiecare.repository.LegumesRepository;
 import com.ipme.ortiecare.services.LegumeService;
+import com.ipme.ortiecare.services.DTO.LegumeDTO;
 
 //@SpringBootTest
 //@RunWith(MockitoJUnitRunner.class)
@@ -47,7 +48,7 @@ public class TestLegumeService {
 		legumeService.create("testLegume4", 0, 0, null, null, false, false, null);
 		// associer les l�gumes
 		
-		List<Legume> cesLegumes = this.legumeService.findListeLegumesAssocies(null);
+		List<LegumeDTO> cesLegumes = legumeService.findListeLegumesAssocies(null);
 		
 	}
 	

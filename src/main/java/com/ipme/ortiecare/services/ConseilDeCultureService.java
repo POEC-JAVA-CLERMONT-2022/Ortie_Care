@@ -26,7 +26,6 @@ public class ConseilDeCultureService {
 			conseilsDTO.add(convertConseil(unConseil));
 		}
 		return conseilsDTO;
-		//return conseilRepo.findAll();
 	}
 	
 	public ConseilDeCultureDTO findById(UUID id)
