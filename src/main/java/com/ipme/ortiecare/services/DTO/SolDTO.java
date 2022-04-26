@@ -1,5 +1,7 @@
 package com.ipme.ortiecare.services.DTO;
 
+import com.ipme.ortiecare.model.Sol;
+
 public class SolDTO {
 	
 	private String nomSol;
@@ -30,6 +32,14 @@ public class SolDTO {
 	public String getAvantageSol() {return avantageSol;}
 
 	public String getInconvenientSol() {return inconvenientSol;}
+
+	
+	
+	//Pour le test fonctionnel de relation Sol/Legume - N'est sans doute pas bon.
+	public static Object save(Class<Sol> class1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
