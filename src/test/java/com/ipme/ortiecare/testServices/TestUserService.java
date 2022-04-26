@@ -41,4 +41,6 @@ public class TestUserService {
 	    testUser.setAdmin(true);
 	    assertThat(testUser.isAdmin()).isTrue();
 	}
+	
+	
 }
