@@ -44,6 +44,12 @@ public class ConseilDeCultureControllerRest {
 		return conseilService.findById(idConseil);
 	}
 	
+	@GetMapping("delete/{id}")
+	public int deleteConseil(@PathVariable("id") UUID idConseil)
+	{
+		return conseilService.deleteById(idConseil);
+	}
+	
 	// Exemple delete à transformer
 //	@DeleteMapping(path = { "/{id}" })
 //	public Employee delete(@PathVariable("id") int id) {

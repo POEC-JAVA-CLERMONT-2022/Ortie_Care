@@ -18,6 +18,20 @@ public class ConseilDeCultureService {
 	@Autowired
 	private ConseilDeCultureRepository conseilRepo;
 	
+	// Methode de conversion DTO
+	public ConseilDeCultureDTO convertConseil(ConseilDeCulture conseil)
+	{
+		if(conseil != null)
+		{
+			return new ConseilDeCultureDTO(conseil.getTitre(), conseil.getDescription());
+		}
+		else
+		{
+			return new ConseilDeCultureDTO();
+		}
+	}
+	
+	// Récupération de l'ensembles des conseils de culture
 	public List<ConseilDeCultureDTO> findAll()
 	{
 		ArrayList<ConseilDeCultureDTO> conseilsDTO = new ArrayList<>();
@@ -28,6 +42,7 @@ public class ConseilDeCultureService {
 		return conseilsDTO;
 	}
 	
+	// Recuperation de conseil par ID
 	public ConseilDeCultureDTO findById(UUID id)
 	{
 		if(id != null && id.toString() != "")
@@ -42,6 +57,24 @@ public class ConseilDeCultureService {
 		}
 	}
 	
+	// Suppression de conseil par ID
+	public int deleteById(UUID id)
+	{
+		if(id != null && id.toString() != "")
+		{
+			logger.info("Début de suppression d'objet");
+			conseilRepo.deleteById(id);
+			return 1;
+		}
+		else
+		{
+			logger.warn("La suppression a échouée ; id null ou vide");
+			return 0;
+		}
+			
+	}
+	
+	// Recupération de conseil grâce a une partie de la description
 	public List<ConseilDeCultureDTO> findByDescriptionContaining(String boutDescription)
 	{
 		if(boutDescription != null && boutDescription != "")
@@ -61,6 +94,7 @@ public class ConseilDeCultureService {
 		}
 	}
 	
+	// Création de conseil de culture
 	public ConseilDeCulture create(String titre, String description)
 	{
 		if(titre != null && description != null && titre != "" && description != "")
@@ -97,16 +131,6 @@ public class ConseilDeCultureService {
 		
 	}
 	
-	public ConseilDeCultureDTO convertConseil(ConseilDeCulture conseil)
-	{
-		if(conseil != null)
-		{
-			return new ConseilDeCultureDTO(conseil.getTitre(), conseil.getDescription());
-		}
-		else
-		{
-			return new ConseilDeCultureDTO();
-		}
-	}
+	
 	
 }
