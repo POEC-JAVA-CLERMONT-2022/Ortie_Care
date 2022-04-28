@@ -166,7 +166,10 @@ public class LegumeService {
 			{
 				for (LegumesLegumesAssocies uneAssociation : legume.getLegumesAssocies())
 				{
-					legumesDTO.add(convertLegume(uneAssociation.getAssoLegumes().getLegume2(), false));
+					if(legume.getIdLegume() != uneAssociation.getAssoLegumes().getLegume2().getIdLegume())
+					{
+						legumesDTO.add(convertLegume(uneAssociation.getAssoLegumes().getLegume2(), false));
+					}
 				}
 				for (LegumesConseilsDeCulture unConseil : legume.getConseils())
 				{

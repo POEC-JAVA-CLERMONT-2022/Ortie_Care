@@ -7,6 +7,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
+import org.springframework.context.annotation.Lazy;
 
 import ch.qos.logback.classic.Logger;
 
@@ -41,7 +42,7 @@ public class Legume{
 	//@Fetch(FetchMode.JOIN)
 	private Set<LegumesConseilsDeCulture> conseilsDeCulture;
 	
-	@OneToMany(mappedBy="assoLegumes.legume2", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="assoLegumes.legume1", fetch = FetchType.LAZY)
 	//@Fetch(FetchMode.JOIN)
 	private Set<LegumesLegumesAssocies> legumesAssocies;
 	
