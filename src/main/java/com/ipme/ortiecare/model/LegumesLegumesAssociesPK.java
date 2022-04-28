@@ -6,6 +6,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import org.springframework.context.annotation.Lazy;
+
 @Embeddable
 public class LegumesLegumesAssociesPK implements Serializable {
 	
@@ -16,7 +18,7 @@ public class LegumesLegumesAssociesPK implements Serializable {
 	
 	// Constructeur par défaut necessaire pour hibernate
 	public LegumesLegumesAssociesPK(){	}
-	public LegumesLegumesAssociesPK(Legume legume1, Legume legume2)
+	public LegumesLegumesAssociesPK(@Lazy Legume legume1, @Lazy Legume legume2)
 	{
 		this.legume1 = legume1;
 		this.legume2 = legume2;

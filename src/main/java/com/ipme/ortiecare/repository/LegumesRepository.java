@@ -12,6 +12,13 @@ import com.ipme.ortiecare.model.ConseilDeCulture;
 @Repository
 public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
+	
+	
+	// Finalement pas utilisé mais intéressant à savoir (fonctionne comme un findAll)
+//	@EntityGraph(attributePaths= {"legumesAssocies", "legumesAssocies.assoLegumes.legume2"})
+//	@Query("FROM Legume")
+//	List<Legume> getAllLegume() ;
+
 	Legume getById(@Param("id")UUID id_legume);
 	
 	Legume findByNom (String nom);
@@ -23,12 +30,12 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	Integer addAssociationLegumeLegume(@Param("idLegume1") UUID id_legume1, @Param("idLegume2") UUID id_legume2);
 	
 	// A test (KO après test, on garde quand meme pour info)
-//	@Query("SELECT l1 from LegumesLegumesAssocies lla INNER JOIN lla.assoLegumes.legume1 l1 INNER JOIN lla.assoLegumes.legume2 l2 WHERE l2.idLegume = :id ")
-//	List<Legume> findLegumesAssocies(@Param("id") UUID idLegume);
+	@Query("SELECT l2 from LegumesLegumesAssocies lla INNER JOIN lla.assoLegumes.legume1 l1 INNER JOIN lla.assoLegumes.legume2 l2 WHERE l1.idLegume = :id ")
+	List<Legume> findLegumesAssocies(@Param("id") UUID idLegume);
 	
 	// KO mais je ne sais pas pourquoi si tu peux regarder 
-	@Query(value="SELECT * from legumes where id_legume = (SELECT legumes_associes_id_legume FROM legumes_legumes_associes WHERE legume_id_legume = :idLegume)", nativeQuery = true)
-	List<Legume> findLegumesAssocies(@Param("idLegume")UUID idLegume);
+//	@Query(value="SELECT * from legumes where id_legume = (SELECT legumes_associes_id_legume FROM legumes_legumes_associes WHERE legume_id_legume = :idLegume)", nativeQuery = true)
+//	List<Legume> findLegumesAssocies(@Param("idLegume")UUID idLegume);
 	
 	
 	
