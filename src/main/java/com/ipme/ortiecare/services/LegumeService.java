@@ -173,7 +173,7 @@ public class LegumeService {
 					conseilsDTO.add(convertConseil(unConseil.getConseilLegume().getConseil()));
 				}
 			}
-			return new LegumeDTO(legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), conseilsDTO, legumesDTO, legume.isAutoReseme(), legume.isGousse(), solDTO);
+			return new LegumeDTO(legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), conseilsDTO, legumesDTO, legume.isAutoReseme(), legume.isGousse(), solDTO, legume.getIdLegume());
 		}
 		else
 		{

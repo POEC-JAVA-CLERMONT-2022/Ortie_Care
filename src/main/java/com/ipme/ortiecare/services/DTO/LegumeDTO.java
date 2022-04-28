@@ -18,6 +18,7 @@ public class LegumeDTO {
 	private boolean autoReseme;
 	private boolean isGousse;
 	private SolDTO bestSol;
+	
 
 	public LegumeDTO() {}
 	public LegumeDTO(String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG,
@@ -31,6 +32,7 @@ public class LegumeDTO {
 		this.autoReseme = autoReseme;
 		this.isGousse = isGousse;
 		this.bestSol = bestSol;
+		
 
 	}
 
