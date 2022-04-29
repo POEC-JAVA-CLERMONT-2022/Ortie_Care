@@ -1,10 +1,8 @@
 package com.ipme.ortiecare.services;
 
-import java.lang.Iterable;
-import com.ipme.ortiecare.model.Sol;
+
 import com.ipme.ortiecare.model.User;
 import com.ipme.ortiecare.repository.UserRepository;
-import com.ipme.ortiecare.services.DTO.SolDTO;
 import com.ipme.ortiecare.services.DTO.UserDTO;
 
 import java.util.*;
@@ -109,6 +107,20 @@ public class UserService {
 			// pas sur de l'utilité du coup
 			this.userRepo.save(thisUser);
 		}
+	}
+
+	public int deleteById(UUID idUser) {
+		if(idUser != null && idUser.toString() != "")
+		{
+			logger.info("Début de suppression du user");
+			userRepo.deleteById(idUser);
+			return 1;
+		}
+		else
+		{
+			logger.warn("La suppression a échouée ; id null ou vide");
+		return 0;
+	}
 	}
 
 }

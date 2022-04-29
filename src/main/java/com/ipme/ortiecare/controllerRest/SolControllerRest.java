@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipme.ortiecare.model.Sol;
-import com.ipme.ortiecare.model.User;
+
 import com.ipme.ortiecare.services.SolService;
 import com.ipme.ortiecare.services.DTO.SolDTO;
-import com.ipme.ortiecare.services.DTO.UserDTO;
+
 
 @RestController
 @RequestMapping("/api/sols")
@@ -26,23 +26,50 @@ public class SolControllerRest {
 	private SolService solService;
 
 	public SolControllerRest(SolService solService) {
-		this.solService =solService;
+		this.solService = solService;
 	}
-	
+
 	@PostMapping("create")
 	@ResponseBody
 	public ResponseEntity<Sol> createSol(@RequestBody Sol sol) {
-		return new ResponseEntity<Sol>(solService.create(sol.getNomSol(), sol.getTextureSol(), sol.getStructureSol(), sol.getAvantageSol(), sol.getInconvenientSol()), HttpStatus.CREATED);
+		try {
+			return ResponseEntity.ok(solService.create(sol.getNomSol(), sol.getTextureSol(), sol.getStructureSol(),
+					sol.getAvantageSol(), sol.getInconvenientSol()));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
-	
+
 	@GetMapping("getAll")
-	public List<SolDTO> getAllSols(){
-		return solService.findAll();
+	@ResponseBody
+	public ResponseEntity<List<SolDTO>> getAllSols() {
+		try {
+			return ResponseEntity.ok(solService.findAll());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 
 	@GetMapping("{id}")
-	public SolDTO getByUUID(@PathVariable("id") UUID id) {
-		return solService.findById(id);
+	@ResponseBody
+	public ResponseEntity<SolDTO> getByUUID(@PathVariable("id") UUID id) {
+	try {
+		return ResponseEntity.ok(solService.findById(id));
+	} catch (Exception e) {
+		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+	}	
+	}
+
+	
+	@GetMapping("delete/{id}")
+	@ResponseBody
+	public ResponseEntity<Integer> deleteSol(@PathVariable("id") UUID idSol) {
+		try {
+			return ResponseEntity.ok(solService.deleteById(idSol));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
+		
 	}
 
 }

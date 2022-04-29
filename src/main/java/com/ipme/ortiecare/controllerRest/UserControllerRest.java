@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipme.ortiecare.model.User;
@@ -26,18 +27,70 @@ public UserControllerRest(UserService userService) {
 	this.userService = userService;
 }
 
+	
+
+//if(userName ==  ) {
+//	throw new UserAlreadyExistsException("L'utilisateur existe déjà.");
+//}
+//    else ; 
+//}
+
+
+
 @PostMapping("create")
+@ResponseBody
 public ResponseEntity<User> createUser(@RequestBody User user) {
-	return new ResponseEntity<User>(userService.create(user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail()), HttpStatus.CREATED);
+	try {
+		user.getNomComplet();
+		return new ResponseEntity<User>(
+				userService.create(user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail()),
+				HttpStatus.CREATED);
+	}
+
+	catch (Exception e) {
+		
+		System.out.println("L'utilisateur " + user.getNomComplet() + " existe déjà.");
+		
+		return  ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+	}
 }
 
 @GetMapping("getAll")
-public List<UserDTO> getAllUsers(){
-	return userService.findAll();
+@ResponseBody
+public ResponseEntity<List<UserDTO>> getAllUsers(){
+	try {
+		return ResponseEntity.ok(userService.findAll());
+	} catch (Exception e) {
+		 return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+	}
+	
 }
 
 @GetMapping("{id}")
-public UserDTO getByUUID(@PathVariable("id") UUID id) {
-	return userService.findById(id);
+public ResponseEntity<UserDTO> getByUUID(@PathVariable("id") UUID id) {
+	try {
+        if (id != null) {
+            return ResponseEntity.ok(userService.findById(id));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+    }
 }
+
+
+@GetMapping("delete/{id}")
+@ResponseBody
+public ResponseEntity<Integer> DeleteUser(@PathVariable("id") UUID idUser)
+{
+	try {
+          return ResponseEntity.ok(userService.deleteById(idUser));
+        }
+       
+    catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+    }
+	
+}
+
 }
