@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ipme.ortiecare.model.Sol;
-import com.ipme.ortiecare.model.User;
+
 import com.ipme.ortiecare.repository.SolRepository;
 import com.ipme.ortiecare.services.DTO.SolDTO;
-import com.ipme.ortiecare.services.DTO.UserDTO;
+
 
 @Service
 public class SolService {
@@ -44,7 +44,6 @@ public class SolService {
 		}
 		return solDTOList;
 	}
-
 
 	public SolDTO findById(UUID id) {
 		if (id != null && id.toString() != "") {
@@ -93,6 +92,17 @@ public class SolService {
 		} else {
 			logger.warn("Recherche de texture échouée : retour d'une liste vide");
 			return new ArrayList<SolDTO>();
+		}
+	}
+
+	public int deleteById(UUID idSol) {
+		if (idSol != null && idSol.toString() != "") {
+			logger.info("Début de suppression du sol");
+			solRepo.deleteById(idSol);
+			return 1;
+		} else {
+			logger.warn("La suppression a échouée ; id null ou vide");
+			return 0;
 		}
 
 	}
