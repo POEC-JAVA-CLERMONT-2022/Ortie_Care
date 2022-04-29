@@ -20,8 +20,4 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 	List<User> findByIsAdmin(int vraiOuFaux);
 	
 	User getByIsAdmin(int vraiOuFaux);
-	
-	
- //  User findByFirst_NameAndLast_Name(String firstName, String lastName);
- //  User findByFirst_NameAndLast_Name(String first_Name, String last_Name);
 }
