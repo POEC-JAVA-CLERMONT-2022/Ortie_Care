@@ -21,12 +21,4 @@ public interface ConseilDeCultureRepository extends JpaRepository<ConseilDeCultu
 	@Query(value="SELECT C.id_conseil, C.description, C.titre FROM conseils_de_culture C,legumes_conseils_de_culture LC where C.id_conseil=LC.conseils_de_culture_id_conseil AND LC.legume_id_legume = :id", nativeQuery=true)
 	List<ConseilDeCulture> findConseilsLegume(@Param("id") UUID idLegume);
 	
-	// Annotation Modifying kezako ?
-//	@Modifying
-//	@Query("delete from ConseilDeCulture c where c.idConseil=:id")
-//	void deleteConseil(@Param("id") UUID id);
-	
-	// A test quand le reste marchera : query generé pour recup les conseils d'un id legume
-//	@Query("SELECT c from LegumesConseilsDeCulture lcc INNER JOIN lcc.conseilLegume.legume l1 INNER JOIN lcc.conseilLegume.conseil c WHERE l1.idLegume = :id ")
-//	List<ConseilDeCulture> findConseilsLegume(@Param("id") UUID idLegume);	
 }
