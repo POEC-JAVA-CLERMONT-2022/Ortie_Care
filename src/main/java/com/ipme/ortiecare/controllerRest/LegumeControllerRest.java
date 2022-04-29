@@ -31,8 +31,13 @@ public class LegumeControllerRest {
 	private LegumeService legumeService;
 	
 	@GetMapping("getAll")
-	public List<LegumeDTO> getLegumes(HttpSession session) {
-		return legumeService.findAll();
+	@ResponseBody
+	public ResponseEntity<List<LegumeDTO>> getLegumes(HttpSession session) {
+		try {
+			return ResponseEntity.ok(legumeService.findAll());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 	
 	@PostMapping("create")
@@ -41,15 +46,36 @@ public class LegumeControllerRest {
 		return new ResponseEntity<Legume>(legumeService.create(legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), legume.getConseils(), legume.getLegumesAssocies(), legume.isAutoReseme(), legume.isGousse(), legume.getBestSol()),HttpStatus.CREATED);
 	}
 	
+	@GetMapping("delete/{id}")
+	@ResponseBody
+	public ResponseEntity<Integer> deleteLegume(@PathVariable("id") UUID id)
+	{
+		try {
+			return ResponseEntity.ok(legumeService.deleteById(id));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
+	}
+	
 	@GetMapping("{id}")
-	public LegumeDTO getLegumeById(@PathVariable("id")UUID idLegume, HttpSession session) {
-		return legumeService.findByUUID(idLegume);
+	@ResponseBody
+	public ResponseEntity<LegumeDTO> getLegumeById(@PathVariable("id")UUID idLegume, HttpSession session) {
+		try {
+			return ResponseEntity.ok(legumeService.findByUUID(idLegume));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 	
 	@GetMapping("getAssociations/{id}")
 	@ResponseBody
 	public ResponseEntity<List<LegumeDTO>> getAssociations(@PathVariable("id") UUID idLegume, HttpSession session) {
-		return new ResponseEntity<List<LegumeDTO>>(legumeService.findListeLegumesAssocies(idLegume),HttpStatus.FOUND);
+		try {
+			return ResponseEntity.ok(legumeService.findListeLegumesAssocies(idLegume));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
+//		return new ResponseEntity<List<LegumeDTO>>(legumeService.findListeLegumesAssocies(idLegume),HttpStatus.FOUND);
 	}
 	
 }

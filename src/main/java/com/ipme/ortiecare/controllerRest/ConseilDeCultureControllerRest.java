@@ -29,39 +29,45 @@ public class ConseilDeCultureControllerRest {
 	private ConseilDeCultureService conseilService;
 
 	@GetMapping("getAll")
-	public List<ConseilDeCultureDTO> getConseils(HttpSession session) {
-		return conseilService.findAll();
+	@ResponseBody
+	public ResponseEntity<List<ConseilDeCultureDTO>> getConseils(HttpSession session) {
+		try {
+			return ResponseEntity.ok(conseilService.findAll());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 
 	@PostMapping("create")
 	@ResponseBody
 	public ResponseEntity<ConseilDeCulture> createConseil(@RequestBody ConseilDeCulture conseil, HttpSession session) {
-		return new ResponseEntity<ConseilDeCulture>(conseilService.create(conseil.getTitre(), conseil.getDescription()),HttpStatus.CREATED);
+		try {
+			return new ResponseEntity<ConseilDeCulture>(conseilService.create(conseil.getTitre(), conseil.getDescription()),HttpStatus.CREATED);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 	
 	@GetMapping("{id}")
-	public ConseilDeCultureDTO getConseilById(@PathVariable("id")UUID idConseil, HttpSession session) {
-		return conseilService.findById(idConseil);
+	@ResponseBody
+	public ResponseEntity<ConseilDeCultureDTO> getConseilById(@PathVariable("id")UUID idConseil, HttpSession session) {
+		try {
+			return ResponseEntity.ok(conseilService.findById(idConseil));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 	
 	@GetMapping("delete/{id}")
-	public int deleteConseil(@PathVariable("id") UUID idConseil)
+	@ResponseBody
+	public ResponseEntity<Integer> deleteConseil(@PathVariable("id") UUID idConseil)
 	{
-		return conseilService.deleteById(idConseil);
+		try {
+			return ResponseEntity.ok(conseilService.deleteById(idConseil));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
+		
 	}
-	
-	// Exemple delete à transformer
-//	@DeleteMapping(path = { "/{id}" })
-//	public Employee delete(@PathVariable("id") int id) {
-//		Employee deletedEmp = null;
-//		for (Employee emp : employees) {
-//			if (emp.getEmpId().equals(id)) {
-//				employees.remove(emp);
-//				deletedEmp = emp;
-//				break;
-//			}
-//		}
-//		return deletedEmp;
-//	}
 
 }

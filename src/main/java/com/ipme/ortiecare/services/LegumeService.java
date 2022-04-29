@@ -28,6 +28,7 @@ public class LegumeService {
 		this.legumesRepo = legumesRepo;
 	}
 	
+	// Création de legume et sauvegarde en base avec methode de base .save du repo
 	public Legume create(String nom,int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG, Set<LegumesConseilsDeCulture> conseilsDeCulture, Set<LegumesLegumesAssocies> legumesAssocies, boolean autoReseme, boolean isGousse, Sol bestSol)
 	{
 		if(nom != null && nom != "" && tempsAvantRecolteEnMois != 0 && poidsMoyenFruitEnG != 0 && conseilsDeCulture != null && legumesAssocies != null && bestSol != null)
@@ -46,6 +47,24 @@ public class LegumeService {
 		
 	}
 	
+	// Suppression de legume par ID
+		public int deleteById(UUID id)
+		{
+			if(id != null && id.toString() != "")
+			{
+				logger.info("Début de suppression d'objet legume");
+				legumesRepo.deleteById(id);
+				return 1;
+			}
+			else
+			{
+				logger.warn("La suppression a échouée ; id null ou vide");
+				return 0;
+			}
+				
+		}
+		
+	// Récupération de la liste de tout les légumes et leurs légumes associés, et conversion en DTO
 	public List<LegumeDTO> findAll()
 	{
 		ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
@@ -56,6 +75,7 @@ public class LegumeService {
 		return legumesDTO;
 	}
 	
+	// Récupération d'un legume par son id et conversion en DTO
 	public LegumeDTO findByUUID(UUID id)
 	{
 		if(id != null && id.toString() != "")
@@ -90,6 +110,7 @@ public class LegumeService {
 		}
 	}
 	
+	// Récupération d'un légume par son nom et conversion en DTO
 	public LegumeDTO findByNom(String nom)
 	{
 		if(nom != null && nom != "")
@@ -104,6 +125,7 @@ public class LegumeService {
 		}
 	}
 	
+	// Récupération d'un légume avec le début de son nom et conversion en DTO
 	public List<LegumeDTO> findByNomStartingWith(String nom)
 	{
 		if(nom != null && nom != "")
@@ -123,7 +145,9 @@ public class LegumeService {
 		}
 	}
 	
-	public void addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
+	// Ajout d'une association legume legume
+	// TODO : test et fin
+	public int addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
 	{
 		boolean check = true;
 		for (LegumesLegumesAssocies unLegume : premierLegume.getLegumesAssocies())
@@ -146,14 +170,15 @@ public class LegumeService {
 		{
 			this.legumesRepo.addAssociationLegumeLegume(premierLegume.getIdLegume(), deuxiemeLegume.getIdLegume());
 			logger.info("Association entre " + premierLegume.getNom() + " et " + deuxiemeLegume.getNom() + " ajout�e en base !");
+			return 1;
 		}
 		else
 		{
 			logger.warn("L'ajout de l'association a échoué ; l'association existe déjà.");
+			return 0;
 		}
 	}
-	// TODO : A vérifier et tester, boolean doContinue pour empecher de boucler sur l'appel à lui même
-	// Fonctionne 
+	// Methode de conversion d'un légume en légume DTO. Boolean doContinue pour empecher la boucle infini sur la récupération des légumes associés
 	public LegumeDTO convertLegume(Legume legume, boolean doContinue)
 	{
 		if(legume != null)
@@ -183,6 +208,7 @@ public class LegumeService {
 			return new LegumeDTO();
 		}
 	}
+	// Duplication conversion conseilDeCulture en DTO nécessaire pour l'objet legume
 	public ConseilDeCultureDTO convertConseil(ConseilDeCulture conseil)
 	{
 		if(conseil != null)
@@ -195,6 +221,7 @@ public class LegumeService {
 		}
 	}
 	
+	// Duplication conversion Sol en DTO nécessaire pour l'objet legume
 	public SolDTO convertSol(Sol unSol) {
 		if (unSol != null) {
 			return new SolDTO(unSol.getNomSol(), unSol.getTextureSol(), unSol.getStructureSol(), unSol.getAvantageSol(),

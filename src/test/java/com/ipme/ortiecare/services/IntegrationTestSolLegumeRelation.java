@@ -21,7 +21,7 @@ public class IntegrationTestSolLegumeRelation {
 
 	@Test
 	public void integrationTestFindLegumeAssocie() {
-
+		
 		Legume legume1 = legumeService.create("testLegume1", 0, 0, null, null, false, false, null);
 		Legume legume2 = legumeService.create("testLegume2", 0, 0, null, null, false, false, null);
 		legumeService.addAssociationLegumeLegume(legume1, legume2);
