@@ -24,6 +24,8 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
 	// Récupération des legumes associes pour un id Legume
 	@Query("SELECT l2 from LegumesLegumesAssocies lla INNER JOIN lla.assoLegumes.legume1 l1 INNER JOIN lla.assoLegumes.legume2 l2 WHERE l1.idLegume = :id ")
-	List<Legume> findLegumesAssocies(@Param("id") UUID idLegume);
+	List<Legume> findConseilsLegume(@Param("id") UUID idLegume);
+	
+	
 		
 }
