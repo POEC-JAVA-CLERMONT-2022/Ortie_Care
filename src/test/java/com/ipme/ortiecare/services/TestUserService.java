@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.util.UUID;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,18 +22,21 @@ import com.ipme.ortiecare.services.UserService;
 @SpringBootTest
 public class TestUserService {
 	
+	@Mock
+	private UserRepository mockedUserRepo;
+	// Injection du mock pour l'instanciation du service (permet d'appeller le service mocké et ainsi utiliser des objets mockés
 	@InjectMocks
 	UserService userService;
 	
-	@Mock
-	private UserRepository mockedUserRepo;
-
+	// Test création User, vérification des données retournés lors de l'appel de la méthode getNomComplet
 	@Test
-	public void testUser() 
+	public void testCreateUser()
 	{
 		User unUser = this.userService.create("sss", "ddd", "ddd", "fggg");
 		assertNotNull(unUser);
+		Assertions.assertEquals(unUser.getNomComplet(), new User(UUID.randomUUID(),"sss", "ddd", "ddd", "fggg").getNomComplet());
 	}
+	
 	@Test
     public void testAdmin() 
 	{
