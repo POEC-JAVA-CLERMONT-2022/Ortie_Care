@@ -70,12 +70,14 @@ public class TestLegumeService {
 	// Test utilisation Mock
 	@Test
 	public void testCreationLegume() {
+		// Quand la méthode save du repo qui est mocké est invoqué sur la classe Legume, alors faire un retour d'un nouveau legume 
 		when(mockedLegumeRepo.save(Mockito.any(Legume.class)))
 				.thenReturn(new Legume(null, null, 0, 0, null, null, false, false, null));
+		// Test de création d'un légume avec la méthode create, qui appelle la methode save
 		Legume testLegume = legumeService.create(null, 0, 0, null, null, false, false, null);
-		// test null
+		// test si testLegume est null
 		assertNotNull(testLegume);
-		// test id null comme dans le test
+		// test si l'id de testLegume est null 	
 		Assertions.assertEquals(testLegume.getIdLegume(), null);
 		// test objet non null
 		assertThat(testLegume).isNotNull();
