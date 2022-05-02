@@ -131,6 +131,7 @@ background-size: cover;
 .asset {
 	width: 130px;
 	float: right;
+	margin-right : 20px;
 }
 
 /*                                                FIN  ICONE                          */

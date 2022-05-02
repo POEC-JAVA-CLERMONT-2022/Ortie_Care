@@ -90,25 +90,7 @@ public class LegumeService {
 		}
 	}
 	
-	// Recup la liste des legumes associes pour un legume
-	public List<LegumeDTO> findListeLegumesAssocies(UUID idLegume)
-	{
-		if(idLegume != null && idLegume.toString() != "")
-		{
-			logger.info("Liste de legumes associes trouvée ");
-			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
-			for (Legume unLegume : legumesRepo.findLegumesAssocies(idLegume))
-			{
-				legumesDTO.add(convertLegume(unLegume, true));
-			}
-			return legumesDTO;
-		}
-		else
-		{
-			logger.warn("Aucun legume associés trouvés avec cet id(" + idLegume + ") : retour d'une liste vide");
-			return new ArrayList<LegumeDTO>();
-		}
-	}
+	
 	
 	// Récupération d'un légume par son nom et conversion en DTO
 	public LegumeDTO findByNom(String nom)
@@ -228,6 +210,21 @@ public class LegumeService {
 					unSol.getInconvenientSol());
 		} else {
 			return new SolDTO();
+		}
+	}
+	// Recup la liste des legumes associes pour un legume
+	public List<LegumeDTO> findListeLegumesAssocies(UUID idLegume) {
+		if (idLegume != null && idLegume.toString() != "") {
+			logger.info("Liste de legumes associes trouvée ");
+			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
+			
+			for (Legume unLegume : legumesRepo.findConseilsLegume(idLegume)) {
+				legumesDTO.add(convertLegume(unLegume, true));
+			}
+			return legumesDTO;
+		} else {
+			logger.warn("Aucun legume associés trouvés avec cet id(" + idLegume + ") : retour d'une liste vide");
+			return new ArrayList<LegumeDTO>();
 		}
 	}
 }

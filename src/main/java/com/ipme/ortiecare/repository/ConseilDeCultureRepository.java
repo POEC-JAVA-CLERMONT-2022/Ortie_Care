@@ -17,8 +17,11 @@ public interface ConseilDeCultureRepository extends JpaRepository<ConseilDeCultu
 	
 	public List<ConseilDeCulture> findByDescriptionContaining(String boutDescription);
 	
-	// nativeQuery pour récup les conseils pour un ID legume
-	@Query(value="SELECT C.id_conseil, C.description, C.titre FROM conseils_de_culture C,legumes_conseils_de_culture LC where C.id_conseil=LC.conseils_de_culture_id_conseil AND LC.legume_id_legume = :id", nativeQuery=true)
-	List<ConseilDeCulture> findConseilsLegume(@Param("id") UUID idLegume);
+//	// nativeQuery pour récup les conseils pour un ID legume
+//	@Query(value="SELECT C.id_conseil, C.description, C.titre FROM conseils_de_culture C,legumes_conseils_de_culture LC where C.id_conseil=LC.conseils_de_culture_id_conseil AND LC.legume_id_legume = :id", nativeQuery=true)
+//	List<ConseilDeCulture> findConseilsLegume(@Param("id") UUID idLegume);
 	
+	// Récupération des conseils associes
+	@Query(value = "SELECT c1 FROM LegumesConseilsDeCulture lcc INNER JOIN lcc.conseilLegume.conseil c1 INNER JOIN lcc.conseilLegume.legume l1  WHERE l1.idLegume = :id")
+	List<ConseilDeCulture> findConseilsLegume(@Param("id") UUID idLegume);
 }

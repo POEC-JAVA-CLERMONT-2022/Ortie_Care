@@ -20,11 +20,6 @@ public class LegumesLegumesAssocies {
 	@EmbeddedId
 	private LegumesLegumesAssociesPK assoLegumes;
 	
-	//	@Column(name = "legume_id_legume")
-//	private UUID idLegume1;
-//
-//	@Column(name = "legumes_associes_id_legume")
-//	private UUID idLegume2;
 
 	// Constructeur par défaut necessaire pour hibernate
 	public LegumesLegumesAssocies(){	}

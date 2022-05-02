@@ -29,7 +29,6 @@ public class ConseilDeCultureControllerRest {
 	private ConseilDeCultureService conseilService;
 
 	@GetMapping("getAll")
-	@ResponseBody
 	public ResponseEntity<List<ConseilDeCultureDTO>> getConseils(HttpSession session) {
 		try {
 			return ResponseEntity.ok(conseilService.findAll());
@@ -39,7 +38,6 @@ public class ConseilDeCultureControllerRest {
 	}
 
 	@PostMapping("create")
-	@ResponseBody
 	public ResponseEntity<ConseilDeCulture> createConseil(@RequestBody ConseilDeCulture conseil, HttpSession session) {
 		try {
 			return new ResponseEntity<ConseilDeCulture>(conseilService.create(conseil.getTitre(), conseil.getDescription()),HttpStatus.CREATED);
@@ -49,7 +47,6 @@ public class ConseilDeCultureControllerRest {
 	}
 	
 	@GetMapping("{id}")
-	@ResponseBody
 	public ResponseEntity<ConseilDeCultureDTO> getConseilById(@PathVariable("id")UUID idConseil, HttpSession session) {
 		try {
 			return ResponseEntity.ok(conseilService.findById(idConseil));
@@ -59,7 +56,6 @@ public class ConseilDeCultureControllerRest {
 	}
 	
 	@GetMapping("delete/{id}")
-	@ResponseBody
 	public ResponseEntity<Integer> deleteConseil(@PathVariable("id") UUID idConseil)
 	{
 		try {
@@ -68,6 +64,15 @@ public class ConseilDeCultureControllerRest {
 			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
 		}
 		
+	}
+	
+	@GetMapping("findList/{id}")
+	public ResponseEntity<List<ConseilDeCultureDTO>> findConseilsLegume(@PathVariable("id") UUID idConseil) {
+		try {
+			return ResponseEntity.ok(conseilService.findListeConseilPourLegume(idConseil));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+		}
 	}
 
 }

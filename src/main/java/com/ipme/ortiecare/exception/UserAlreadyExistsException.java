@@ -6,13 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Component
-@ResponseStatus(HttpStatus.CONFLICT)
-public class UserAlreadyExistsException extends Exception {
-	
-	 public  UserAlreadyExistsException(String userName){
-	        super(userName);
-	    }
+//@Component
+//@ResponseStatus(HttpStatus.CONFLICT)
+//public class UserAlreadyExistsException extends Exception {
+//	
+//	 public  UserAlreadyExistsException(String userName){
+//	        super(userName);
+//	    }
 	 
 	// TODO : si on a le temps
 //	private
@@ -41,5 +41,5 @@ public class UserAlreadyExistsException extends Exception {
 //			throws IOException {
 //	
 //	}
-}
+//}
 
