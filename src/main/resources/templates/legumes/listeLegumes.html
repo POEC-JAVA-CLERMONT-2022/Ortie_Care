@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Liste des legumes</title>
+</head>
+<body>
+
+	<div th:each="legume : ${legumes}">
+		<div th:text="${legume.nom}">
+		</div>
+		<div th:text="${legume.autoReseme}">
+		</div>
+		<div th:text="${legume.isGousse}">
+		</div>
+		<div th:text="${legume.poidsMoyenFruitEnG}">
+		</div>
+		<div th:text="${legume.tempsAvantRecolteEnMois}">
+		</div>
+		<div th:text="${legume.bestSol.nomSol}">
+		</div>
+		</br>
+	</div>
+	
+</body>
+</html>

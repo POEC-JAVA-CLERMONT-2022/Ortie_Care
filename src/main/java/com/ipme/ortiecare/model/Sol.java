@@ -43,10 +43,8 @@ public class Sol {
         this.inconvenientSol= inconvenientSol;
 	}
 	
-	public String getNomSol() {
-		return nomSol;
-	}
-	//get set
+	public String getNomSol() {return nomSol;}
+
 	public UUID getId() {return this.idSol;}
 
 	public String getDescription() {return nomSol;}

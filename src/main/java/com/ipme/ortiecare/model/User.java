@@ -1,6 +1,9 @@
 package com.ipme.ortiecare.model;
 import java.util.UUID;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Type;
 
 // annotations pour bdd -- Spring
@@ -18,9 +21,13 @@ public class User {
 	@Column(name ="password", length=50)
 	private String password;
 	
+	@NotEmpty
+	@Size(min=2, message="FirstName must have at least 2 characters")
 	@Column(name ="firstName", length=100)
 	private String firstName;
 	
+	@NotEmpty
+	@Size(min=2, message="LastName must have at least 2 characters")
 	@Column(name ="lastName", length=100)
 	private String lastName;
 	

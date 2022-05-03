@@ -38,9 +38,10 @@ public class SolService {
 	public ArrayList<SolDTO> findAll() {
 		ArrayList<SolDTO> solDTOList = new ArrayList<>();
 		for (Sol sol : solRepo.findAll()) {
-			SolDTO solDTO = new SolDTO();
-			BeanUtils.copyProperties(sol, solDTO);
-			solDTOList.add(solDTO);
+			// Exemple d'utilisation de copyProperties
+//			SolDTO solDTO = new SolDTO();
+//			BeanUtils.copyProperties(sol, solDTO);
+			solDTOList.add(convertSol(sol));
 		}
 		return solDTOList;
 	}
