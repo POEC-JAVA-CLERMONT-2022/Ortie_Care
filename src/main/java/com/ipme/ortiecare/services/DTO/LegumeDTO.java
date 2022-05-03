@@ -1,12 +1,6 @@
 package com.ipme.ortiecare.services.DTO;
 
 import java.util.List;
-import java.util.List;
-import java.util.UUID;
-
-import com.ipme.ortiecare.model.LegumesConseilsDeCulture;
-import com.ipme.ortiecare.model.LegumesLegumesAssocies;
-import com.ipme.ortiecare.model.Sol;
 
 public class LegumeDTO {
 

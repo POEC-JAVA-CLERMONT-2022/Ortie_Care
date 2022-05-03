@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ipme.ortiecare.model.Legume;
-import com.ipme.ortiecare.model.ConseilDeCulture;
 
 @Repository
 public interface LegumesRepository extends JpaRepository<Legume,UUID>{

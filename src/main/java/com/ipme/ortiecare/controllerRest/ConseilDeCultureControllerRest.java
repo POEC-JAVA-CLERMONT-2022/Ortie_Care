@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipme.ortiecare.model.ConseilDeCulture;
@@ -33,45 +32,60 @@ public class ConseilDeCultureControllerRest {
 		try {
 			return ResponseEntity.ok(conseilService.findAll());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
 
 	@PostMapping("create")
 	public ResponseEntity<ConseilDeCulture> createConseil(@RequestBody ConseilDeCulture conseil, HttpSession session) {
 		try {
-			return new ResponseEntity<ConseilDeCulture>(conseilService.create(conseil.getTitre(), conseil.getDescription()),HttpStatus.CREATED);
+			return new ResponseEntity<ConseilDeCulture>(
+					conseilService.create(conseil.getTitre(), conseil.getDescription()), HttpStatus.CREATED);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
+
 	@GetMapping("{id}")
-	public ResponseEntity<ConseilDeCultureDTO> getConseilById(@PathVariable("id")UUID idConseil, HttpSession session) {
+	public ResponseEntity<ConseilDeCultureDTO> getConseilById(@PathVariable("id") UUID idConseil, HttpSession session) {
 		try {
 			return ResponseEntity.ok(conseilService.findById(idConseil));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
-	@GetMapping("delete/{id}")
-	public ResponseEntity<Integer> deleteConseil(@PathVariable("id") UUID idConseil)
-	{
+
+	@DeleteMapping("delete/{id}")
+	public ResponseEntity<Integer> deleteConseil(@PathVariable("id") UUID idConseil) {
 		try {
 			return ResponseEntity.ok(conseilService.deleteById(idConseil));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-		
+
 	}
 	
+//	@PutMapping("{id}")
+//	public ResponseEntity<ConseilDeCultureDTO> updateConseil(UUID id, @RequestBody conseilDeCulture conseil){
+//		// TODO 
+//	if(id != conseil.getId())
+//	{
+//		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//	}
+//		try {
+//			return new ResponseEntity<ConseilDeCulture>(
+//					conseilService.create(conseil.getTitre(), conseil.getDescription()), HttpStatus.CREATED);
+//		} catch (Exception e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//		}
+//	}
+
 	@GetMapping("findList/{id}")
 	public ResponseEntity<List<ConseilDeCultureDTO>> findConseilsLegume(@PathVariable("id") UUID idConseil) {
 		try {
 			return ResponseEntity.ok(conseilService.findListeConseilPourLegume(idConseil));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
 
