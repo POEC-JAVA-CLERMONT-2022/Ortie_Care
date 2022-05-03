@@ -62,7 +62,6 @@ public class ConseilDeCultureControllerRest {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-
 	}
 	
 //	@PutMapping("{id}")

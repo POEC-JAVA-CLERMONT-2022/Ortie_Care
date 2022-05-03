@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajouter un légume</title>
+</head>
+<body>
+
+	<form method="POST">
+		<label>Nom du Legume :</label>
+		<input type="text" name="nom">
+			</br>
+		
+		<label>Se resseme tout seul d'une année à l'autre :</label>
+		<input type="number" min="0" max="1" name="autoReseme"> </input>
+			</br>
+		
+		<label>Est une gousse :</label>
+		<input type="number" min="0" max="1" name="isGousse"> </input>
+			</br>
+		
+		<label>Temps avant première récolte en mois :</label>
+		<input type="number" min="0" name="tempsAvantRecolteEnMois">
+			</br>
+			
+		<label>Poids moyen fruit en gramme :</label>
+		<input type="number" min="0" name="poidsMoyenFruitEnG">
+			</br>
+		
+		<label>Conseil associé :</label>
+		<select >
+			<div th:each="conseil : ${listeConseils}">
+		    <option name="conseilsDeCulture" th:text="${conseil.titre}">--Please choose an option--</option>
+			</div>
+		</select>
+			</br>
+		
+		<label>Legumes associé :</label>
+		<select >
+			<div th:each="legume : ${listeLegumes}">
+		    <option name="legumesAssocies" th:text="${legume.nom}">--Please choose an option--</option>
+			</div>
+		</select>
+			</br>
+			
+		<label>Sol plébiscité :</label>
+		<select >
+			<div th:each="sol : ${listeSols}">
+		    <option name="bestSol" th:text="${sol.nomSol}">--Please choose an option--</option>
+			</div>
+		</select>
+			</br>
+		
+		
+		<button type="submit">Envoyer le nouveau légume</button>
+	</form>
+	
+</body>
+</html>
