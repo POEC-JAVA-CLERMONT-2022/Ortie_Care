@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.ipme.ortiecare.repository.ConseilDeCultureRepository;
 import com.ipme.ortiecare.services.DTO.ConseilDeCultureDTO;
-import com.ipme.ortiecare.services.DTO.LegumeDTO;
 
 @Service
 public class ConseilDeCultureService {

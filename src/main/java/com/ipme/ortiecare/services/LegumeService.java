@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.ipme.ortiecare.repository.ConseilDeCultureRepository;
 import com.ipme.ortiecare.repository.LegumesRepository;
 import com.ipme.ortiecare.services.DTO.ConseilDeCultureDTO;
 import com.ipme.ortiecare.services.DTO.LegumeDTO;

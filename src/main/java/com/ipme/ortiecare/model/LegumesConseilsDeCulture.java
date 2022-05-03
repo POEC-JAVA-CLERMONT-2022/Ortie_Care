@@ -1,10 +1,6 @@
 package com.ipme.ortiecare.model;
 
-import java.util.UUID;
-
 import javax.persistence.*;
-//@AssociationOverride(name = "legumes.idLegume", joinColumns = @JoinColumn(name = "legume_id_legume")),
-//@AssociationOverride(name = "legumes.conseilsDeCulture", joinColumns = @JoinColumn(name = "conseils_de_culture_id_conseil")), })
 
 @Entity
 @Table(name = "legumes_conseils_de_culture")

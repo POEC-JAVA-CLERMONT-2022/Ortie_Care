@@ -1,15 +1,8 @@
 package com.ipme.ortiecare.model;
 
 import java.util.*;
-
 import javax.persistence.*;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
-import org.springframework.context.annotation.Lazy;
-
-import ch.qos.logback.classic.Logger;
 
 // Annotations pour bdd -- Spring
 @Entity

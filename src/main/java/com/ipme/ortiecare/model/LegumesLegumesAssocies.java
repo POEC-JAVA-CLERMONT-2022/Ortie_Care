@@ -1,10 +1,7 @@
 package com.ipme.ortiecare.model;
 
-import java.util.UUID;
-
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

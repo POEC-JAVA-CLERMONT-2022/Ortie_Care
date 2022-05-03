@@ -1,11 +1,7 @@
 package com.ipme.ortiecare.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-
 import javax.persistence.*;
-
 import org.hibernate.annotations.Type;
 
 //annotations pour bdd -- Spring
