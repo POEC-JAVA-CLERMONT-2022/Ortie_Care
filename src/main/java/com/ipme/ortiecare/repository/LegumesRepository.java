@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ipme.ortiecare.model.Legume;
+import com.ipme.ortiecare.model.Sol;
 
 @Repository
 public interface LegumesRepository extends JpaRepository<Legume,UUID>{
@@ -15,7 +16,10 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
 	Legume findByNom (String nom);
 	
-	List<Legume> findByNomStartingWith(String nom);
+	List<Legume> findByBestSol (Sol idSol);
+	
+	// Inutilisé
+	List<Legume>findByNomStartingWith(String nom);
 	
 	// Ajout d'association legume => legume
 	@Query(value="INSERT INTO legumes_legumes_associes VALUES (:idLegume1 , :idLegume2)", nativeQuery=true)

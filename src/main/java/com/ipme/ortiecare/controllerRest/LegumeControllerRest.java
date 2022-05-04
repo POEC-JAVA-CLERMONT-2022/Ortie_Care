@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipme.ortiecare.model.Legume;
+import com.ipme.ortiecare.model.Sol;
 import com.ipme.ortiecare.services.LegumeService;
 import com.ipme.ortiecare.services.DTO.LegumeDTO;
 
@@ -35,7 +36,7 @@ public class LegumeControllerRest {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-
+	
 	@PostMapping("create")
 	public ResponseEntity<Legume> createLegume(@RequestBody Legume legume, HttpSession session) {
 		return new ResponseEntity<Legume>(legumeService.create(legume.getNom(), legume.getTempsAvantRecolteEnMois(),
@@ -56,6 +57,14 @@ public class LegumeControllerRest {
 	public ResponseEntity<LegumeDTO> getLegumeById(@PathVariable("id") UUID idLegume, HttpSession session) {
 		try {
 			return ResponseEntity.ok(legumeService.findByUUID(idLegume));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
+	@GetMapping("sol/{id}")
+	public ResponseEntity<List<LegumeDTO>> getLegumes(@PathVariable("id") Sol idSol, HttpSession session) {
+		try {
+			return ResponseEntity.ok(legumeService.findBySol(idSol));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
