@@ -125,6 +125,22 @@ public class LegumeService {
 		}
 	}
 	
+	public List<LegumeDTO> findBySol(Sol idSol)
+	{
+		if(idSol != null && idSol.toString() != "")
+		{
+			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
+			for (Legume unLegume : legumesRepo.findByBestSol(idSol))
+			{
+				legumesDTO.add(convertLegume(unLegume, true));
+			}
+			return legumesDTO;
+		}
+		else
+		{
+			return new ArrayList<LegumeDTO>();
+		}
+	}
 	// Ajout d'une association legume legume
 	// TODO : test et fin
 	public int addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
@@ -158,6 +174,22 @@ public class LegumeService {
 			return 0;
 		}
 	}
+	// Recup la liste des legumes associes pour un legume
+		public List<LegumeDTO> findListeLegumesAssocies(UUID idLegume) {
+			if (idLegume != null && idLegume.toString() != "") {
+				logger.info("Liste de legumes associes trouvée ");
+				ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
+				
+				for (Legume unLegume : legumesRepo.findConseilsLegume(idLegume)) {
+					legumesDTO.add(convertLegume(unLegume, true));
+				}
+				return legumesDTO;
+			} else {
+				logger.warn("Aucun legume associés trouvés avec cet id(" + idLegume + ") : retour d'une liste vide");
+				return new ArrayList<LegumeDTO>();
+			}
+		}
+	
 	// Methode de conversion d'un légume en légume DTO. Boolean doContinue pour empecher la boucle infini sur la récupération des légumes associés
 	public LegumeDTO convertLegume(Legume legume, boolean doContinue)
 	{
@@ -210,19 +242,5 @@ public class LegumeService {
 			return new SolDTO();
 		}
 	}
-	// Recup la liste des legumes associes pour un legume
-	public List<LegumeDTO> findListeLegumesAssocies(UUID idLegume) {
-		if (idLegume != null && idLegume.toString() != "") {
-			logger.info("Liste de legumes associes trouvée ");
-			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
-			
-			for (Legume unLegume : legumesRepo.findConseilsLegume(idLegume)) {
-				legumesDTO.add(convertLegume(unLegume, true));
-			}
-			return legumesDTO;
-		} else {
-			logger.warn("Aucun legume associés trouvés avec cet id(" + idLegume + ") : retour d'une liste vide");
-			return new ArrayList<LegumeDTO>();
-		}
-	}
+	
 }
