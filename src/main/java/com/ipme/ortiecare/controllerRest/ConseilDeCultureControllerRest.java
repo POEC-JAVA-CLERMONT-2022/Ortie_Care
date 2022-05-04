@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,21 +64,15 @@ public class ConseilDeCultureControllerRest {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
-//	@PutMapping("{id}")
-//	public ResponseEntity<ConseilDeCultureDTO> updateConseil(UUID id, @RequestBody conseilDeCulture conseil){
-//		// TODO 
-//	if(id != conseil.getId())
-//	{
-//		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//	}
-//		try {
-//			return new ResponseEntity<ConseilDeCulture>(
-//					conseilService.create(conseil.getTitre(), conseil.getDescription()), HttpStatus.CREATED);
-//		} catch (Exception e) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//		}
-//	}
+
+	@PutMapping("update/{id}")
+	public ResponseEntity<ConseilDeCulture> updateConseil(UUID id, @RequestBody ConseilDeCulture conseil) {
+		try {
+			return ResponseEntity.ok(conseilService.modifById(id, conseil.getTitre(), conseil.getDescription()));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 
 	@GetMapping("findList/{id}")
 	public ResponseEntity<List<ConseilDeCultureDTO>> findConseilsLegume(@PathVariable("id") UUID idConseil) {

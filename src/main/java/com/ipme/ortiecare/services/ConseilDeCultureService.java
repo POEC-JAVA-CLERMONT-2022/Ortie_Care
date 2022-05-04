@@ -3,6 +3,8 @@ package com.ipme.ortiecare.services;
 import com.ipme.ortiecare.model.*;
 import java.util.*;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,7 +109,23 @@ public class ConseilDeCultureService {
 		}
 
 	}
-
 	
+	
+	// Modification de conseil de culture
+	@Transactional
+	public ConseilDeCulture modifById(UUID idConseil, String titre, String description) {
+		logger.info("Récupération de la modification du conseil " + idConseil);
+		if (idConseil != null && idConseil.toString() != "" && titre != "" && description != "") {
+			ConseilDeCulture conseilDeCulture = this.conseilRepo.getById(idConseil);
+			conseilDeCulture.setTitre(titre);
+			conseilDeCulture.setDescription(description);
+			this.conseilRepo.save(conseilDeCulture);
+			return conseilDeCulture;
+		} else {
+			logger.error(
+					"Erreur de modification du conseil : Renvoi d'un conseil vide");
+			return new ConseilDeCulture();
+		}
+	}
 
 }
