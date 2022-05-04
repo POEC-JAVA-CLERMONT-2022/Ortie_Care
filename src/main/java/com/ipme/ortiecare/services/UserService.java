@@ -1,11 +1,14 @@
 package com.ipme.ortiecare.services;
 
 
+import com.ipme.ortiecare.model.ConseilDeCulture;
 import com.ipme.ortiecare.model.User;
 import com.ipme.ortiecare.repository.UserRepository;
 import com.ipme.ortiecare.services.DTO.UserDTO;
 
 import java.util.*;
+
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,5 +125,29 @@ public class UserService {
 		return 0;
 	}
 	}
+	
+	// Modification du user
+		@Transactional
+		public User modifById(UUID idUser, String firstName, String lastName, String email) {
+			logger.info("Récupération de la modification du user " + idUser);
+			if (idUser != null && idUser.toString() != "") {
+				User user = this.userRepo.getById(idUser);
+				if(firstName != "") {
+					user.setFirstName(firstName);
+				}
+				if(lastName != "") {
+					user.setLastName(lastName);
+				}
+				if(email != "") {
+					user.setEmail(email);
+				}
+				this.userRepo.save(user);
+				return user;
+			} else {
+				logger.error(
+						"Erreur de modification du user : Renvoi d'un utilisateur vide");
+				return new User();
+			}
+		}
 
 }
