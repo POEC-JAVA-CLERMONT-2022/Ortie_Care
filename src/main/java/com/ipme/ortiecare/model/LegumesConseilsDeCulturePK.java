@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class LegumesConseilsDeCulturePK implements Serializable {
 	

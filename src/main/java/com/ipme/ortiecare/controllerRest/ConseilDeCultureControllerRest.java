@@ -66,7 +66,7 @@ public class ConseilDeCultureControllerRest {
 	}
 
 	@PutMapping("update/{id}")
-	public ResponseEntity<ConseilDeCulture> updateConseil(UUID id, @RequestBody ConseilDeCulture conseil) {
+	public ResponseEntity<ConseilDeCulture> updateConseil(@PathVariable("id") UUID id, @RequestBody ConseilDeCulture conseil) {
 		try {
 			return ResponseEntity.ok(conseilService.modifById(id, conseil.getTitre(), conseil.getDescription()));
 		} catch (Exception e) {

@@ -18,7 +18,7 @@ public class IntegrationTestSolLegumeRelation {
 	@Autowired
 	LegumeService legumeService;
 
-
+	// OK
 	@Test
 	public void integrationTestFindLegumeAssocie() {
 		
