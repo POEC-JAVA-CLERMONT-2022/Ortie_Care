@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.ipme.ortiecare.model.ConseilDeCulture;
 import com.ipme.ortiecare.model.User;
 import com.ipme.ortiecare.services.UserService;
 import com.ipme.ortiecare.services.DTO.UserDTO;
@@ -73,15 +71,13 @@ public class UserControllerRest {
 		try {
 			return ResponseEntity.ok(userService.deleteById(idUser));
 		}
-
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-
 	}
 	
 	@PutMapping("update/{id}")
-	public ResponseEntity<User> updateUser(UUID id, @RequestBody User user) {
+	public ResponseEntity<User> updateUser(@PathVariable("id") UUID id, @RequestBody User user) {
 		try {
 			return ResponseEntity.ok(userService.modifById(id, user.getFirstName(), user.getLastName(), user.getEmail()));
 		} catch (Exception e) {

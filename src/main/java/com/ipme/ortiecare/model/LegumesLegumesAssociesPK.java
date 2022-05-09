@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.context.annotation.Lazy;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class LegumesLegumesAssociesPK implements Serializable {
 	
