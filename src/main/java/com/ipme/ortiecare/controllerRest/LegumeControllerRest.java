@@ -17,19 +17,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ipme.ortiecare.model.ConseilDeCulture;
 import com.ipme.ortiecare.model.Legume;
+import com.ipme.ortiecare.model.LegumesConseilsDeCulture;
 import com.ipme.ortiecare.model.Sol;
+import com.ipme.ortiecare.services.ConseilDeCultureService;
 import com.ipme.ortiecare.services.LegumeService;
+import com.ipme.ortiecare.services.SolService;
 import com.ipme.ortiecare.services.DTO.LegumeDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin
 @RestController
 @RequestMapping("api/legumes")
+@Tag(name = "Legume", description = "Legume HTTP REQUESTS")
 public class LegumeControllerRest {
 
 	@Autowired
 	private LegumeService legumeService;
+	@Autowired
+	private ConseilDeCultureService conseilService;
+	@Autowired
+	private SolService solService;
 
+    @Operation(summary = "findAll du repository legume", description = "Récupère toutes les legumes présents dans la base de données et les renvoie en tant que DTO.", tags = { "Legume" })
 	@GetMapping("getAll")
 	public ResponseEntity<List<LegumeDTO>> getLegumes(HttpSession session) {
 		try {
@@ -39,6 +51,20 @@ public class LegumeControllerRest {
 		}
 	}
 	
+//	@PostMapping("create")
+//	public ResponseEntity<Legume> createLegume(@RequestBody String nom, boolean resseme, boolean gousse, String tempsRecolte,
+//			String poidsMoyen, String titreConseil, String nomLegumeAssocie, String nomSol, HttpSession session) {
+//		
+//		ConseilDeCulture selectedConseil = conseilService.findByTitre(titreConseil);
+//		Legume selectedLegume = legumeService.findByNom(nomLegumeAssocie);
+//		Sol selectedSol = solService.findByNom(nomSol);
+//		LegumesConseilsDeCulture linkConseil = new LegumesConseilsDeCulture();
+//		
+//		return new ResponseEntity<Legume>(legumeService.create(nom, tempsRecolte,
+//				poidsMoyen, selectedConseil.getIdConseil(), legume.getLegumesAssocies(),
+//				legume.isAutoReseme(), legume.isGousse(), legume.getBestSol()), HttpStatus.CREATED);
+//	}
+
 	@PostMapping("create")
 	public ResponseEntity<Legume> createLegume(@RequestBody Legume legume, HttpSession session) {
 		return new ResponseEntity<Legume>(legumeService.create(legume.getNom(), legume.getTempsAvantRecolteEnMois(),

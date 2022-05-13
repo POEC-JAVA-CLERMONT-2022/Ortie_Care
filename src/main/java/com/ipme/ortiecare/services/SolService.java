@@ -55,6 +55,17 @@ public class SolService {
 			return new SolDTO();
 		}
 	}
+	
+	public Sol findByNom(String nom) {
+		if (nom != null && nom.toString() != "") {
+			logger.info("La recherche a fonctionné pour le nom : " + nom);
+			return solRepo.findByNomSol(nom);
+		} else {
+			logger.warn("La recherche n'a pas fonctionné. Renvoi d'un objet null. Valeur du paramètre passé : " + nom);
+			return null;
+		}
+	}
+	
 
 	public SolDTO convertSol(Sol unSol) {
 		if (unSol != null) {

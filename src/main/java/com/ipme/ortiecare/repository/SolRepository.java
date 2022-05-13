@@ -11,6 +11,8 @@ public interface SolRepository extends JpaRepository<Sol, UUID>{
 	
 	Sol getById(UUID id);
 	
+	Sol findByNomSol(String titre);
+	
 	List<Sol> findByTextureSolContaining(String boutTextureSol);
 	
 	List<Sol> findByStructureSolContaining(String boutStructureSol);
