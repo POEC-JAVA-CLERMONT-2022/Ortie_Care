@@ -90,18 +90,18 @@ public class LegumeService {
 	
 	
 	
-	// Récupération d'un légume par son nom et conversion en DTO
-	public LegumeDTO findByNom(String nom)
+	// Récupération d'un légume par son nom
+	public Legume findByNom(String nom)
 	{
 		if(nom != null && nom != "")
 		{
 			logger.info("Legume trouvé avec son nom");
-			return convertLegume(legumesRepo.findByNom(nom), true);
+			return legumesRepo.findByNom(nom);
 		}
 		else
 		{
 			logger.warn("Aucun legume trouvé avec ce nom (" + nom + ") : retour d'un objet vide");
-			return new LegumeDTO();
+			return null;
 		}
 	}
 	

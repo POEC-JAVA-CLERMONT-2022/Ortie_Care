@@ -51,6 +51,18 @@ public class ConseilDeCultureService {
 			return new ConseilDeCultureDTO();
 		}
 	}
+	// Recuperation de conseil par Titre
+		public ConseilDeCulture findByTitre(String titre) {
+			if (titre != null && titre != "") {
+				logger.info("La recherche par titre a fonctionné pour le titre " + titre);
+				return conseilRepo.findByTitre(titre);
+			} else {
+				logger.warn(
+						"La recherche par titre n'a pas fonctionné, renvoi d'un objet vide conseil de culture. Valeur du paramètre passé : "
+								+ titre);
+				return null;
+			}
+		}
 
 	// Suppression de conseil par ID
 	public int deleteById(UUID id) {
