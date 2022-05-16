@@ -18,6 +18,8 @@ public interface LegumesRepository extends JpaRepository<Legume,UUID>{
 	
 	List<Legume> findByBestSol (Sol idSol);
 	
+	List<Legume> findByBestSolAndIdLegume (Sol idSol, UUID idLegume);
+	
 	// Inutilisé
 	List<Legume>findByNomStartingWith(String nom);
 	

@@ -54,7 +54,7 @@ public class LegumeDTO {
 
 	public void setAutoReseme(boolean autoReseme) {this.autoReseme = autoReseme;}
 
-	public boolean isGousse() {return isGousse;}
+	public boolean isisGousse() {return isGousse;}
 
 	public void setGousse(boolean isGousse) {this.isGousse = isGousse;}
 
