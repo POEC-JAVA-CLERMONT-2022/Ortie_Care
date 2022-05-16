@@ -74,16 +74,16 @@ public class LegumeService {
 	}
 	
 	// Récupération d'un legume par son id et conversion en DTO
-	public LegumeDTO findByUUID(UUID id)
+	public LegumeDTO findByUUID(UUID idLegume)
 	{
-		if(id != null && id.toString() != "")
+		if(idLegume != null && idLegume.toString() != "")
 		{
 			logger.info("Legume trouvé grace a son id ");
-			return convertLegume(legumesRepo.getById(id), true);
+			return convertLegume(legumesRepo.getById(idLegume), true);
 		}
 		else
 		{
-			logger.warn("Aucun legume trouvé avec cet id(" + id + ") : retour d'un objet vide");
+			logger.warn("Aucun legume trouvé avec cet id(" + idLegume + ") : retour d'un objet vide");
 			return new LegumeDTO();
 		}
 	}
