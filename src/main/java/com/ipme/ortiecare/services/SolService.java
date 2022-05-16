@@ -69,7 +69,7 @@ public class SolService {
 
 	public SolDTO convertSol(Sol unSol) {
 		if (unSol != null) {
-			return new SolDTO(unSol.getNomSol(), unSol.getTextureSol(), unSol.getStructureSol(), unSol.getAvantageSol(),
+			return new SolDTO(unSol.getId() ,unSol.getNomSol(), unSol.getTextureSol(), unSol.getStructureSol(), unSol.getAvantageSol(),
 					unSol.getInconvenientSol());
 		} else {
 			return new SolDTO();

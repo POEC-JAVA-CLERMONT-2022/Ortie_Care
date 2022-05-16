@@ -1,9 +1,12 @@
 package com.ipme.ortiecare.services.DTO;
 
+import java.util.UUID;
+
 import com.ipme.ortiecare.model.Sol;
 
 public class SolDTO {
 	
+	private UUID idSol;
 	private String nomSol;
 	private String textureSol;
 	private String structureSol;
@@ -14,8 +17,9 @@ public class SolDTO {
 		
 	}
 
-	public SolDTO(String nomSol, String textureSol, String structureSol, String avantageSol, String inconvenientSol) {
+	public SolDTO(UUID idSol, String nomSol, String textureSol, String structureSol, String avantageSol, String inconvenientSol) {
 		
+		this.idSol = idSol;
 		this.nomSol = nomSol;
 		this.textureSol = textureSol;
 		this.structureSol = structureSol;
@@ -23,6 +27,8 @@ public class SolDTO {
 		this.inconvenientSol = inconvenientSol;
 	}
 
+	public UUID getIdSol() {return idSol;}
+	
 	public String getNomSol() {return nomSol;}
 
 	public String getTextureSol() {return textureSol;}

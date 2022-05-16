@@ -231,7 +231,7 @@ public class LegumeService {
 					conseilsDTO.add(convertConseil(unConseil.getConseilLegume().getConseil()));
 				}
 			}
-			return new LegumeDTO(legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), conseilsDTO, legumesDTO, legume.isAutoReseme(), legume.isGousse(), solDTO);
+			return new LegumeDTO(legume.getIdLegume(), legume.getNom(), legume.getTempsAvantRecolteEnMois(), legume.getPoidsMoyenFruitEnG(), conseilsDTO, legumesDTO, legume.isAutoReseme(), legume.isGousse(), solDTO);
 		}
 		else
 		{
@@ -254,7 +254,7 @@ public class LegumeService {
 	// Duplication conversion Sol en DTO nécessaire pour l'objet legume
 	public SolDTO convertSol(Sol unSol) {
 		if (unSol != null) {
-			return new SolDTO(unSol.getNomSol(), unSol.getTextureSol(), unSol.getStructureSol(), unSol.getAvantageSol(),
+			return new SolDTO(unSol.getId(), unSol.getNomSol(), unSol.getTextureSol(), unSol.getStructureSol(), unSol.getAvantageSol(),
 					unSol.getInconvenientSol());
 		} else {
 			return new SolDTO();
