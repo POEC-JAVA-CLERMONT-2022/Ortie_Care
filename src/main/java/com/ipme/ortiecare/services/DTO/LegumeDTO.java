@@ -1,9 +1,11 @@
 package com.ipme.ortiecare.services.DTO;
 
 import java.util.List;
+import java.util.UUID;
 
 public class LegumeDTO {
 
+	private UUID idLegume;
 	private String nom;
 	private int tempsAvantRecolteEnMois;
 	private int poidsMoyenFruitEnG;
@@ -15,9 +17,10 @@ public class LegumeDTO {
 	
 
 	public LegumeDTO() {}
-	public LegumeDTO(String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG,
+	public LegumeDTO(UUID idLegume, String nom, int tempsAvantRecolteEnMois, int poidsMoyenFruitEnG,
 			List<ConseilDeCultureDTO> conseilsDeCulture, List<LegumeDTO> legumesAssocies,
 			boolean autoReseme, boolean isGousse, SolDTO bestSol) {
+		this.idLegume = idLegume;
 		this.nom = nom;
 		this.tempsAvantRecolteEnMois = tempsAvantRecolteEnMois;
 		this.poidsMoyenFruitEnG = poidsMoyenFruitEnG;
@@ -29,6 +32,8 @@ public class LegumeDTO {
 		
 
 	}
+	
+	public UUID getId() {return idLegume;}
 
 	public String getNom() {return nom;}
 
