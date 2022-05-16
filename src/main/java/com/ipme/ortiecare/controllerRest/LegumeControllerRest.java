@@ -97,6 +97,14 @@ public class LegumeControllerRest {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	@GetMapping("{idLegume}/sol/{idSol}")
+	public ResponseEntity<List<LegumeDTO>> getLegumes(@PathVariable("idSol") Sol idSol,@PathVariable("idLegume") UUID idLegume, HttpSession session) {
+		try {
+			return ResponseEntity.ok(legumeService.findBySolAndId(idSol, idLegume));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 
 	@GetMapping("getAssociations/{id}")
 	public ResponseEntity<List<LegumeDTO>> getAssociations(@PathVariable("id") UUID idLegume, HttpSession session) {

@@ -141,6 +141,24 @@ public class LegumeService {
 			return new ArrayList<LegumeDTO>();
 		}
 	}
+	
+	public List<LegumeDTO> findBySolAndId(Sol idSol, UUID idLegume)
+	{
+		if(idSol != null && idSol.toString() != "" && idLegume != null && idLegume.toString() != "")
+		{
+			ArrayList<LegumeDTO> legumesDTO = new ArrayList<>();
+			for (Legume unLegume : legumesRepo.findByBestSolAndIdLegume(idSol, idLegume))
+			{
+				legumesDTO.add(convertLegume(unLegume, true));
+			}
+			return legumesDTO;
+		}
+		else
+		{
+			return new ArrayList<LegumeDTO>();
+		}
+	}
+	
 	// Ajout d'une association legume legume
 	// TODO : test et fin
 	public int addAssociationLegumeLegume(Legume premierLegume, Legume deuxiemeLegume)
