@@ -17,7 +17,7 @@
 		<java.version>17</java.version>
 		<sonar.organization>poec-java-clermont-2022</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<start-class>com.ipme.ortiecare/OrtieCareApplication</start-class>
+		<!-- <start-class>com.ipme.ortiecare/OrtieCareApplication</start-class> -->
 	</properties>
 	<dependencies>
 		<dependency>

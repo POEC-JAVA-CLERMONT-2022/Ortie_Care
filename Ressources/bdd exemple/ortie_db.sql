@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 31 mars 2022 à 14:04
+-- Généré le : mar. 17 mai 2022 à 08:52
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -40,9 +40,11 @@ CREATE TABLE IF NOT EXISTS `conseils_de_culture` (
 --
 
 INSERT INTO `conseils_de_culture` (`id_conseil`, `description`, `titre`) VALUES
-('c621238a-b0ee-11ec-b909-0242ac120002', 'Une maladie cryptogamique est une maladie causée par un champignon parasite. Elle va se traduire par des tâches sur les feuilles ainsi qu\'un changement de couleur de l\'écorce. Cela rend impossible la culture rentable de la plante.', 'Lutte contre les maladies cryptogamiques'),
+('bdb60c20-d50f-11ec-9d64-0242ac120002', 'Nettoie le sol ', 'Epuration'),
+('bdb60d10-d50f-11ec-9d64-0242ac120002', 'Maintient l\'humidité au sol', 'Ombrage'),
+('c621238a-b0ee-11ec-b909-0242ac120002', 'Lutte contre le champignon parasite, qui se traduit par des tâches sur les feuilles ainsi qu\'un changement de couleur de l\'écorce.', 'Lutte contre les maladies cryptogamiques'),
 ('c621265a-b0ee-11ec-b909-0242ac120002', 'Est un répulsif naturel contre les insectes et limaces. ', 'Eloigne les indésirables'),
-('c62127e0-b0ee-11ec-b909-0242ac120002', 'Grâce à l\'étalage des feuilles sur le sol, cela créer un paillage naturel qui conserve l\'humidité du sol et réduit la prolifération des mauvaises herbes.', 'Paillage naturel'),
+('c62127e0-b0ee-11ec-b909-0242ac120002', 'Etalage des feuilles sur le sol ce qui conserve l\'humidité du sol et réduit la prolifération des mauvaises herbes.', 'Paillage naturel'),
 ('c6212948-b0ee-11ec-b909-0242ac120002', 'Les hautes tiges servent de support de croissance aux plantes grimpantes.', 'Tuteur naturel');
 
 -- --------------------------------------------------------
@@ -69,12 +71,20 @@ CREATE TABLE IF NOT EXISTS `legumes` (
 --
 
 INSERT INTO `legumes` (`id_legume`, `auto_reseme`, `is_gousse`, `poids_moyen_fruit_eng`, `temps_avant_recolte_en_mois`, `best_sol_id_sol`, `nom`) VALUES
+('10f0d5d0-e438-4606-b09b-f3c3f5cb37bb', b'0', b'0', 10, 7, '8d5fe500-b011-11ec-b909-0242ac120002', 'Fraise'),
+('52ba70fa-ae96-4483-8f10-8cdcb5cf48a3', b'0', b'0', 125, 4, '8d5fe37a-b011-11ec-b909-0242ac120002', 'Carotte'),
 ('85b58100-b0ea-11ec-b909-0242ac120002', b'1', b'0', 130, 4, '8d5fe762-b011-11ec-b909-0242ac120002', 'Tomate'),
 ('85b584fc-b0ea-11ec-b909-0242ac120002', b'0', b'0', 100, 2, '8d5fe762-b011-11ec-b909-0242ac120002', 'Courgette'),
 ('85b586e6-b0ea-11ec-b909-0242ac120002', b'1', b'1', 80, 6, '8d5fe640-b011-11ec-b909-0242ac120002', 'Ail'),
+('bdb604f0-d50f-11ec-9d64-0242ac120002', b'0', b'0', 50, 36, '8d5fe37a-b011-11ec-b909-0242ac120002', 'Asperge'),
+('bdb606d0-d50f-11ec-9d64-0242ac120002', b'1', b'0', 300, 1, '8d5fe37a-b011-11ec-b909-0242ac120002', 'Betterave'),
+('bdb607ca-d50f-11ec-9d64-0242ac120002', b'0', b'0', 300, 5, '8d5fe762-b011-11ec-b909-0242ac120002', 'Aubergine'),
+('bdb608b0-d50f-11ec-9d64-0242ac120002', b'1', b'1', 100, 6, '8d5fe37a-b011-11ec-b909-0242ac120002', 'Oignon'),
+('bdb6098c-d50f-11ec-9d64-0242ac120002', b'1', b'0', 100, 5, '8d5fe500-b011-11ec-b909-0242ac120002', 'Pomme de terre'),
 ('c6212ab0-b0ee-11ec-b909-0242ac120002', b'0', b'0', 250, 6, '8d5fe500-b011-11ec-b909-0242ac120002', 'Maïs'),
 ('c6212d3a-b0ee-11ec-b909-0242ac120002', b'1', b'0', 90, 5, '8d5fe37a-b011-11ec-b909-0242ac120002', 'Basilic'),
-('c6212e5c-b0ee-11ec-b909-0242ac120002', b'1', b'0', 1500, 3, '8d5fe762-b011-11ec-b909-0242ac120002', 'Courge');
+('c6212e5c-b0ee-11ec-b909-0242ac120002', b'1', b'0', 1500, 3, '8d5fe762-b011-11ec-b909-0242ac120002', 'Courge'),
+('ffb8e4c6-e6fa-405e-86d0-5c57957a5ad5', b'1', b'1', 25, 4, '8d5fe37a-b011-11ec-b909-0242ac120002', 'Échalote');
 
 -- --------------------------------------------------------
 
@@ -95,6 +105,8 @@ CREATE TABLE IF NOT EXISTS `legumes_conseils_de_culture` (
 --
 
 INSERT INTO `legumes_conseils_de_culture` (`legume_id_legume`, `conseils_de_culture_id_conseil`) VALUES
+('bdb6098c-d50f-11ec-9d64-0242ac120002', 'bdb60c20-d50f-11ec-9d64-0242ac120002'),
+('bdb607ca-d50f-11ec-9d64-0242ac120002', 'bdb60d10-d50f-11ec-9d64-0242ac120002'),
 ('85b586e6-b0ea-11ec-b909-0242ac120002', 'c621238a-b0ee-11ec-b909-0242ac120002'),
 ('c6212d3a-b0ee-11ec-b909-0242ac120002', 'c621265a-b0ee-11ec-b909-0242ac120002'),
 ('c6212e5c-b0ee-11ec-b909-0242ac120002', 'c62127e0-b0ee-11ec-b909-0242ac120002'),
@@ -113,6 +125,17 @@ CREATE TABLE IF NOT EXISTS `legumes_legumes_associes` (
   PRIMARY KEY (`legume_id_legume`,`legumes_associes_id_legume`),
   UNIQUE KEY `UK_i9ihda1ib0bk2chpw6gmabsk5` (`legumes_associes_id_legume`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `legumes_legumes_associes`
+--
+
+INSERT INTO `legumes_legumes_associes` (`legume_id_legume`, `legumes_associes_id_legume`) VALUES
+('85b586e6-b0ea-11ec-b909-0242ac120002', '10f0d5d0-e438-4606-b09b-f3c3f5cb37bb'),
+('ffb8e4c6-e6fa-405e-86d0-5c57957a5ad5', '85b58100-b0ea-11ec-b909-0242ac120002'),
+('85b58100-b0ea-11ec-b909-0242ac120002', '85b586e6-b0ea-11ec-b909-0242ac120002'),
+('85b58100-b0ea-11ec-b909-0242ac120002', 'bdb604f0-d50f-11ec-9d64-0242ac120002'),
+('85b58100-b0ea-11ec-b909-0242ac120002', 'c6212d3a-b0ee-11ec-b909-0242ac120002');
 
 -- --------------------------------------------------------
 
